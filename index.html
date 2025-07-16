@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaqueries.css" />
+    <style>
+      #discord-invite-modal form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      #discord-invite-modal input,
+      #discord-invite-modal textarea {
+        width: 90%;
+        margin-bottom: 0.5em;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        padding: 0.5em;
+        box-sizing: border-box;
+      }
+      #discord-invite-modal button[type="submit"] {
+        width: 90%;
+      }
+
+      .section__text__p1 a {
+        color: rgb(85,85,85) !important;
+        font-weight: normal;
+        text-decoration: none;
+      }
+
+      .video-crop-container {
+        width: 350px;
+        height: 340px;      /* 10px less than the video height */
+        overflow: hidden;
+        border-radius: 8px;
+        position: relative;
+      }
+
+      .cropped-video {
+        width: 350px;
+        height: 350px;
+        object-fit: cover;
+        object-position: center 35%;
+        position: relative;
+        top: -20px;         /* Shift video up by 10px */
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="desktop-nav">
+      <div class="logo">Kevin Thomas Fernandez</div>
+      <div>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <nav id="hamburger-nav">
+      <div class="logo">Kevin Thomas Fernandez</div>
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="menu-links">
+          <li><a href="#about" onclick="toggleMenu()">About</a></li>
+          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </div>
+      </div>
+    </nav>
+    <section id="profile">
+      <div class="section__pic-container">
+        <img src="./assets/profile-pic.png" alt="Kevin Thomas Fernandez profile picture" />
+      </div>
+      <div class="section__text">
+        <p class="section__text__p1">
+          <a href="https://www.vocabulary.com/dictionary/namaskar#:~:text=an%20Indian%20gesture%20of%20greeting,face%20or%20chest%20and%20bowing" target="_blank" style="font-weight: bold; color: rgb(85,85,85); text-decoration: none;">Namaskara</a>
+          <span style="font-size: smaller; font-weight: normal; color: inherit;"> [Greetings In My Native Language]</span>, I'm
+        </p>
+        <h1 class="title">Kevin Thomas Fernandez</h1>
+        <p class="section__text__p2">Aerospace Engineer & Researcher</p>
+        <div class="btn-container">
+          <button
+            class="btn btn-color-2"
+            onclick="window.open('./Kevin_ThomasFernandez_AerospaceEngineer.pdf')"
+          >
+            Download CV
+          </button>
+          <button class="btn btn-color-1" onclick="location.href='./#contact'">
+            Contact Info
+          </button>
+        </div>
+        <div id="socials-container">
+          <img
+            src="./assets/linkedin.png"
+            alt="My LinkedIn profile"
+            class="icon"
+            onclick="location.href='https://www.linkedin.com/in/ktf08/'"
+          />
+          <img
+            src="./assets/github.png"
+            alt="My Github profile"
+            class="icon"
+            onclick="location.href='https://github.com/kevin-thomas-fernandez'"
+          />
+        </div>
+      </div>
+    </section>
+    <section id="about">
+      <p class="section__text__p1">Get To Know More</p>
+      <h1 class="title">About Me</h1>
+      <div class="section-container">
+        <div class="section__pic-container">
+          <img
+            src="./assets/about-me-pic.png"
+            alt="Profile picture"
+            class="about-me-pic"
+          />
+        </div>
+        <div class="about-details-container">
+          <div class="about-containers">
+            <div class="details-container">
+              <img
+                src="./assets/experience.png"
+                alt="Experience icon"
+                class="icon"
+              />
+              <h3>Experience</h3>
+              <p>2+ years Aerospace Research & Engineering</p>
+            </div>
+            <div class="details-container">
+              <img
+                src="./assets/education.png"
+                alt="Education icon"
+                class="icon"
+              />
+              <h3>Education</h3>
+              <p>B.E. Mechanical Engineering (India)<br />M.S. Aerospace Engineering (Virginia Tech, USA)</p>
+            </div>
+          </div>
+          <div class="text-container">
+            <p>
+              I am a graduate aerospace engineer with hands-on experience in airworthiness analysis, advanced de-icing research, and UAV safety. Skilled in simulation, CAD, and programming, I thrive at the intersection of engineering, research, and teaching.
+            </p>
+          </div>
+        </div>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#experience'"
+      />
+    </section>
+    <section id="experience">
+      <p class="section__text__p1">Explore My</p>
+      <h1 class="title">Experience</h1>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <div class="details-container">
+            <h2 class="experience-sub-title">Design & Engineering</h2>
+            <div class="article-container">
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>SolidWorks</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Ansys</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Catia V5</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Abaqus</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Tecplot</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Optical Imaging</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Adobe Illustrator</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="details-container">
+            <h2 class="experience-sub-title">Programming</h2>
+            <div class="article-container">
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Python</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>MATLAB</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>JavaScript</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>GIT</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>ArduPilot Mission Planner</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="details-container">
+            <h2 class="experience-sub-title">Documentation</h2>
+            <div class="article-container">
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>LaTeX</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Canva</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>MS Office</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>EndNote</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Technical Writing</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#work-experience'"
+      />
+    </section>
+    <section id="work-experience">
+      <p class="section__text__p1">Browse My Recent</p>
+      <h1 class="title">Work Experience</h1>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <div class="about-containers">
+            <div class="details-container color-container">
+              <div class="article-container">
+                <img
+                  src="./assets/QUADRA.png"
+                  alt="Project 1"
+                  class="project-img"
+                  onclick="openImageModal('./assets/QUADRA.png')"
+                />
+              </div>
+              <h2 class="experience-sub-title project-title">QUADRA</h2>
+              <div class="btn-container">
+                <button
+                  class="btn btn-color-2 project-btn"
+                  onclick="location.href='https://www.goldensectionllc.com/'"
+                >
+                  Website
+                </button>
+              </div>
+            </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <video
+                class="project-img"
+                src="./assets/Icing1.mp4"
+                autoplay
+                loop
+                muted
+                playsinline
+              ></video>
+            </div>
+            <h2 class="experience-sub-title project-title">Advanced Aircraft De-icing techniques</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/kevin-thomas-fernandez/VTOL-Tri-Copter-Analysis'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/kevin-thomas-fernandez/VTOL-Tri-Copter-Analysis'"
+              >
+                Live Demo
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/Windtunnel.jpg"
+                alt="Project 1"
+                class="project-img"
+                onclick="openImageModal('./assets/Windtunnel.jpg')"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Graduate Teaching Assistant</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/kevin-thomas-fernandez/shock-impact-behavior'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/kevin-thomas-fernandez/shock-impact-behavior'"
+              >
+                Live Demo
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/windtunnel.png"
+                alt="Project 2"
+                class="project-img"
+                onclick="openImageModal('./assets/windtunnel.png')"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Stability Wind Tunnel</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/kevin-thomas-fernandez/VTOL-Tri-Copter-Analysis'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/kevin-thomas-fernandez/VTOL-Tri-Copter-Analysis'"
+              >
+                Live Demo
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/Patran.png"
+                alt="Project 2"
+                class="project-img"
+                onclick="openImageModal('./assets/Patran.png')"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Bangalore Aircraft Industries Private Limited</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/kevin-thomas-fernandez/VTOL-Tri-Copter-Analysis'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/kevin-thomas-fernandez/VTOL-Tri-Copter-Analysis'"
+              >
+                Live Demo
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#projects'"
+      />
+    </section>
+    <section id="projects">
+      <p class="section__text__p1">Browse My Recent</p>
+      <h1 class="title">Projects</h1>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/mode3.png"
+                alt="Project 1"
+                class="project-img"
+                onclick="openImageModal('./assets/mode3.png')"
+              />
+              <img
+                src="./assets/Final reconstructed.png"
+                alt="Project 1"
+                class="project-img"
+                onclick="openImageModal('./assets/Final reconstructed.png')"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Proper Orthogonal Decomposition and Near-Field Noise Analysis using Welch’s Method for PSD Estimation</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/kevin-thomas-fernandez/shock-impact-behavior'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/kevin-thomas-fernandez/shock-impact-behavior'"
+              >
+                Live Demo
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/Sail.png"
+                alt="Project 2"
+                class="project-img"
+                onclick="openImageModal('./assets/Sail.png')"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Feasibility Study for Deployable Solar Sails on 2U
+              CubeSats for Interplanetary Science Missions</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/kevin-thomas-fernandez/VTOL-Tri-Copter-Analysis'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/kevin-thomas-fernandez/VTOL-Tri-Copter-Analysis'"
+              >
+                Live Demo
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/Impact Behavior of Metals.jpg"
+                alt="Project 1"
+                class="project-img"
+                onclick="openImageModal('./assets/Impact Behavior of Metals.jpg')"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Shock Impact Behavior of Metals</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/kevin-thomas-fernandez/shock-impact-behavior'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/kevin-thomas-fernandez/shock-impact-behavior'"
+              >
+                Live Demo
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/CFD.png"
+                alt="Project 2"
+                class="project-img"
+                onclick="openImageModal('./assets/CFD.png')"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title"> Computational fluid analysis for flow in a square lid-driven cavity</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/kevin-thomas-fernandez/VTOL-Tri-Copter-Analysis'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/kevin-thomas-fernandez/VTOL-Tri-Copter-Analysis'"
+              >
+                Live Demo
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/NS.png"
+                alt="Project 1"
+                class="project-img"
+                onclick="openImageModal('./assets/NS.png')"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">AStudy of Navier-Stokes Solver Capabilities and
+              Trade offs in Aerodynamic Analysis with NACA 4512 Airfoil</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/kevin-thomas-fernandez/shock-impact-behavior'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/kevin-thomas-fernandez/shock-impact-behavior'"
+              >
+                Live Demo
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/Manufacturing.png"
+                alt="Project 1"
+                class="project-img"
+                onclick="openImageModal('./assets/Manufacturing.png')"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Assembly Line Balancing with Real-Time Industrial Data (2021)</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://www.goldensectionllc.com/'"
+              >
+                Website
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/CFX.png"
+                alt="Project 2"
+                class="project-img"
+                onclick="openImageModal('./assets/CFX.png')"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">VTOL Tri-Copter Analysis (2020)</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="window.open('./Kevin_ThomasFernandez_AerospaceEngineer.pdf')"
+              >
+                Presentation
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#research'"
+      />
+    </section>
+    <section id="research">
+      <p class="section__text__p1">Explore My</p>
+      <h1 class="title">Research & Academic  Work</h1>
+      <ul style="list-style: none; padding: 0; text-align: center;">
+        <br>
+        <li><h2 style="display:inline;"><a href="https://scholar.google.com/citations?hl=en&view_op=list_works&gmla=AH8HC4yFQB1XF2yknzpGti_NNXgRxT-PG4Qe1nkeEzSp2oHO8NI0M4cIzTI8Ek8U5rcIgAJIojDHEadp-sIsjA&user=H_eG3ZAAAAAJ" target="_blank">Google Scholar Profile</a></h2></li>
+        <br>
+        <li><h2 style="display:inline;"><a href="https://virginiatech.primo.exlibrisgroup.com/discovery/fulldisplay?context=L&vid=01VT_INST:01VT_INST&search_scope=MyInst_and_CI&tab=Everything&docid=alma991013646721608646" target="_blank">Master's Thesis</a></h2></li>
+        <br>
+        <li>
+          <h2>Member</h2>
+          <a href="https://create.centers.vt.edu/" target="_blank">CREATe (2023- 2025)</a>
+        </li>
+        <br>
+        <li style="margin-top: 1em; font-weight: bold;"><h2 style="display:inline;">Conferences & Meetings</h2></li>
+        <li style="font-size: 1rem; color: #333; max-width: 600px; margin: 0 auto 1em auto;">
+          <br/>
+          <b>AUVSI Xponential</b><br/>
+          Houston, TX (2025)<br/>
+
+         Represented as an Airworthiness analyst working for the Virginia Tech Airworthiness center. In Association with MAAP and VTIP.
+        </li>
+        <li style="font-size: 1rem; color: #333; max-width: 600px; margin: 0 auto 1em auto;">
+          <br/>
+          <b>76th & 77th Annual APS Division of Fluid Dynamics Conference</b><br/>
+          Washington, DC (2023) & Salt Lake City, UT (2024)<br/>
+
+          “An Advanced Aircraft Deicing Analysis: Supercooled Liquid Dynamics under Ultrasonic Frequency and Surface Roughness Effects.” 
+        </li>
+        <li style="font-size: 1rem; color: #333; max-width: 600px; margin: 0 auto 1em auto;">
+          
+          <br/>
+          <b> Future of Flight at Game Changer Week</b><br/>
+          VT Montgomery Exec Airport (2024)<br/>
+          Presented UAV Ground Risk Analysis solution.
+        </li>
+      </ul>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#music'"
+      />
+    </section>
+    <section id="music">
+      <p class="section__text__p1">Music Production</p>
+      <h1 class="title">Original Works under MANGA</h1>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 2rem;">
+        <div style="text-align: center;">
+          <img src="./assets/No boundaries.png" alt="No Boundaries Manga" style="max-width: 350px; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+          <div style="margin-top: 0.5rem; font-weight: bold;">
+            <a href="https://open.spotify.com/track/1YTtykT5GkZiFMKFKQkWXM?si=10b588e0d1b14c58" target="_blank" style="text-decoration: none; color: inherit;">No Boundaries</a>
+          </div>
+        </div>
+        <div style="text-align: center;">
+          <img src="./assets/Warground.png" alt="War Ground Manga" style="max-width: 350px; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+          <div style="margin-top: 0.5rem; font-weight: bold;">
+            <a href="https://open.spotify.com/track/2nOXG4dJFw2a5xOWdtfhJI?si=00f985b599f34d74" target="_blank" style="text-decoration: none; color: inherit;">War Ground</a>
+          </div>
+        </div>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#recognition'"
+      />
+    </section>
+    <section id="gallery-spotlight">
+      <p class="section__text__p1">Gallery & Spotlight</p>
+      <h1 class="title">Gallery & Spotlight</h1>
+      <div class="carousel-container" style="display: flex; flex-direction: column; align-items: center; max-width: 600px; margin: 0 auto;">
+        <div style="display: flex; align-items: center; width: 100%; justify-content: center;">
+          <button id="carousel-left" style="background: none; border: none; font-size: 2rem; cursor: pointer;">&#8592;</button>
+          <img id="carousel-image" src="./assets/profile-pic.png" alt="Gallery Image" style="width: 350px; max-width: 90vw; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 0 20px; transition: all 0.3s;" onclick="openImageModal(this.src)" />
+          <button id="carousel-right" style="background: none; border: none; font-size: 2rem; cursor: pointer;">&#8594;</button>
+        </div>
+        <div id="carousel-caption" style="margin-top: 10px; font-size: 1.1rem; color: #333;">Profile Picture</div>
+      </div>
+      <ul style="list-style: none; padding: 0; text-align: center; margin-top: 2em;">
+        <li><a href="https://www.facebook.com/virginiatechaoe/photos/congrats-to-kevin-thomas-fernandez-who-completed-his-masters-degree-this-spring-/714215007801559/?_rdr" target="_blank">Virginia Tech Spotlight</a></li>
+      </ul>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#contact'"
+      />
+    </section>
+    <section id="contact">
+      <p class="section__text__p1">Get in Touch</p>
+      <h1 class="title">Contact Me</h1>
+      <div class="contact-info-upper-container">
+        <div class="contact-info-container">
+          <img
+            src="./assets/email.png"
+            alt="Email icon"
+            class="icon contact-icon email-icon"
+          />
+          <p><a href="mailto:kevin4680thomas@gmail.com">Email</a></p>
+        </div>
+        <div class="contact-info-container">
+          <img
+            src="./assets/linkedin.png"
+            alt="LinkedIn icon"
+            class="icon contact-icon"
+          />
+          <p><a href="https://www.linkedin.com/in/ktf08/">LinkedIn</a></p>
+        </div>
+        <div class="contact-info-container">
+          <img
+            src="./assets/github.png"
+            alt="GitHub icon"
+            class="icon contact-icon"
+          />
+          <p><a href="https://github.com/kevin-thomas-fernandez">GitHub</a></p>
+        </div>
+        <div class="contact-info-container">
+          <img
+            src="./assets/discord.png"
+            alt="Discord icon"
+            class="icon contact-icon"
+          />
+          <p><a href="#discord-invite-form" onclick="scrollToDiscordForm(event)">Discord Server</a></p>
+        </div>
+      </div>
+      <div id="discord-invite-container" style="display:none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.4); z-index: 10000; justify-content: center; align-items: center;">
+        <div id="discord-invite-modal" style="background: #fafbfc; border-radius: 8px; max-width: 400px; width: 90vw; margin: auto; padding: 2em 1em 1em 1em; position: relative; box-shadow: 0 2px 16px rgba(0,0,0,0.2); border: 1px solid #eee;">
+            <button id="close-discord-invite" style="position: absolute; top: 0.5em; right: 0.5em; background: none; border: none; font-size: 1.5em; cursor: pointer;">&times;</button>
+            <p style="text-align:center; margin-bottom: 1em;">Want a Discord invite? Send me a request:</p>
+            <form id="discord-invite-form" action="https://formsubmit.co/kevin4680thomas@gmail.com" method="POST">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="text" id="discord-name" name="name" placeholder="Your Name" required />
+              <input type="email" id="discord-email" name="email" placeholder="Your Email" required />
+              <textarea id="discord-message" name="message" placeholder="Message (optional)" rows="3"></textarea>
+              <button type="submit">Send Request</button>
+            </form>
+            <div id="discord-invite-success" style="display:none; color:green; text-align:center; margin-top:1em;">Request sent! I'll get back to you soon.</div>
+          </div>
+        </div>
+    </section>
+    <footer>
+      <nav>
+        <div class="nav-links-container">
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+      <p>Copyright &#169; 2024 Kevin Thomas Fernandez. All Rights Reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+    <!-- Modal for image viewer -->
+    <div id="image-modal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
+      <img id="modal-img" src="" alt="Full Image" style="max-width:90vw; max-height:90vh; border-radius:12px; box-shadow:0 2px 16px rgba(0,0,0,0.5);" />
+    </div>
+    <script>
+      function openImageModal(src) {
+        var modal = document.getElementById('image-modal');
+        var modalImg = document.getElementById('modal-img');
+        modalImg.src = src;
+        modal.style.display = 'flex';
+      }
+      document.getElementById('image-modal').onclick = function(e) {
+        if (e.target === this) {
+          this.style.display = 'none';
+          document.getElementById('modal-img').src = '';
+        }
+      };
+    </script>
+    <script>
+      function scrollToDiscordForm(event) {
+        event.preventDefault();
+        const container = document.getElementById('discord-invite-container');
+        if (container) {
+          container.style.display = 'flex';
+          const form = document.getElementById('discord-invite-form');
+          if (form) {
+            form.scrollIntoView({ behavior: 'smooth' });
+            const firstInput = form.querySelector('input, textarea');
+            if (firstInput) firstInput.focus();
+          }
+        }
+      }
+      // Close modal on close button click
+      document.addEventListener('DOMContentLoaded', function() {
+        const container = document.getElementById('discord-invite-container');
+        const closeBtn = document.getElementById('close-discord-invite');
+        if (closeBtn && container) {
+          closeBtn.onclick = function() {
+            container.style.display = 'none';
+          };
+        }
+        // Close modal when clicking outside the modal content
+        if (container) {
+          container.addEventListener('click', function(e) {
+            if (e.target === container) {
+              container.style.display = 'none';
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
