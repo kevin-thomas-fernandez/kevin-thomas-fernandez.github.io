@@ -472,3 +472,21 @@ footer p {
   font-weight: normal;
   text-decoration: none;
 }
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 16px;
+    padding: 10px;
+  }
+  .your-class {
+    width: 100%;
+    /* Adjust other properties as needed */
+  }
+  /* Add more rules for images, nav, etc. */
+}
