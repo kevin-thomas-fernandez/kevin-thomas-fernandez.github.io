@@ -7,15 +7,16 @@ function toggleMenu() {
 
 // Interactive Gallery Carousel
 const galleryImages = [
-  { src: './assets/windtunnel.png', caption: 'Virginia Tech Stability Wind Tunnel (2021)' },
-  { src: './assets/Manufacturing.png', caption: 'V.S.T. Tillers Tractors Ltd, Production Floor (2022)' },
+
+  { src: './assets/WhatsApp Image 2025-05-25 at 15.38.00_cd04e5aa.jpg', caption: 'Graduation, Lane Hall, Virginia Tech (2025)' },
   { src: './assets/Winning.png', caption: 'CREATe Poster Competion First Place Win, McBryde 660, Virginia Tech (2024)' },
   { src: './assets/Poster.png', caption: 'Supercooled Droplet Research, Virginia Tech (2024)' },
   { src: './assets/IMG-20250610-WA0004.jpg', caption: 'Wisk 6th Generation Aircraft, Houston Xponential (2025)' },
   { src: './assets/EmceeTeam.jpg', caption: 'The Emcee Team, Dayananda Sagar Institutions (2019)' },
   { src: './assets/Windtunnel.jpg', caption: 'Particle Shadow Velocimetry study with Water Tunnel,GoodWin Hall, Virginia Tech(2024)' },
-  { src: './assets/WhatsApp Image 2025-05-25 at 15.38.00_cd04e5aa.jpg', caption: 'Graduation, Lane Hall, Virginia Tech (2025)' },
-  { src: './assets/WhatsApp Image 2025-05-18 at 22.08.46_650b9d9d.jpg', caption: 'Graduation Ceremony, Cassell Coliseum , Virginia Tech (2035' },
+  { src: './assets/WhatsApp Image 2025-05-18 at 22.08.46_650b9d9d.jpg', caption: 'Graduation Ceremony, Cassell Coliseum , Virginia Tech (2035' },  
+  { src: './assets/windtunnel.png', caption: 'Virginia Tech Stability Wind Tunnel (2021)' },
+  { src: './assets/Manufacturing.png', caption: 'V.S.T. Tillers Tractors Ltd, Production Floor (2022)' },
 ];
 let currentGalleryIndex = 0;
 
