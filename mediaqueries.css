@@ -30,8 +30,7 @@
   .arrow {
     display: none;
   }
-  section,
-  .section-container {
+  section {
     height: fit-content;
   }
   section {
