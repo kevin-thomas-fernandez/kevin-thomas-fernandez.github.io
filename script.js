@@ -13,10 +13,9 @@ const galleryImages = [
   { src: './assets/Poster.png', caption: 'Supercooled Droplet Research, Virginia Tech (2024)' },
   { src: './assets/IMG-20250610-WA0004.jpg', caption: 'Wisk 6th Generation Aircraft, Houston Xponential (2025)' },
   { src: './assets/EmceeTeam.jpg', caption: 'The Emcee Team, Dayananda Sagar Institutions (2019)' },
-  { src: './assets/Windtunnel.jpg', caption: 'Particle Shadow Velocimetry study with Water Tunnel,GoodWin Hall, Virginia Tech(2024)' },
-  { src: './assets/WhatsApp Image 2025-05-18 at 22.08.46_650b9d9d.jpg', caption: 'Graduation Ceremony, Cassell Coliseum , Virginia Tech (2035' },  
-  { src: './assets/windtunnel.png', caption: 'Virginia Tech Stability Wind Tunnel (2021)' },
-  { src: './assets/Manufacturing.png', caption: 'V.S.T. Tillers Tractors Ltd, Production Floor (2022)' },
+  { src: './assets/WhatsApp Image 2025-05-18 at 22.08.46_650b9d9d.jpg', caption: 'Graduation Ceremony, Cassell Coliseum , Virginia Tech (2035' }, 
+  { src: './assets/Box_Assembly_v32.JPG', caption: 'Prototype Supercooling Chamber, Iteration 2' },
+  { src: './assets/IMG_20250118_192034.jpg', caption: 'Research Setup Image' },
 ];
 let currentGalleryIndex = 0;
 
@@ -30,7 +29,9 @@ function updateGallery() {
   }
 }
 
+
 document.addEventListener('DOMContentLoaded', function() {
+  // Image Gallery Carousel
   const leftBtn = document.getElementById('carousel-left');
   const rightBtn = document.getElementById('carousel-right');
   if (leftBtn && rightBtn) {
@@ -44,7 +45,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   updateGallery();
+  
 });
+
 
 // Discord Invite Form Handler
 const discordForm = document.getElementById('discord-invite-form');

@@ -310,8 +310,17 @@ section {
   display: flex;
 }
 
-.about-me-pic {
+.text-container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.section__pic-container .about-me-pic {
   border-radius: 2rem;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .arrow {
@@ -331,6 +340,9 @@ section {
   border: rgb(53, 53, 53) 0.1rem solid;
   border-color: rgb(163, 163, 163);
   text-align: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 .section-container {
@@ -348,6 +360,14 @@ section {
   flex: 1 1 300px;
   max-width: 400px;
   min-width: 250px;
+}
+
+.details-container h3 {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  line-height: 1.4;
+  font-size: 1rem;
 }
 
 /* EXPERIENCE SECTION */
@@ -380,9 +400,10 @@ section {
 
 article {
   display: flex;
-  width: 10rem;
+  width: 100%;
   justify-content: space-around;
   gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 article .icon {
@@ -477,6 +498,77 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+/* VIDEO GALLERY SECTION */
+
+#video-gallery {
+  position: relative;
+}
+
+.video-carousel-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.video-display-container {
+  margin: 0 20px;
+  transition: all 0.3s ease;
+}
+
+.gallery-video {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+/* Video carousel navigation buttons */
+#video-carousel-left,
+#video-carousel-right {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #333;
+  transition: all 0.3s ease;
+  padding: 10px;
+  border-radius: 50%;
+  min-width: 50px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#video-carousel-left:hover,
+#video-carousel-right:hover {
+  color: #666;
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: scale(1.1);
+}
+
+#video-carousel-left:active,
+#video-carousel-right:active {
+  transform: scale(0.95);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments for video carousel */
+@media (max-width: 768px) {
+  .video-display-container {
+    margin: 0 10px;
+  }
+  
+  #video-carousel-left,
+  #video-carousel-right {
+    font-size: 1.5rem;
+    padding: 8px;
+  }
+  
+  .gallery-video {
+    max-width: 90vw;
+  }
 }
 
 @media (max-width: 600px) {
