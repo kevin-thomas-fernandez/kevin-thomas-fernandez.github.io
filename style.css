@@ -316,11 +316,11 @@ section {
 }
 
 .section__pic-container .about-me-pic {
-  border-radius: 2rem;
+  border-radius: 3rem;
   width: 100% !important;
   height: 100% !important;
   object-fit: cover;
-  object-position: center top;
+  object-position: top;
 }
 
 .arrow {
@@ -351,8 +351,8 @@ section {
 }
 
 .section__pic-container {
-  height: 400px;
-  width: 400px;
+  height: 380px;
+  width: 250px;
   margin: auto 0;
 }
 
