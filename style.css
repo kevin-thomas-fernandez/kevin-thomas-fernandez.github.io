@@ -566,8 +566,17 @@ article .icon {
 
 .project-img {
   border-radius: 2rem;
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Video-specific styling for web applications */
+video.project-img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 1rem;
 }
 
 .project-title {

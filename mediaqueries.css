@@ -46,6 +46,31 @@
   }
 }
 
+/* Tablet and smaller desktop adjustments */
+@media screen and (max-width: 768px) {
+  #web-applications .about-containers {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  #web-applications .details-container.color-container {
+    max-width: 90%;
+    min-width: auto;
+  }
+  
+  .project-img,
+  video.project-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  section {
+    margin: 0 3%;
+    padding-top: 2vh;
+  }
+}
+
 @media screen and (max-width: 600px) {
   #contact,
   footer {
@@ -98,5 +123,102 @@
   }
   .text-container {
     text-align: justify;
+  }
+  
+  /* Web Applications Section Mobile Fixes */
+  #web-applications {
+    padding-top: 2vh;
+    min-height: auto;
+  }
+  
+  #web-applications .about-containers {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  #web-applications .details-container.color-container {
+    width: 100%;
+    max-width: 100%;
+    min-width: auto;
+    margin: 0;
+    padding: 1rem;
+  }
+  
+  #web-applications .article-container {
+    width: 100%;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+  }
+  
+  #web-applications .project-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 1rem;
+  }
+  
+  #web-applications .experience-sub-title {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  #web-applications .btn-container {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  
+  #web-applications .project-btn {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  /* General container fixes for mobile */
+  .details-container.color-container {
+    max-width: 100%;
+    min-width: auto;
+  }
+  
+  .article-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  video.project-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+  
+  /* Ensure sections don't overflow on mobile */
+  section {
+    margin: 0 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+  
+  /* Fix any container overflow issues */
+  .experience-details-container {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Ensure buttons are properly sized */
+  .btn {
+    white-space: nowrap;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
   }
 }
