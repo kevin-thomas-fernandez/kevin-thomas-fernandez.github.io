@@ -51,21 +51,33 @@
     </style>
   </head>
   <body>
+    <div class="gold-background">
+      <div class="orb--gold"></div>
+    </div>
+    <!-- Background Music -->
+    <audio id="background-music" loop>
+      <source src="./assets/no boundaries instrumental.wav" type="audio/wav">
+      Your browser does not support the audio element.
+    </audio>
+    <button id="music-toggle" onclick="toggleMusic()" style="position:fixed; bottom:2rem; right:2rem; z-index:1000; width:50px; height:50px; border-radius:50%; border:2px solid rgb(163, 163, 163); background:rgba(255,255,255,0.9); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1.5rem; box-shadow:0 2px 8px rgba(0,0,0,0.2); transition:all 0.3s ease;" onmouseover="this.style.background='#ffffff'; this.style.transform='scale(1.1)'" onmouseout="this.style.background='rgba(255,255,255,0.9)'; this.style.transform='scale(1)'">🎵</button>
     <nav id="desktop-nav">
-      <div class="logo">Kevin Thomas Fernandez</div>
+      <div class="logo" onclick="showPage('about');" style="cursor: pointer;">Kevin Thomas Fernandez</div>
       <div>
         <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#video-gallery">Videos</a></li>
-          <li><a href="#image-gallery">Images</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#" onclick="showPage('about'); return false;">About</a></li>
+          <li><a href="#" onclick="showPage('work-experience'); return false;">Experience</a></li>
+          <li><a href="#" onclick="showPage('projects'); return false;">Projects</a></li>
+          <li><a href="#" onclick="showPage('video-gallery'); return false;">Videos</a></li>
+          <li><a href="#" onclick="showPage('image-gallery'); return false;">Images</a></li>
+          <li><a href="#" onclick="showPage('research'); return false;">Research</a></li>
+          <li><a href="#" onclick="showPage('music'); return false;">Music</a></li>
+          <li><a href="#" onclick="showPage('gallery-spotlight'); return false;">Gallery</a></li>
+          <li><a href="#" onclick="showPage('contact'); return false;">Contact</a></li>
         </ul>
       </div>
     </nav>
     <nav id="hamburger-nav">
-      <div class="logo">Kevin Thomas Fernandez</div>
+      <div class="logo" onclick="showPage('about');" style="cursor: pointer;">Kevin Thomas Fernandez</div>
       <div class="hamburger-menu">
         <div class="hamburger-icon" onclick="toggleMenu()">
           <span></span>
@@ -73,12 +85,15 @@
           <span></span>
         </div>
         <div class="menu-links">
-          <li><a href="#about" onclick="toggleMenu()">About</a></li>
-          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-          <li><a href="#video-gallery" onclick="toggleMenu()">Videos</a></li>
-          <li><a href="#image-gallery" onclick="toggleMenu()">Images</a></li>
-          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+          <li><a href="#" onclick="showPage('about'); toggleMenu(); return false;">About</a></li>
+          <li><a href="#" onclick="showPage('work-experience'); toggleMenu(); return false;">Experience</a></li>
+          <li><a href="#" onclick="showPage('projects'); toggleMenu(); return false;">Projects</a></li>
+          <li><a href="#" onclick="showPage('video-gallery'); toggleMenu(); return false;">Videos</a></li>
+          <li><a href="#" onclick="showPage('image-gallery'); toggleMenu(); return false;">Images</a></li>
+          <li><a href="#" onclick="showPage('research'); toggleMenu(); return false;">Research</a></li>
+          <li><a href="#" onclick="showPage('music'); toggleMenu(); return false;">Music</a></li>
+          <li><a href="#" onclick="showPage('gallery-spotlight'); toggleMenu(); return false;">Gallery</a></li>
+          <li><a href="#" onclick="showPage('contact'); toggleMenu(); return false;">Contact</a></li>
         </div>
       </div>
     </nav>
@@ -94,13 +109,7 @@
         <h1 class="title">Kevin Thomas Fernandez</h1>
         <p class="section__text__p2">Aerospace Engineer & Researcher</p>
         <div class="btn-container">
-          <button
-            class="btn btn-color-2"
-            onclick="window.open('./Kevin_ThomasFernandez_AerospaceEngineer.pdf')"
-          >
-            Download CV
-          </button>
-          <button class="btn btn-color-1" onclick="location.href='./#contact'">
+          <button class="btn btn-color-1" onclick="showPage('contact')">
             Contact Info
           </button>
         </div>
@@ -164,7 +173,7 @@
         src="./assets/arrow.png"
         alt="Arrow icon"
         class="icon arrow"
-        onclick="location.href='./#work-experience'"
+        onclick="showPage('work-experience')"
       />
     </section>
     
@@ -185,7 +194,24 @@
                 />
               </div>
               <h2 class="experience-sub-title project-title">QUADRA</h2>
+              <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">
+                
+              </p>
+              <div class="btn-container" style="margin-top: 10px;">
+                <button
+                  class="btn btn-color-2 project-btn"
+                  onclick="openDetailsModal('quadra')"
+                >
+                  Click to see details
+                </button>
+              </div>
               <div class="btn-container">
+                <button
+                  class="btn btn-color-2 project-btn"
+                  onclick="window.open('https://quadra.goldensectionllc.com/', '_blank')"
+                >
+                  TRY QUADRA
+                </button>
                 <button
                   class="btn btn-color-2 project-btn"
                   onclick="location.href='https://www.goldensectionllc.com/'"
@@ -214,6 +240,17 @@
               ></video>
             </div>
             <h2 class="experience-sub-title project-title">Advanced Aircraft De-icing techniques</h2>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">
+              
+            </p>
+            <div class="btn-container" style="margin-top: 10px;">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="openDetailsModal('deicing')"
+              >
+                Click to see details
+              </button>
+            </div>
             <div class="btn-container">
               <button
                 class="btn btn-color-2 project-btn"
@@ -239,6 +276,17 @@
               />
             </div>
             <h2 class="experience-sub-title project-title">Graduate Teaching Assistant</h2>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">
+             
+            </p>
+            <div class="btn-container" style="margin-top: 10px;">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="openDetailsModal('gta')"
+              >
+                Click to see details
+              </button>
+            </div>
             <div class="btn-container">
               <!-- <button
                 class="btn btn-color-2 project-btn"
@@ -258,6 +306,17 @@
               />
             </div>
             <h2 class="experience-sub-title project-title">Stability Wind Tunnel</h2>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">
+              
+            </p>
+            <div class="btn-container" style="margin-top: 10px;">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="openDetailsModal('windtunnel')"
+              >
+                Click to see details
+              </button>
+            </div>
             <div class="btn-container">
               <button
                 class="btn btn-color-2 project-btn"
@@ -277,6 +336,17 @@
               />
             </div>
             <h2 class="experience-sub-title project-title">Bangalore Aircraft Industries Private Limited</h2>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">
+             
+            </p>
+            <div class="btn-container" style="margin-top: 10px;">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="openDetailsModal('bail')"
+              >
+                Click to see details
+              </button>
+            </div>
             <div class="btn-container">
               <!-- <button
                 class="btn btn-color-2 project-btn"
@@ -298,7 +368,65 @@
         src="./assets/arrow.png"
         alt="Arrow icon"
         class="icon arrow"
-        onclick="location.href='./#projects'"
+        onclick="showPage('web-applications')"
+      />
+    </section>
+    <section id="web-applications">
+      <p class="section__text__p1">Browse My</p>
+      <h1 class="title">Web Applications</h1>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <div class="details-container color-container">
+            <div class="article-container">
+              <video
+                class="project-img"
+                src="./assets/UNLOOP.mp4"
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="auto"
+              ></video>
+            </div>
+            <h2 class="experience-sub-title project-title">Unloop</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="window.open('https://unloop-f750e.web.app/', '_blank')"
+              >
+                Visit Website
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <video
+                class="project-img"
+                src="./assets/Parser.mp4"
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="auto"
+              ></video>
+            </div>
+            <h2 class="experience-sub-title project-title">Part 108 Parser</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="window.open('https://part-108-parser.web.app/', '_blank')"
+              >
+                Visit Website
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="showPage('projects')"
       />
     </section>
     <section id="projects">
@@ -308,7 +436,7 @@
       <div class="experience-details-container">
         <div class="about-containers">
           <div class="details-container color-container">
-            <div class="article-container">
+            <div class="article-container" style="display: none;">
               
               <img
                 src="./assets/.png"
@@ -318,7 +446,7 @@
               />
             </div>
             <h2 class="experience-sub-title project-title">2025 Personal Project </h2>
-            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4; display: none;">
               Focus Area: Expect-What I Will -Show                                                                                                         
 
               CAD:Parametric CAD, clean assemblies, 2D drawings with GD&T-Model a rib/bracket, make drawing, show assembly view 
@@ -350,7 +478,18 @@
                 onclick="openImageModal('./assets/Final reconstructed.png')"
               />
             </div>
-            <h2 class="experience-sub-title project-title">Proper Orthogonal Decomposition and Near-Field Noise Analysis using Welch’s Method for PSD Estimation</h2>
+            <h2 class="experience-sub-title project-title">Proper Orthogonal Decomposition and Near-Field Noise Analysis using Welch's Method for PSD Estimation</h2>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">
+              
+            </p>
+            <div class="btn-container" style="margin-top: 10px;">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="openDetailsModal('pod')"
+              >
+                Click to see details
+              </button>
+            </div>
             <div class="btn-container">
               <button
                 class="btn btn-color-2 project-btn"
@@ -390,6 +529,17 @@
               />
             </div>
             <h2 class="experience-sub-title project-title">Shock Impact Behavior of Metals</h2>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">
+              
+            </p>
+            <div class="btn-container" style="margin-top: 10px;">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="openDetailsModal('shock')"
+              >
+                Click to see details
+              </button>
+            </div>
             <div class="btn-container">
               <!-- <button
                 class="btn btn-color-2 project-btn"
@@ -409,6 +559,17 @@
               />
             </div>
             <h2 class="experience-sub-title project-title"> Computational fluid analysis for flow in a square lid-driven cavity</h2>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">
+              
+            </p>
+            <div class="btn-container" style="margin-top: 10px;">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="openDetailsModal('cfd')"
+              >
+                Click to see details
+              </button>
+            </div>
             <div class="btn-container">
               <!-- <button
                 class="btn btn-color-2 project-btn"
@@ -449,6 +610,17 @@
               />
             </div>
             <h2 class="experience-sub-title project-title">Assembly Line Balancing with Real-Time Industrial Data (2021)</h2>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">
+              
+            </p>
+            <div class="btn-container" style="margin-top: 10px;">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="openDetailsModal('assembly')"
+              >
+                Click to see details
+              </button>
+            </div>
             <div class="btn-container">
               <!-- <button
                 class="btn btn-color-2 project-btn"
@@ -468,6 +640,17 @@
               />
             </div>
             <h2 class="experience-sub-title project-title">VTOL Tri-Copter Analysis (2020)</h2>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">
+              
+            </p>
+            <div class="btn-container" style="margin-top: 10px;">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="openDetailsModal('vtol')"
+              >
+                Click to see details
+              </button>
+            </div>
             <div class="btn-container">
               <button
                 class="btn btn-color-2 project-btn"
@@ -483,7 +666,7 @@
         src="./assets/arrow.png"
         alt="Arrow icon"
         class="icon arrow"
-        onclick="location.href='./#video-gallery'"
+        onclick="showPage('video-gallery')"
       />
     </section>
     <section id="video-gallery">
@@ -552,7 +735,7 @@
         src="./assets/arrow.png"
         alt="Arrow icon"
         class="icon arrow"
-        onclick="location.href='./#image-gallery'"
+        onclick="showPage('image-gallery')"
       />
     </section>
     <section id="image-gallery">
@@ -614,7 +797,7 @@
         src="./assets/arrow.png"
         alt="Arrow icon"
         class="icon arrow"
-        onclick="location.href='./#research'"
+        onclick="showPage('research')"
       />
     </section>
     <section id="research">
@@ -658,12 +841,13 @@
         src="./assets/arrow.png"
         alt="Arrow icon"
         class="icon arrow"
-        onclick="location.href='./#music'"
+        onclick="showPage('music')"
       />
     </section>
     <section id="music">
       <p class="section__text__p1">Music Production</p>
       <h1 class="title">Original Works under MANGA</h1>
+      <p style="text-align: center; color: #888; font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 1rem;">Click on caption to hear now</p>
       <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 2rem;">
         <div style="text-align: center;">
           <img src="./assets/No boundaries.png" alt="No Boundaries Manga" style="max-width: 350px; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
@@ -682,7 +866,7 @@
         src="./assets/arrow.png"
         alt="Arrow icon"
         class="icon arrow"
-        onclick="location.href='./#gallery-spotlight'"
+        onclick="showPage('gallery-spotlight')"
       />
     </section>
     <section id="gallery-spotlight">
@@ -704,7 +888,7 @@
         src="./assets/arrow.png"
         alt="Arrow icon"
         class="icon arrow"
-        onclick="location.href='./#contact'"
+        onclick="showPage('contact')"
       />
     </section>
     <section id="contact">
@@ -763,12 +947,15 @@
       <nav>
         <div class="nav-links-container">
           <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#video-gallery">Videos</a></li>
-            <li><a href="#image-gallery">Images</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#" onclick="showPage('about'); return false;">About</a></li>
+            <li><a href="#" onclick="showPage('work-experience'); return false;">Experience</a></li>
+            <li><a href="#" onclick="showPage('projects'); return false;">Projects</a></li>
+            <li><a href="#" onclick="showPage('video-gallery'); return false;">Videos</a></li>
+            <li><a href="#" onclick="showPage('image-gallery'); return false;">Images</a></li>
+            <li><a href="#" onclick="showPage('research'); return false;">Research</a></li>
+            <li><a href="#" onclick="showPage('music'); return false;">Music</a></li>
+            <li><a href="#" onclick="showPage('gallery-spotlight'); return false;">Gallery</a></li>
+            <li><a href="#" onclick="showPage('contact'); return false;">Contact</a></li>
           </ul>
         </div>
       </nav>
@@ -778,6 +965,14 @@
     <!-- Modal for image viewer -->
     <div id="image-modal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
       <img id="modal-img" src="" alt="Full Image" style="max-width:90vw; max-height:90vh; border-radius:12px; box-shadow:0 2px 16px rgba(0,0,0,0.5);" />
+    </div>
+    <!-- Modal for details viewer -->
+    <div id="details-modal" style="display:none; position:fixed; z-index:10000; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.75); justify-content:center; align-items:center; overflow-y:auto; padding:20px; box-sizing:border-box; backdrop-filter:blur(4px);">
+      <div id="details-modal-content" style="background:#ffffff; border-radius:16px; box-shadow:0 4px 24px rgba(0,0,0,0.15); max-width:800px; width:90vw; max-height:85vh; padding:2.5em 2em 2em 2em; position:relative; overflow-y:auto; margin:auto; border:1px solid #e0e0e0;">
+        <button id="close-details-modal" style="position:absolute; top:1.2em; right:1.2em; background:none; border:none; font-size:2.2em; cursor:pointer; color:#888; z-index:1; width:32px; height:32px; display:flex; align-items:center; justify-content:center; border-radius:50%; transition:all 0.2s ease;" onmouseover="this.style.background='#f0f0f0'; this.style.color='#333'" onmouseout="this.style.background='none'; this.style.color='#888'">&times;</button>
+        <h2 id="details-modal-title" style="margin-top:0; margin-bottom:1.5em; color:#1a1a1a; font-size:1.5em; font-weight:600; padding-right:2em; line-height:1.3;"></h2>
+        <ul id="details-modal-list" style="list-style:none; padding:0; margin:0; color:#444; line-height:1.8; font-size:0.95em;"></ul>
+      </div>
     </div>
     <script>
       function openImageModal(src) {
@@ -792,6 +987,169 @@
           document.getElementById('modal-img').src = '';
         }
       };
+
+      // Details data structure
+      const detailsData = {
+        'quadra': {
+          title: 'QUADRA - Airworthiness Risk Assessment Analyst',
+          items: [
+            'Proposed an FAA-aligned ground risk method integrating weather, LANDSCAN population, and Custom-built HAZUS-based shelter database(48 states) with kinetic energy metrics. Improved flight path analysis accuracy and gained validation interest from FAA, MAAP, and NAVAIR.',
+            'Supported FAA Part 107/108 BVLOS mission risk scenarios in QUADRA. simulating population density, crash zones, and failure modes (dive, glide, flyaway), building a baseline risk library for future certification use.',
+            'Developed QGC WPL 110 mission planner parser for integration to align with QUADRA input. Enabling compatibility with ARDUPILOT mission planning software.',
+            'Co-developing parachute deployment feature with MAAP, coding drag-parameter models to align with ASTM parachute recovery standards.'
+          ]
+        },
+        'airworthiness': {
+          title: 'VT Airworthiness Center - Airworthiness Analyst',
+          items: [
+            'Enhanced ground risk with Python/Node.js, debugged duplicates and improved resolution by cutting population density errors by 1.5–3× and reduced risk estimates by up to 17% overall / 73% in hazard areas, validated with MAAP, UMDROC and FAA cases.',
+            'Refactored a 4,000+ line Python codebase into modular functions, verifying fatality risk via probabilistic models and cleared 3 years of backlog work, enabling repeatable simulations and faster feature integration.',
+            'Applied aerodynamic risk analysis (lift/drag, crash dynamics, PCA failure modes), refactored functions to improve model accuracy against FAA tables and peer-reviewed data, reducing errors and improving readability.',
+            'Built standalone Python scripts (GDAL, rasterio, Fiona) and regression tests (20 baseline, 10+ customer cases) to validate population/risk data across VA/MD states, cutting validation cycles from ~1 hr to seconds.',
+            'Led customer discovery with 50+ stakeholders (FAA officials, aerospace engineers, industry leaders), producing market validation and pricing strategies. Secured $40K+ funding (VIPC HE Fund) and initiating collaboration opportunities.',
+            'Drove product valuation strategy, using cost/market/income-based approaches. Market research and guidance from legal and executive teams to define tiers and feature-access strategies, guiding commercialization and customer acquisition.',
+            'Produced technical documentation (manuals, verification specs, install guides, GitHub flows) and funding proposals, securing a year-long VIPC grant and delivering compliance reports/competitor benchmarks for FAA and investors.',
+            'Enhanced geospatial data layers by adding population-driven GeoJson features, improving visualization of risk areas for planners and regulators.'
+          ]
+        },
+        'deicing': {
+          title: 'Advanced Aircraft De-icing techniques - Graduate Research Assistant',
+          items: [
+            'Implemented EHS-compliant setups for anti-icing and op-amp circuit tests, ensuring safe, repeatable experiments.',
+            'Performed FFT on PZT vibrations (6–21.5 kHz) with a laser vibrometer, identifying resonant modes for optimized atomization performance.',
+            'Performed FEA in Abaqus (~25k elements) with optimized meshing and experimental boundary conditions; ran static, eigenfrequency (7–25.6 kHz), and dynamic implicit method, capturing resonance ranges and mode shapes.',
+            'Analyzed droplet dynamics with high-speed and X-ray imaging, quantifying spread factor, atomization rate (~1.5–2.1 mm³/ms), and energy flux densities.',
+            'Established a standardized process for PZT–surface interaction, defining selection criteria, FEM boundary setup, and validation with laser vibrometry, enabling repeatable simulations and experiments.',
+            'Quantified droplet dynamics by tracking ejection kinetic/potential energy, spread diameters (up to 8.1 mm), breakup times (as low as 0.85 ms), and atomization rate (~35 ms⁻¹) across Reynolds numbers (Re 460–4620).',
+            'Designed and built a functional supercooling chamber (400×400×700 mm³) with vacuum pumps, N₂ frost control and glycol cooling, maintaining a max −11.2 °C operation for controlled icing tests.',
+            'Conducted ASME Y14.5 tolerance analysis for custom parts and generated precision 3D printing of chamber components using SolidWorks, ensuring structural integrity and fit.',
+            'Fabricated superhydrophobic coatings (Ra reduced to 21% vs. prior) and assessed using 3D surface profiling (VK-X3000).',
+            'Cross-Collaborated with Structural, Chemical, Material Characterization, 3D Printing and Machine Shop teams.',
+            'Leveraged a thorough understanding of work and purchase order systems to coordinate tasks.'
+          ]
+        },
+        'gta': {
+          title: 'Graduate Teaching Assistant',
+          items: [
+            'Held office hours (4 hrs/wk) and supported 200+ students in Computational Methods, supporting MATLAB-based numerical methods, flight simulation, and feedback control coursework.',
+            'Guided 16 students in Experimental Methods lab on instrumentation, uncertainty analysis, and MATLAB-based data reduction, ensuring accurate experimental design and reporting.',
+            'Mentored projects in modal/vibration analysis and aerodynamic tests (wind, smoke, and water tunnels), strengthening students\' understanding of structural integrity through experimental work by hands-on testing and spectral analysis.'
+          ]
+        },
+        'windtunnel': {
+          title: 'Stability Wind Tunnel - Aerospace Research Assistant',
+          items: [
+            'Conducted experimental research in aerodynamic testing and analysis, contributing to ongoing research projects in the stability wind tunnel facility.'
+          ]
+        },
+        'bail': {
+          title: 'Bangalore Aircraft Industries Private Limited - Design Engineer Intern',
+          items: [
+            'Validated spar design via CAD modeling, mesh analysis (MSC Nastran & Patran), and Euler-Bernoulli Beam Theory.',
+            'Developed early exposure to structural component design and validation in a professional engineering team setting.'
+          ]
+        },
+        'pod': {
+          title: 'Proper Orthogonal Decomposition and Near-Field Noise Analysis',
+          items: [
+            'Reconstructed jet flow with 20 dominant POD modes (SVD), cutting computational load while retaining >90% energy for clearer low-frequency noise analysis.',
+            'Mapped eddy structures over 6–12 mm span via auto/two-point correlation at anchor point, improving trailing-edge noise localization.',
+            'Computed PSD with Welch\'s method, showing 20–30% higher spectral peaks at trailing edge than upstream, confirming it as the dominant low-frequency noise source.'
+          ]
+        },
+        'shock': {
+          title: 'Shock Impact Behavior of Metals',
+          items: [
+            'Simulated shock impacts on FCC metals (5–20ang/ps) with LAMMPS, observing velocity and orientation effects.',
+            'Analyzed density and pressure (±6 ∗ 10⁵) to identify fracture and deformation trends.'
+          ]
+        },
+        'cfd': {
+          title: 'Computational Fluid Dynamics of Lid-Driven Cavity Flow',
+          items: [
+            'Developed Python CFD solver for 2D incompressible Navier–Stokes using Jacobi and Gauss-Seidel methods.',
+            'Verified code using MMS; achieved 2nd-order accuracy and validated against ANSYS Fluent and literature.'
+          ]
+        },
+        'assembly': {
+          title: 'Assembly Line Balancing with Real-Time Industrial Data',
+          items: [
+            'Applied heuristic methods, SOPs (IPOP format), and data to rebalance tractor assembly lines; eliminated bottlenecks and optimized cycle times across differential and roll-off lines.',
+            'Achieved lead time efficiency gains of 47.96% (Differential Hub) and 65.74% (Roll-Off) for 50 HP tractor assembly.',
+            'Performed time studies (MOST), BOM/takt analysis, and Gantt scheduling; integrated lean tools (5S, Kaizen).',
+            'Led SOP standardization and workstation layout improvements with supervisors/operators, boosting productivity and reducing idle time.'
+          ]
+        },
+        'vtol': {
+          title: 'VTOL Tri-Copter Analysis',
+          items: [
+            'Designed blended-wing VTOL Tri-copter with custom NACA0009 propellers, leading a 4-member team.',
+            'Performed CFD analysis; obtained low drag of 4.5N at 10 m/s airflow.',
+            'Validated structural robustness with 0.3in deformation under 100N load (10kg payload).'
+          ]
+        }
+      };
+
+      function openDetailsModal(key) {
+        const data = detailsData[key];
+        if (!data) return;
+
+        const modal = document.getElementById('details-modal');
+        const titleEl = document.getElementById('details-modal-title');
+        const listEl = document.getElementById('details-modal-list');
+
+        titleEl.textContent = data.title;
+        listEl.innerHTML = '';
+        
+        data.items.forEach((item, index) => {
+          const li = document.createElement('li');
+          li.style.marginBottom = '1.2em';
+          li.style.paddingLeft = '1.5em';
+          li.style.position = 'relative';
+          li.style.listStyle = 'none';
+          
+          // Add bullet point
+          const bullet = document.createElement('span');
+          bullet.style.position = 'absolute';
+          bullet.style.left = '0';
+          bullet.style.color = '#0066cc';
+          bullet.style.fontWeight = 'bold';
+          bullet.textContent = '•';
+          
+          // Add text
+          const text = document.createElement('span');
+          text.textContent = item;
+          text.style.display = 'block';
+          
+          li.appendChild(bullet);
+          li.appendChild(text);
+          listEl.appendChild(li);
+        });
+
+        modal.style.display = 'flex';
+      }
+
+      function closeDetailsModal() {
+        document.getElementById('details-modal').style.display = 'none';
+      }
+
+      // Close modal handlers
+      document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('details-modal');
+        const closeBtn = document.getElementById('close-details-modal');
+        
+        if (closeBtn) {
+          closeBtn.onclick = closeDetailsModal;
+        }
+        
+        if (modal) {
+          modal.onclick = function(e) {
+            if (e.target === modal) {
+              closeDetailsModal();
+            }
+          };
+        }
+      });
     </script>
     <script>
       function scrollToDiscordForm(event) {
@@ -823,6 +1181,123 @@
               container.style.display = 'none';
             }
           });
+        }
+      });
+    </script>
+    <script>
+      // Background Music Toggle
+      let isMusicPlaying = false;
+      const music = document.getElementById('background-music');
+      const musicToggle = document.getElementById('music-toggle');
+      
+      // Set volume to low (20%)
+      music.volume = 0.2;
+      
+      function toggleMusic() {
+        if (music.paused) {
+          music.play().then(() => {
+            isMusicPlaying = true;
+            musicToggle.textContent = '🎵';
+            musicToggle.style.opacity = '1';
+          }).catch(error => {
+            console.log('Autoplay prevented:', error);
+          });
+        } else {
+          music.pause();
+          isMusicPlaying = false;
+          musicToggle.textContent = '🔇';
+        }
+      }
+      
+      // Try to autoplay on page load
+      document.addEventListener('DOMContentLoaded', function() {
+        music.play().catch(() => {
+          // Autoplay was prevented, will try after user interaction
+        });
+      });
+      
+      // Try to play music after any user interaction
+      let hasInteracted = false;
+      const tryPlayMusic = function() {
+        if (!hasInteracted && music.paused) {
+          hasInteracted = true;
+          music.play().catch(() => {
+            // Autoplay was prevented, user will need to click button
+          });
+        }
+      };
+      
+      document.addEventListener('click', tryPlayMusic, { once: true });
+      document.addEventListener('touchstart', tryPlayMusic, { once: true });
+      document.addEventListener('keydown', tryPlayMusic, { once: true });
+      
+      // Update button when music ends or is paused by browser
+      music.addEventListener('pause', function() {
+        if (!music.ended) {
+          musicToggle.textContent = '🔇';
+        }
+      });
+      
+      music.addEventListener('play', function() {
+        musicToggle.textContent = '🎵';
+      });
+    </script>
+    <script>
+      // Page Navigation System
+      function showPage(pageId) {
+        // Hide all sections
+        const sections = document.querySelectorAll('section');
+        const profileSection = document.getElementById('profile');
+        
+        sections.forEach(section => {
+          section.classList.remove('active');
+        });
+        
+        // Remove full-size class from profile
+        if (profileSection) {
+          profileSection.classList.remove('full-size');
+        }
+        
+        // Show the selected page
+        const targetPage = document.getElementById(pageId);
+        if (targetPage) {
+          targetPage.classList.add('active');
+          
+          // If showing about page, also show profile section with full size
+          if (pageId === 'about') {
+            if (profileSection) {
+              profileSection.classList.add('active');
+              profileSection.classList.add('full-size');
+            }
+          }
+          
+          // Scroll to top of page
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Update URL without reloading
+        history.pushState({ page: pageId }, '', '#' + pageId);
+      }
+      
+      // Show default page on load
+      document.addEventListener('DOMContentLoaded', function() {
+        // Check if there's a hash in URL
+        const hash = window.location.hash.substring(1);
+        if (hash && document.getElementById(hash)) {
+          showPage(hash);
+        } else {
+          // Show about page by default
+          showPage('about');
+        }
+      });
+      
+      // Handle browser back/forward buttons
+      window.addEventListener('popstate', function(event) {
+        const hash = window.location.hash.substring(1);
+        if (hash && document.getElementById(hash)) {
+          showPage(hash);
+        } else {
+          showPage('about');
         }
       });
     </script>

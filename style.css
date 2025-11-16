@@ -32,6 +32,69 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  position: relative;
+  background: #ffffff;
+}
+
+.gold-background {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+  background: #ffffff;
+}
+
+.gold-background::before {
+  display: none;
+}
+
+.gold-background::after {
+  display: none;
+}
+
+.orb--gold {
+  display: none;
+}
+
+@keyframes borderGlow {
+  0% {
+    background-size: 100% 2.5%, 100% 2.5%, 2.5% 100%, 2.5% 100%, 100% 100%;
+  }
+  50% {
+    background-size: 100% 3.5%, 100% 3.5%, 3.5% 100%, 3.5% 100%, 100% 100%;
+  }
+  100% {
+    background-size: 100% 3%, 100% 3%, 3% 100%, 3% 100%, 100% 100%;
+  }
+}
+
+@keyframes borderPulse {
+  0% {
+    border-color: rgba(255, 215, 0, 0.3);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2), inset 0 0 20px rgba(255, 215, 0, 0.1);
+  }
+  50% {
+    border-color: rgba(255, 215, 0, 0.6);
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.4), inset 0 0 40px rgba(255, 215, 0, 0.2);
+  }
+  100% {
+    border-color: rgba(255, 215, 0, 0.3);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2), inset 0 0 20px rgba(255, 215, 0, 0.1);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate3d(-50%, -55%, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(calc(-50% + 12%), calc(-55% - 6%), 0) scale(1.1);
+  }
+  66% {
+    transform: translate3d(calc(-50% - 8%), calc(-55% + 10%), 0) scale(0.95);
+  }
 }
 
 html {
@@ -60,12 +123,14 @@ nav {
   justify-content: space-around;
   align-items: center;
   height: 17vh;
+  position: relative;
+  z-index: 1;
 }
 
 .nav-links {
-  gap: 2rem;
+  gap: 1rem;
   list-style: none;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 a {
@@ -177,6 +242,13 @@ section {
   margin: 0 10rem;
   box-sizing: border-box;
   min-height: fit-content;
+  position: relative;
+  z-index: 1;
+  display: none;
+}
+
+section.active {
+  display: block;
 }
 
 .section-container {
@@ -188,15 +260,47 @@ section {
 #profile {
   display: flex;
   justify-content: center;
+  gap: 3rem;
+  height: 50vh;
+  padding-top: 2vh;
+}
+
+/* Normal size when About page is active */
+#profile.full-size {
   gap: 5rem;
   height: 80vh;
+  padding-top: 4vh;
+}
+
+#profile.full-size .section__pic-container {
+  height: 400px;
+  width: 400px;
+}
+
+#profile.full-size .title {
+  font-size: 3rem;
+}
+
+#profile.full-size .section__text__p2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+#profile.full-size .section__text__p1 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
 }
 
 .section__pic-container {
   display: flex;
-  height: 400px;
-  width: 400px;
+  height: 250px;
+  width: 250px;
   margin: auto 0;
+}
+
+#profile .section__pic-container {
+  height: 200px;
+  width: 200px;
 }
 
 .section__text {
@@ -213,14 +317,36 @@ section {
   text-align: center;
 }
 
+#profile .section__text__p1 {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
 .section__text__p2 {
   font-size: 1.75rem;
   margin-bottom: 1rem;
 }
 
+#profile .section__text__p2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
 .title {
   font-size: 3rem;
   text-align: center;
+}
+
+#profile .title {
+  font-size: 2rem;
+}
+
+#profile #socials-container {
+  margin-top: 0.5rem;
+}
+
+#profile .btn-container {
+  margin-bottom: 0.5rem;
 }
 
 #socials-container {
@@ -295,6 +421,7 @@ section {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: stretch;
   gap: 2rem;
   margin-bottom: 2rem;
   margin-top: 2rem;
@@ -310,9 +437,23 @@ section {
   display: flex;
 }
 
+.about-containers .details-container {
+  flex: 0 1 auto;
+  height: fit-content;
+  align-self: flex-start;
+}
+
 .text-container {
-  max-width: 500px;
-  margin: 0 auto;
+  max-width: 100%;
+  width: 100%;
+  margin: 2rem auto 0 auto;
+  text-align: justify;
+  padding: 0 1rem;
+}
+
+.text-container p {
+  text-align: justify;
+  line-height: 1.6;
 }
 
 .section__pic-container .about-me-pic {
@@ -333,7 +474,7 @@ section {
 }
 
 .details-container {
-  padding: 1.5rem;
+  padding: 1rem;
   flex: 1;
   background: white;
   border-radius: 2rem;
@@ -360,6 +501,8 @@ section {
   flex: 1 1 300px;
   max-width: 400px;
   min-width: 250px;
+  display: flex;
+  flex-direction: column;
 }
 
 .details-container h3 {
@@ -379,8 +522,8 @@ section {
 .experience-sub-title {
   color: rgb(85, 85, 85);
   font-weight: 600;
-  font-size: 1.75rem;
-  margin-bottom: 2rem;
+  font-size: 1.35rem;
+  margin-bottom: 1rem;
 }
 
 .experience-details-container {
@@ -394,7 +537,7 @@ section {
   text-align: initial;
   flex-wrap: wrap;
   flex-direction: row;
-  gap: 2.5rem;
+  gap: 1.5rem;
   justify-content: space-around;
 }
 
@@ -480,6 +623,8 @@ article .icon {
 /* FOOTER SECTION */
 
 footer {
+  position: relative;
+  z-index: 1;
   height: 26vh;
   margin: 0 1rem;
 }
