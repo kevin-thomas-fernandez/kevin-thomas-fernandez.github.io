@@ -127,6 +127,11 @@ nav {
   z-index: 1;
 }
 
+/* Explicit base styles for desktop nav - visible by default */
+#desktop-nav {
+  display: flex;
+}
+
 .nav-links {
   gap: 1rem;
   list-style: none;

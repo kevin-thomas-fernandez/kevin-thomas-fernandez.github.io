@@ -48,6 +48,16 @@
 
 /* Tablet and smaller desktop adjustments */
 @media screen and (max-width: 768px) {
+  /* Ensure desktop nav is hidden on tablets and phones */
+  #desktop-nav {
+    display: none !important;
+  }
+  
+  /* Ensure hamburger nav is visible on tablets and phones */
+  #hamburger-nav {
+    display: flex !important;
+  }
+  
   #web-applications .about-containers {
     flex-direction: column;
     gap: 2rem;
