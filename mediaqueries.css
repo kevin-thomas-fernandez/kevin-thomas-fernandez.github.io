@@ -40,6 +40,23 @@
     width: 275px;
     height: 275px;
     margin: 0 auto 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #about .section__pic-container {
+    margin: 0 auto 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #about .section-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   .about-containers {
     margin-top: 0;
@@ -99,6 +116,23 @@
   #profile {
     height: 83vh;
     margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  #profile .section__pic-container {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #profile .section__text {
+    text-align: center;
+    width: 100%;
   }
   article {
     font-size: 1rem;
@@ -146,6 +180,26 @@
     width: auto;
     height: 46vw;
     justify-content: center;
+    margin: 0 auto 2rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  #about .section__pic-container {
+    margin: 0 auto 2rem;
+    width: 275px;
+    height: 275px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #about .section-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
   }
   .section__text__p2 {
     font-size: 1.25rem;
@@ -252,5 +306,22 @@
     white-space: nowrap;
     padding: 0.75rem 1.5rem;
     font-size: 0.9rem;
+  }
+  
+  /* Fix "Click to see details" button text overflow on mobile */
+  .btn.project-btn {
+    width: auto;
+    min-width: fit-content;
+    padding: 0.75rem 1rem;
+    white-space: normal;
+    word-wrap: break-word;
+    text-align: center;
+    font-size: 0.85rem;
+    line-height: 1.3;
+  }
+  
+  .btn-container {
+    justify-content: center;
+    width: 100%;
   }
 }
