@@ -438,30 +438,38 @@
       <div class="experience-details-container">
         <div class="about-containers">
           <div class="details-container color-container">
-            <div class="article-container" style="display: none;">
-              
+            <div class="article-container">
               <img
-                src="./assets/.png"
-                alt="Project 1"
+                src="./assets/Part5-Static%20Bracket%20Study-Results-Stress1.analysis.png"
+                alt="U-Bracket Stress Analysis"
                 class="project-img"
-                onclick="openImageModal('./assets/.png')"
+                onclick="openImageModal('./assets/Part5-Static%20Bracket%20Study-Results-Stress1.analysis.png')"
               />
             </div>
-            <h2 class="experience-sub-title project-title">2025 Personal Project </h2>
-            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4; display: none;">
-              Focus Area: Expect-What I Will -Show                                                                                                         
-
-              CAD:Parametric CAD, clean assemblies, 2D drawings with GD&T-Model a rib/bracket, make drawing, show assembly view 
-              Full Life Cycle:Design from concept → CAD → manufacturability → integration -Document each project with sketch, CAD, FEA, build note, assembly note   
-              FEA: Ability to justify design with simulation & interpretation - Run analysis on rib/bracket, export plots, write factor of safety note 
-
+            <h2 class="experience-sub-title project-title">U-Bracket for UAV Wing Attachment (2025)</h2>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">
+              
             </p>
+            <div class="btn-container" style="margin-top: 10px;">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="openDetailsModal('ubracket')"
+              >
+                Click to see details
+              </button>
+            </div>
             <div class="btn-container">
               <button
                 class="btn btn-color-2 project-btn"
-                onclick="location.href='./assets'"
+                onclick="location.href='./assets/U-Bracket_Frequency_Study.pdf'"
               >
-              TBD
+              Frequency Study Document
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='./assets/U-Bracket_Stress_Analysis.pdf'"
+              >
+              Stress Analysis Document
               </button>
             </div>
           </div>
@@ -1089,6 +1097,28 @@
             'Performed CFD analysis; obtained low drag of 4.5N at 10 m/s airflow.',
             'Validated structural robustness with 0.3in deformation under 100N load (10kg payload).'
           ]
+        },
+        'ubracket': {
+          title: 'U-Bracket for UAV Wing Attachment (2025)',
+          items: [
+            'I designed a lightweight U-shaped mounting bracket for a 55-lb UAV and validated it using SolidWorks. The part was built as a fully parametric model and assessed with static and modal simulations. Under a 0.5 kN shear load, the bracket stayed within stress and stiffness limits, and the first natural mode (~1684 Hz) comfortably exceeded the 50 Hz requirement. I produced a complete drawing package with proper datums and dimensions and tuned the geometry iteratively based on simulation results.',
+            '',
+            'Design Inputs / Requirements',
+            '• UAV mass: 55 lb (~245 N lift)',
+            '• Design shear load: 0.5 kN limit, 0.75 kN ultimate',
+            '• Material: Aluminum 7075-T6 (σᵧ = 505 MPa, σᵤ = 570 MPa)',
+            '• Stiffness target: ≤0.10 mm deflection at 0.5 kN',
+            '• Frequency target: first mode > 50 Hz',
+            '• Key geometry: 70×40 mm base, 50 mm leg height, 5 mm leg width, Ø12 mm holes, R7 fillet',
+            '',
+            'Results',
+            '• Max stress: 31.6 MPa at 500 N',
+            '• Deflection: 0.090 mm at 500 N',
+            '• First mode: ~1684 Hz',
+            '• Outcome: High safety margins, meets all requirements',
+            '• Documentation: Clean drawing with datums A/B/C, hole callouts, symmetric dimensions',
+            '• Parametric CAD with adjustable geometry and consistent rebuild behavior'
+          ]
         }
       };
 
@@ -1104,26 +1134,53 @@
         listEl.innerHTML = '';
         
         data.items.forEach((item, index) => {
+          // Skip empty strings (used for spacing)
+          if (item === '') {
+            const li = document.createElement('li');
+            li.style.marginBottom = '0.5em';
+            li.style.height = '0.5em';
+            listEl.appendChild(li);
+            return;
+          }
+          
           const li = document.createElement('li');
           li.style.marginBottom = '1.2em';
-          li.style.paddingLeft = '1.5em';
           li.style.position = 'relative';
           li.style.listStyle = 'none';
           
-          // Add bullet point
-          const bullet = document.createElement('span');
-          bullet.style.position = 'absolute';
-          bullet.style.left = '0';
-          bullet.style.color = '#0066cc';
-          bullet.style.fontWeight = 'bold';
-          bullet.textContent = '•';
+          // Check if item already has a bullet point or is a header
+          const hasBullet = item.trim().startsWith('•');
+          const isHeader = item.includes('✅') || (item.includes(':') && !hasBullet && item.length < 50);
+          
+          if (isHeader) {
+            li.style.paddingLeft = '0';
+            li.style.fontWeight = 'bold';
+            li.style.color = '#1a1a1a';
+            li.style.marginTop = '1.5em';
+            li.style.marginBottom = '0.8em';
+            li.style.fontSize = '1.05em';
+            if (item.includes('✅')) {
+              li.style.marginTop = '1.8em';
+            }
+          } else if (hasBullet) {
+            li.style.paddingLeft = '0';
+          } else {
+            li.style.paddingLeft = '1.5em';
+            // Add bullet point
+            const bullet = document.createElement('span');
+            bullet.style.position = 'absolute';
+            bullet.style.left = '0';
+            bullet.style.color = '#0066cc';
+            bullet.style.fontWeight = 'bold';
+            bullet.textContent = '•';
+            li.appendChild(bullet);
+          }
           
           // Add text
           const text = document.createElement('span');
           text.textContent = item;
           text.style.display = 'block';
           
-          li.appendChild(bullet);
           li.appendChild(text);
           listEl.appendChild(li);
         });
