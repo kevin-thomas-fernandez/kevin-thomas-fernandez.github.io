@@ -737,7 +737,21 @@
                 Your browser does not support the video tag.
               </video>
             </div>
-            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">PZT induced Vibration at 20KHz shown using ABAQUS</p>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">PZT induced Vibration at 30KHz shown using ABAQUS</p>
+          </div>
+          
+          <div class="details-container color-container">
+            <div class="article-container">
+              <video 
+                controls 
+                preload="metadata"
+                style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"
+              >
+                <source src="./assets/Carbon black_C1S0001.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">Carbon Black superhydrophobic Fabrication</p>
           </div>
         </div>
       </div>
@@ -777,7 +791,17 @@
             </div>
             <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">Effect of superhydrophobic on impact dynamics of water droplet</p>
           </div>
-          
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/Pipe edge support.SLDPRT.PNG"
+                alt="Pipe Edge Support"
+                class="project-img"
+                onclick="openImageModal('./assets/Pipe edge support.SLDPRT.PNG')"
+              />
+            </div>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">Custom designed supports for supercooling chamber pipes that were 3D printed </p>
+          </div>
           <div class="details-container color-container">
             <div class="article-container">
               <img
@@ -787,7 +811,7 @@
                 onclick="openImageModal('./assets/counter.png')"
               />
             </div>
-            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">Pressure Contour for blended wing Tri-copterr</p>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">Pressure Contour for blended wing Tri-copter</p>
           </div>
           
           <div class="details-container color-container">
@@ -801,6 +825,56 @@
             </div>
             <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">Anti-icing Drop test setup</p>
           </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/Laser holder.PNG"
+                alt="Laser Holder"
+                class="project-img"
+                onclick="openImageModal('./assets/Laser holder.PNG')"
+              />
+            </div>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">Custom laser holder design for delay generator trigger setup</p>
+          </div>
+          
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/2.svg"
+                alt="2"
+                class="project-img"
+                onclick="openImageModal('./assets/2.svg')"
+              />
+            </div>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">Laser Vibromete Study Setup</p>
+          </div>
+          
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/Optical Microscope Imaging.png"
+                alt="Optical Microscope Imaging"
+                class="project-img"
+                onclick="openImageModal('./assets/Optical Microscope Imaging.png')"
+              />
+            </div>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">Optical Microscope Imaging</p>
+          </div>
+          
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/Plate base with plate holder.PNG"
+                alt="Plate base with plate holder"
+                class="project-img"
+                onclick="openImageModal('./assets/Plate base with plate holder.PNG')"
+              />
+            </div>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">Six-plate mounting base for laser vibrometry testing</p>
+          </div>
+          
+          
+          
         </div>
       </div>
       <img
@@ -973,14 +1047,15 @@
     </footer>
     <script src="script.js"></script>
     <!-- Modal for image viewer -->
-    <div id="image-modal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
+    <div id="image-modal" style="display:none; position:fixed; z-index:10001; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.9); justify-content:center; align-items:center;">
       <img id="modal-img" src="" alt="Full Image" style="max-width:90vw; max-height:90vh; border-radius:12px; box-shadow:0 2px 16px rgba(0,0,0,0.5);" />
     </div>
     <!-- Modal for details viewer -->
     <div id="details-modal" style="display:none; position:fixed; z-index:10000; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.75); justify-content:center; align-items:center; overflow-y:auto; padding:20px; box-sizing:border-box; backdrop-filter:blur(4px);">
       <div id="details-modal-content" style="background:#ffffff; border-radius:16px; box-shadow:0 4px 24px rgba(0,0,0,0.15); max-width:800px; width:90vw; max-height:85vh; padding:2.5em 2em 2em 2em; position:relative; overflow-y:auto; margin:auto; border:1px solid #e0e0e0;">
         <button id="close-details-modal" style="position:absolute; top:1.2em; right:1.2em; background:none; border:none; font-size:2.2em; cursor:pointer; color:#888; z-index:1; width:32px; height:32px; display:flex; align-items:center; justify-content:center; border-radius:50%; transition:all 0.2s ease;" onmouseover="this.style.background='#f0f0f0'; this.style.color='#333'" onmouseout="this.style.background='none'; this.style.color='#888'">&times;</button>
-        <h2 id="details-modal-title" style="margin-top:0; margin-bottom:1.5em; color:#1a1a1a; font-size:1.5em; font-weight:600; padding-right:2em; line-height:1.3;"></h2>
+        <h2 id="details-modal-title" style="margin-top:0; margin-bottom:0.5em; color:#1a1a1a; font-size:1.5em; font-weight:600; padding-right:2em; line-height:1.3;"></h2>
+        <p id="details-modal-subtitle" style="margin-top:0; margin-bottom:1.5em; color:#666; font-size:0.9em; font-style:italic; padding-right:2em; display:none;"></p>
         <ul id="details-modal-list" style="list-style:none; padding:0; margin:0; color:#444; line-height:1.8; font-size:0.95em;"></ul>
       </div>
     </div>
@@ -989,7 +1064,19 @@
         var modal = document.getElementById('image-modal');
         var modalImg = document.getElementById('modal-img');
         modalImg.src = src;
+        
+        // Add white background for Picture1 and Picture2
+        if (src.includes('Picture1.png') || src.includes('Picture2.png')) {
+          modalImg.style.backgroundColor = 'white';
+          modalImg.style.padding = '20px';
+        } else {
+          modalImg.style.backgroundColor = 'transparent';
+          modalImg.style.padding = '0';
+        }
+        
+        // Ensure modal overlays everything
         modal.style.display = 'flex';
+        modal.style.zIndex = '10001';
       }
       document.getElementById('image-modal').onclick = function(e) {
         if (e.target === this) {
@@ -1034,6 +1121,7 @@
             'Designed and built a functional supercooling chamber (400×400×700 mm³) with vacuum pumps, N₂ frost control and glycol cooling, maintaining a max −11.2 °C operation for controlled icing tests.',
             'Conducted ASME Y14.5 tolerance analysis for custom parts and generated precision 3D printing of chamber components using SolidWorks, ensuring structural integrity and fit.',
             'Fabricated superhydrophobic coatings (Ra reduced to 21% vs. prior) and assessed using 3D surface profiling (VK-X3000).',
+            'IMAGES:./assets/3D depiction of roughness amplitude.png|./assets/roughnessImagearea5.png',
             'Cross-Collaborated with Structural, Chemical, Material Characterization, 3D Printing and Machine Shop teams.',
             'Leveraged a thorough understanding of work and purchase order systems to coordinate tasks.'
           ]
@@ -1128,9 +1216,19 @@
 
         const modal = document.getElementById('details-modal');
         const titleEl = document.getElementById('details-modal-title');
+        const subtitleEl = document.getElementById('details-modal-subtitle');
         const listEl = document.getElementById('details-modal-list');
 
         titleEl.textContent = data.title;
+        
+        // Show subtitle for deicing modal
+        if (key === 'deicing') {
+          subtitleEl.textContent = 'Check Images for CAD designs';
+          subtitleEl.style.display = 'block';
+        } else {
+          subtitleEl.style.display = 'none';
+        }
+        
         listEl.innerHTML = '';
         
         data.items.forEach((item, index) => {
@@ -1139,6 +1237,68 @@
             const li = document.createElement('li');
             li.style.marginBottom = '0.5em';
             li.style.height = '0.5em';
+            listEl.appendChild(li);
+            return;
+          }
+          
+          // Check if item is multiple images
+          if (item.trim().startsWith('IMAGES:')) {
+            const imagePaths = item.trim().substring(7).split('|'); // Remove 'IMAGES:' prefix and split by |
+            const li = document.createElement('li');
+            li.style.marginBottom = '1.5em';
+            li.style.marginTop = '1.5em';
+            li.style.listStyle = 'none';
+            li.style.textAlign = 'center';
+            li.style.display = 'flex';
+            li.style.justifyContent = 'center';
+            li.style.alignItems = 'flex-start';
+            li.style.gap = '1em';
+            li.style.flexWrap = 'wrap';
+            
+            imagePaths.forEach(function(imagePath) {
+              const img = document.createElement('img');
+              img.src = imagePath.trim();
+              img.alt = imagePath.includes('roughnessImagearea5') ? 'Roughness image area 5' : '3D depiction of roughness amplitude';
+              img.style.maxWidth = '45%';
+              img.style.height = '300px';
+              img.style.width = 'auto';
+              img.style.objectFit = 'contain';
+              img.style.borderRadius = '8px';
+              img.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
+              img.style.cursor = 'pointer';
+              img.onclick = function() {
+                openImageModal(imagePath.trim());
+              };
+              
+              li.appendChild(img);
+            });
+            
+            listEl.appendChild(li);
+            return;
+          }
+          
+          // Check if item is a single image
+          if (item.trim().startsWith('IMAGE:')) {
+            const imagePath = item.trim().substring(6); // Remove 'IMAGE:' prefix
+            const li = document.createElement('li');
+            li.style.marginBottom = '1.5em';
+            li.style.marginTop = '1.5em';
+            li.style.listStyle = 'none';
+            li.style.textAlign = 'center';
+            
+            const img = document.createElement('img');
+            img.src = imagePath;
+            img.alt = '3D depiction of roughness amplitude';
+            img.style.maxWidth = '50%';
+            img.style.height = 'auto';
+            img.style.borderRadius = '8px';
+            img.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
+            img.style.cursor = 'pointer';
+            img.onclick = function() {
+              openImageModal(imagePath);
+            };
+            
+            li.appendChild(img);
             listEl.appendChild(li);
             return;
           }
