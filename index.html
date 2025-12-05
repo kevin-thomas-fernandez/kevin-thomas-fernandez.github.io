@@ -475,6 +475,33 @@
           </div>
           <div class="details-container color-container">
             <div class="article-container">
+              <div style="width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; background-color: #f0f0f0; border-radius: 8px; color: #999; font-size: 0.9rem;">
+                Image TBD
+              </div>
+            </div>
+            <h2 class="experience-sub-title project-title">Battery Mounting Design for drones(2025)</h2>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">
+              
+            </p>
+            <div class="btn-container" style="margin-top: 10px;">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="openDetailsModal('sfbattery')"
+              >
+                Click to see details
+              </button>
+            </div>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="window.open('./assets/SF - Battery.docx', '_blank')"
+              >
+              Document
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
               <img
                 src="./assets/mode3.png"
                 alt="Project 1"
@@ -1206,6 +1233,18 @@
             '• Outcome: High safety margins, meets all requirements',
             '• Documentation: Clean drawing with datums A/B/C, hole callouts, symmetric dimensions',
             '• Parametric CAD with adjustable geometry and consistent rebuild behavior'
+          ]
+        },
+        'sfbattery': {
+          title: 'Battery Mounting Design for drones (2025)',
+          items: [
+            'PURPOSE:',
+            'The purpose of this system concept is to design and define a mechanical structure that houses a battery in a way that reduces swap time and operator error. The structure must allow quick, repeatable battery changes while maintaining centre of gravity, structural integrity, and clean routing of data/power wiring. It should enable reliable swaps without complex machines such as drone battery-swapping systems, docking stations, or even hand tools.',
+            'The goal is a simple, low-cost design that can be 3D-printed or built with composite materials and carbon-fibre reinforcement, integrated into the airframe, and mass-produced. The design thinking focuses on manufacturability, minimal component count, subsystem integration, low cost, safety/failure considerations, and scalability.',
+            '',
+            'OVERALL TECHNICAL APPROACH:',
+            'Product Context and Related User Documentation:',
+            'The product is a battery mounting system for a 225 mm FPV quadcopter (5" class) with total aircraft mass between 250 g and 1 kg. It replaces traditional strap-based LiPo mounting with a tool-less, slide-in, snap-lock, quick-swap battery system using an integrated connector and carbon-fiber composite casing. All documentation references standard FPV airframe layouts, Part 107 operational constraints, and the intent of MIL-STD-810 / MIL-STD-882E safety practices.'
           ]
         }
       };
