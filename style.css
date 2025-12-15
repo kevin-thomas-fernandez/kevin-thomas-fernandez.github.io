@@ -309,6 +309,7 @@ section {
   position: relative;
   z-index: 1;
   display: none;
+  overflow-x: hidden;
 }
 
 section.active {
@@ -679,6 +680,15 @@ section.active {
 /* Pause on hover */
 .spotlight-scroll-container:hover .spotlight-scroll-wrapper {
   animation-play-state: paused;
+}
+
+/* Touch-friendly scrolling on mobile */
+@media (hover: none) {
+  .spotlight-scroll-container:hover .spotlight-scroll-wrapper,
+  .videos-scroll-container:hover .videos-scroll-wrapper,
+  .images-scroll-container:hover .images-scroll-wrapper {
+    animation-play-state: running;
+  }
 }
 
 /* Videos Scrolling Animation */

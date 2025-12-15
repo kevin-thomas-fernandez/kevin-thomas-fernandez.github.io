@@ -96,6 +96,41 @@
     margin: 0 3%;
     padding-top: 2vh;
   }
+  
+  /* Research and Awards sections tablet */
+  #research .details-container.color-container,
+  #awards .details-container.color-container {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  #research .about-containers,
+  #awards .about-containers {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  /* Scrolling sections tablet */
+  .spotlight-scroll-content img,
+  .images-scroll-content img {
+    width: 280px !important;
+    height: 280px !important;
+    min-width: 280px;
+    max-width: 280px;
+  }
+  
+  .videos-scroll-content > div {
+    width: 350px !important;
+    min-width: 350px;
+    max-width: 350px;
+  }
+  
+  .videos-scroll-content video {
+    width: 350px !important;
+    height: 262px !important;
+    min-width: 350px !important;
+    max-width: 350px !important;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -339,5 +374,120 @@
   .btn-container {
     justify-content: center;
     width: 100%;
+  }
+  
+  /* Research section mobile */
+  #research .details-container.color-container {
+    max-width: 100%;
+    width: 100%;
+    padding: 1rem;
+  }
+  
+  #research .about-containers {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  #research h2 {
+    font-size: 1.1rem;
+    margin: 1.5rem 0 0.75rem 0;
+  }
+  
+  /* Awards section mobile */
+  #awards .details-container.color-container {
+    max-width: 100%;
+    width: 100%;
+    padding: 1rem;
+  }
+  
+  #awards .about-containers {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  #awards h2 {
+    font-size: 1.1rem;
+    margin: 1.5rem 0 0.75rem 0;
+  }
+  
+  /* Scrolling sections mobile */
+  .spotlight-scroll-content img,
+  .images-scroll-content img {
+    width: 250px !important;
+    height: 250px !important;
+    min-width: 250px;
+    max-width: 250px;
+  }
+  
+  .videos-scroll-content > div {
+    width: 300px !important;
+    min-width: 300px;
+    max-width: 300px;
+  }
+  
+  .videos-scroll-content video {
+    width: 300px !important;
+    height: 225px !important;
+    min-width: 300px !important;
+    max-width: 300px !important;
+  }
+  
+  .spotlight-scroll-content,
+  .videos-scroll-content,
+  .images-scroll-content {
+    gap: 1rem;
+    padding: 0 0.5rem;
+  }
+  
+  /* Slower animation on mobile for better viewing */
+  .spotlight-scroll-wrapper {
+    animation-duration: 50s;
+  }
+  
+  .videos-scroll-wrapper {
+    animation-duration: 45s;
+  }
+  
+  .images-scroll-wrapper {
+    animation-duration: 40s;
+  }
+  
+  /* Gallery section mobile */
+  #gallery h2 {
+    font-size: 1.2rem;
+    margin: 1.5rem 0 1rem 0;
+  }
+  
+  #gallery .spotlight-scroll-container,
+  #gallery .videos-scroll-container,
+  #gallery .images-scroll-container {
+    margin: 0 -1rem;
+    width: calc(100% + 2rem);
+  }
+  
+  /* Music section mobile */
+  #music {
+    padding-top: 2vh;
+  }
+  
+  #music img {
+    max-width: 90%;
+  }
+  
+  /* Ensure all section titles are readable on mobile */
+  .title {
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+  
+  .section__text__p1 {
+    font-size: 0.9rem;
+  }
+  
+  /* Research and Awards category headers mobile */
+  #research h2[style*="font-size: 1.3rem"],
+  #awards h2[style*="font-size: 1.3rem"] {
+    font-size: 1.1rem !important;
+    margin: 1.5rem 0 0.75rem 0 !important;
   }
 }
