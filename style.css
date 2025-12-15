@@ -586,36 +586,49 @@ section.active {
   overflow: hidden;
 }
 
-/* Ensure equal sizes for research section boxes */
-#research .details-container.color-container {
-  min-height: 200px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  flex: 1 1 220px;
-  max-width: 260px;
-  width: 100%;
+/* Research section - boxes fit content like awards page */
+#research .experience-details-container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 #research .about-containers {
-  align-items: stretch;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+#research .details-container.color-container {
+  min-height: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex: 0 1 auto;
+  max-width: 400px;
+  width: auto;
+  padding: 1rem 1.25rem;
+  text-align: left;
 }
 
 #research .details-container.color-container h2 {
   flex-shrink: 0;
+  margin-bottom: 0.75rem;
+  text-align: left;
+  font-size: 1.1rem;
 }
 
 #research .details-container.color-container p {
-  flex: 1;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  flex: 0;
+  margin: 0;
+  text-align: left;
+  line-height: 1.5;
 }
 
 #research .details-container.color-container .btn-container {
   flex-shrink: 0;
-  margin-top: auto;
+  margin-top: 0.75rem;
+  justify-content: center;
 }
 
 /* Spotlight Scrolling Animation */
