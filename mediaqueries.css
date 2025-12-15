@@ -166,15 +166,31 @@
   }
   
   /* Improve mobile dropdown menu */
+  #hamburger-nav {
+    padding: 0 1rem;
+    height: 10vh;
+    min-height: 60px;
+  }
+  
+  #hamburger-nav .logo {
+    font-size: 1.2rem;
+  }
+  
   .menu-links {
-    width: 200px;
-    min-width: 180px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    top: 10vh;
+    max-width: 280px;
+    width: 85vw;
+    box-shadow: -4px 4px 20px rgba(0, 0, 0, 0.2);
   }
   
   .menu-links a {
-    padding: 12px 16px;
-    font-size: 1.1rem;
+    padding: 14px 18px;
+    font-size: 0.95rem;
+  }
+  
+  .hamburger-icon {
+    height: 22px;
+    width: 28px;
   }
   .section__pic-container {
     width: auto;
