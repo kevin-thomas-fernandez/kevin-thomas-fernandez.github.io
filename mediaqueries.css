@@ -148,7 +148,7 @@
   footer {
     height: 40vh;
   }
-  #profile {
+  #profile.active {
     height: 83vh;
     margin-bottom: 0;
     display: flex;
