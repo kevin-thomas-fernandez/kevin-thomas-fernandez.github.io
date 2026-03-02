@@ -59,20 +59,20 @@
       <source src="./assets/no boundaries instrumental.wav" type="audio/wav">
       Your browser does not support the audio element.
     </audio>
-    <button id="music-toggle" onclick="toggleMusic()" style="position:fixed; bottom:2rem; right:2rem; z-index:1000; width:50px; height:50px; border-radius:50%; border:2px solid rgb(163, 163, 163); background:rgba(255,255,255,0.9); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1.5rem; box-shadow:0 2px 8px rgba(0,0,0,0.2); transition:all 0.3s ease;" onmouseover="this.style.background='#ffffff'; this.style.transform='scale(1.1)'" onmouseout="this.style.background='rgba(255,255,255,0.9)'; this.style.transform='scale(1)'">🎵</button>
+    <button id="music-toggle" onclick="toggleMusic()" style="position:fixed; bottom:2rem; right:2rem; z-index:1000; width:50px; height:50px; border-radius:50%; border:2px solid rgb(163, 163, 163); background:rgba(255,255,255,0.9); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1.5rem; box-shadow:0 2px 8px rgba(0,0,0,0.2); transition:all 0.3s ease;" onmouseover="this.style.background='#ffffff'; this.style.transform='scale(1.1)'" onmouseout="this.style.background='rgba(255,255,255,0.9)'; this.style.transform='scale(1)'">🔇</button>
     <nav id="desktop-nav">
       <div class="logo" onclick="showPage('about');" style="cursor: pointer;">Kevin Thomas Fernandez</div>
       <div>
         <ul class="nav-links">
-          <li><a href="#" onclick="showPage('about'); return false;">About</a></li>
-          <li><a href="#" onclick="showPage('work-experience'); return false;">Experience</a></li>
-          <li><a href="#" onclick="showPage('projects'); return false;">Projects</a></li>
-          <li><a href="#" onclick="showPage('web-applications'); return false;">Web Apps</a></li>
-          <li><a href="#" onclick="showPage('gallery'); return false;">Gallery</a></li>
-          <li><a href="#" onclick="showPage('research'); return false;">Research</a></li>
-          <li><a href="#" onclick="showPage('awards'); return false;">Awards</a></li>
-          <li><a href="#" onclick="showPage('music'); return false;">Music</a></li>
-          <li><a href="#" onclick="showPage('contact'); return false;">Contact</a></li>
+          <li><a href="#" data-page="about" onclick="showPage('about'); return false;">About</a></li>
+          <li><a href="#" data-page="work-experience" onclick="showPage('work-experience'); return false;">Experience</a></li>
+          <li><a href="#" data-page="projects" onclick="showPage('projects'); return false;">Projects</a></li>
+          <li><a href="#" data-page="web-applications" onclick="showPage('web-applications'); return false;">UI for Engineering</a></li>
+          <li><a href="#" data-page="highlights" onclick="showPage('highlights'); return false;">Highlights</a></li>
+          <li><a href="#" data-page="research" onclick="showPage('research'); return false;">Research</a></li>
+          <li><a href="#" data-page="awards" onclick="showPage('awards'); return false;">Awards</a></li>
+          <li><a href="#" data-page="music" onclick="showPage('music'); return false;">Music</a></li>
+          <li><a href="#" data-page="contact" onclick="showPage('contact'); return false;">Contact</a></li>
         </ul>
       </div>
     </nav>
@@ -85,15 +85,15 @@
           <span></span>
         </div>
         <div class="menu-links">
-          <li><a href="#" onclick="showPage('about'); toggleMenu(); return false;">About</a></li>
-          <li><a href="#" onclick="showPage('work-experience'); toggleMenu(); return false;">Experience</a></li>
-          <li><a href="#" onclick="showPage('projects'); toggleMenu(); return false;">Projects</a></li>
-          <li><a href="#" onclick="showPage('web-applications'); toggleMenu(); return false;">Web Apps</a></li>
-          <li><a href="#" onclick="showPage('gallery'); toggleMenu(); return false;">Gallery</a></li>
-          <li><a href="#" onclick="showPage('research'); toggleMenu(); return false;">Research</a></li>
-          <li><a href="#" onclick="showPage('awards'); toggleMenu(); return false;">Awards</a></li>
-          <li><a href="#" onclick="showPage('music'); toggleMenu(); return false;">Music</a></li>
-          <li><a href="#" onclick="showPage('contact'); toggleMenu(); return false;">Contact</a></li>
+          <li><a href="#" data-page="about" onclick="showPage('about'); toggleMenu(); return false;">About</a></li>
+          <li><a href="#" data-page="work-experience" onclick="showPage('work-experience'); toggleMenu(); return false;">Experience</a></li>
+          <li><a href="#" data-page="projects" onclick="showPage('projects'); toggleMenu(); return false;">Projects</a></li>
+          <li><a href="#" data-page="web-applications" onclick="showPage('web-applications'); toggleMenu(); return false;">UI for Engineering</a></li>
+          <li><a href="#" data-page="highlights" onclick="showPage('highlights'); toggleMenu(); return false;">Highlights</a></li>
+          <li><a href="#" data-page="research" onclick="showPage('research'); toggleMenu(); return false;">Research</a></li>
+          <li><a href="#" data-page="awards" onclick="showPage('awards'); toggleMenu(); return false;">Awards</a></li>
+          <li><a href="#" data-page="music" onclick="showPage('music'); toggleMenu(); return false;">Music</a></li>
+          <li><a href="#" data-page="contact" onclick="showPage('contact'); toggleMenu(); return false;">Contact</a></li>
         </div>
       </div>
     </nav>
@@ -107,7 +107,7 @@
           <span style="font-size: smaller; font-weight: normal; color: inherit;"> [Greetings In My Native Language]</span>, I'm
         </p>
         <h1 class="title">Kevin Thomas Fernandez</h1>
-        <p class="section__text__p2">Aerospace & Mechanical Engineer</p>
+        <p class="section__text__p2">M.S. Aerospace Engineering, B.E. Mechanical Engineering</p>
         <div class="btn-container">
           <button class="btn btn-color-1" onclick="showPage('contact')">
             Contact Info
@@ -132,6 +132,29 @@
     <section id="about">
       <p class="section__text__p1">Get To Know More</p>
       <h1 class="title">About Me</h1>
+      <!-- Abstract UAV drone animation -->
+      <div class="about-drone-wrapper">
+        <svg class="about-drone" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(50,50)">
+            <!-- Central body -->
+            <rect x="-6" y="-4" width="12" height="8" rx="2" fill="rgba(70,70,90,0.7)" stroke="rgba(90,90,110,0.6)" stroke-width="1"/>
+            <!-- Four arms in X (quadcopter) configuration -->
+            <line x1="0" y1="0" x2="-14" y2="-14" stroke="rgba(80,80,100,0.7)" stroke-width="2.5"/>
+            <line x1="0" y1="0" x2="14" y2="-14" stroke="rgba(80,80,100,0.7)" stroke-width="2.5"/>
+            <line x1="0" y1="0" x2="-14" y2="14" stroke="rgba(80,80,100,0.7)" stroke-width="2.5"/>
+            <line x1="0" y1="0" x2="14" y2="14" stroke="rgba(80,80,100,0.7)" stroke-width="2.5"/>
+            <!-- Motor housings with propellers -->
+            <circle cx="-14" cy="-14" r="5" fill="rgba(60,60,80,0.8)" stroke="rgba(90,90,110,0.5)" stroke-width="1"/>
+            <circle cx="-14" cy="-14" r="3.5" fill="none" stroke="rgba(120,120,140,0.6)" stroke-width="1" stroke-dasharray="2 2" class="drone-prop"/>
+            <circle cx="14" cy="-14" r="5" fill="rgba(60,60,80,0.8)" stroke="rgba(90,90,110,0.5)" stroke-width="1"/>
+            <circle cx="14" cy="-14" r="3.5" fill="none" stroke="rgba(120,120,140,0.6)" stroke-width="1" stroke-dasharray="2 2" class="drone-prop"/>
+            <circle cx="-14" cy="14" r="5" fill="rgba(60,60,80,0.8)" stroke="rgba(90,90,110,0.5)" stroke-width="1"/>
+            <circle cx="-14" cy="14" r="3.5" fill="none" stroke="rgba(120,120,140,0.6)" stroke-width="1" stroke-dasharray="2 2" class="drone-prop"/>
+            <circle cx="14" cy="14" r="5" fill="rgba(60,60,80,0.8)" stroke="rgba(90,90,110,0.5)" stroke-width="1"/>
+            <circle cx="14" cy="14" r="3.5" fill="none" stroke="rgba(120,120,140,0.6)" stroke-width="1" stroke-dasharray="2 2" class="drone-prop"/>
+          </g>
+        </svg>
+      </div>
       <div class="section-container">
         <div class="section__pic-container">
           <img
@@ -141,40 +164,14 @@
           />
         </div>
         <div class="about-details-container">
-          <div class="about-containers">
-            <!-- <div class="details-container">
-              <img
-                src="./assets/experience.png"
-                alt="Experience icon"
-                class="icon"
-              />
-              <h3>Experience</h3>
-              <p>3+ years Aerospace Research & Engineering</p>
-            </div> -->
-            <div class="details-container">
-              <img
-                src="./assets/education.png"
-                alt="Education icon"
-                class="icon"
-              />
-              <h3>Education</h3>
-              <p>M.S. in Aerospace Engineering, Virginia Tech (USA)<br />B.E. in Mechanical Engineering, DSCE (India)</p>
-
-            </div>
-            <div class="details-container">
-              <img
-                src="./assets/experience.png"
-                alt="Skills icon"
-                class="icon"
-              />
-              <h3>Skills</h3>
-              <p>CAD Design, Finite Element Analysis, Computational Fluid Dynamics, Experimental Methods</p>
-            </div>
-          </div>
           <div class="text-container">
             <p>
-              What drives me isn’t just the technology - it’s the purpose behind it. Every design, every model, every test I take on: it’s about improving lives, protecting people and shaping the future. 
+              Ever since I was a kid, I have wanted to build systems, explore the world, and solve problems others thought were beyond reach. I am a rebel at heart, an underdog who loves to compete and create technology that helps people.
             </p>
+            <p style="margin-top: 1rem;"><strong>✈︎</strong> I am an Airworthiness Analyst and Aerospace Engineer focused on UAV systems, risk modeling, and airworthiness evaluation. My work lies at the intersection of technology, safety, and human-centered design.</p>
+            <p style="margin-top: 0.75rem;"><strong>⚙︎</strong> I specialize in mechanical design and analysis, using CAD, FEM, and experimental validation to bridge concept and function. With an interest in addditive manufacturing as an aid to design and fastpaced development. I have contributed to projects from UAV mission planning and anti-icing research to aircraft component design.</p>
+            <p style="margin-top: 0.75rem;"><strong>✧</strong> At Golden Section LLC, I develop airworthiness risk methods and mission planning integrations while driving system growth. I work with customers, engineers, and regulators to align technical work with organizational goals through documentation and stakeholder discussions.</p>
+            <p style="margin-top: 0.75rem;"><strong>⎔</strong> I aim to design systems that are functional, compliant, and dependable. Every project I take on is guided by the goal of building technology that works beautifully and earns its place in the real world.</p>
           </div>
         </div>
       </div>
@@ -371,8 +368,68 @@
               </button>
             </div>
           </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/composites-lab-abstract.svg"
+                alt="Non-Linear Multi-functional Composites Lab"
+                class="project-img"
+                onclick="openImageModal('./assets/composites-lab-abstract.svg')"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Non-Linear Multi-functional Composites Lab</h2>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">
+              Aerospace Design Engineer Intern
+            </p>
+            <div class="btn-container" style="margin-top: 10px;">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="openDetailsModal('composites')"
+              >
+                Click to see details
+              </button>
+            </div>
+          </div>
         </div>
       </div>
+
+      <img
+        src="./assets/arrow.png"
+        alt="Scroll down for Images"
+        class="icon arrow experience-images-arrow"
+        onclick="document.getElementById('experience-images-section').scrollIntoView({ behavior: 'smooth' })"
+      />
+
+      <!-- Images Section (moved from Gallery) -->
+      <div id="experience-images-section" style="margin-bottom: 3rem; margin-top: 2rem;">
+        <h2 style="text-align: center; font-size: 1.5rem; margin-bottom: 1.5rem; color: rgb(85, 85, 85);">Images</h2>
+        <div class="experience-images-scroll-container">
+          <div class="experience-images-scroll-wrapper">
+            <div class="experience-images-scroll-content" id="experience-images-scroll-content">
+              <!-- Images populated by script -->
+            </div>
+            <div class="experience-images-scroll-content" id="experience-images-scroll-content-duplicate">
+              <!-- Duplicate for seamless loop -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Videos Section (moved from Gallery) -->
+      <div style="margin-bottom: 3rem;">
+        <h2 style="text-align: center; font-size: 1.5rem; margin-bottom: 1.5rem; color: rgb(85, 85, 85);">Videos</h2>
+        <div class="experience-videos-scroll-container">
+          <div class="experience-videos-scroll-wrapper">
+            <div class="experience-videos-scroll-content" id="experience-videos-scroll-content">
+              <!-- Videos populated by script -->
+            </div>
+            <div class="experience-videos-scroll-content" id="experience-videos-scroll-content-duplicate">
+              <!-- Duplicate for seamless loop -->
+            </div>
+          </div>
+        </div>
+      </div>
+
       <img
         src="./assets/arrow.png"
         alt="Arrow icon"
@@ -382,7 +439,7 @@
     </section>
     <section id="web-applications">
       <p class="section__text__p1">Browse My</p>
-      <h1 class="title">Web Applications</h1>
+      <h1 class="title">UI for Engineering</h1>
       <div class="experience-details-container">
         <div class="about-containers">
           <div class="details-container color-container">
@@ -720,61 +777,21 @@
         src="./assets/arrow.png"
         alt="Arrow icon"
         class="icon arrow"
-        onclick="showPage('gallery')"
+        onclick="showPage('highlights')"
       />
     </section>
-    <section id="gallery">
+    <section id="highlights">
       <p class="section__text__p1">Browse My</p>
-      <h1 class="title">Gallery</h1>
+      <h1 class="title">Highlights</h1>
       <p class="section__text__p1" style="margin-top: 1rem; font-style: italic;">Click on images to expand</p>
-      
-      <!-- Images Section -->
-      <div style="margin-bottom: 3rem;">
-        <h2 style="text-align: center; font-size: 1.5rem; margin-bottom: 1.5rem; color: rgb(85, 85, 85);">Images</h2>
-        <div class="images-scroll-container">
-          <div class="images-scroll-wrapper">
-            <div class="images-scroll-content" id="images-scroll-content">
-              <!-- Images will be dynamically inserted here -->
-            </div>
-            <div class="images-scroll-content" id="images-scroll-content-duplicate">
-              <!-- Duplicate for seamless loop -->
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Videos Section -->
-      <div style="margin-bottom: 3rem;">
-        <h2 style="text-align: center; font-size: 1.5rem; margin-bottom: 1.5rem; color: rgb(85, 85, 85);">Videos</h2>
-        <div class="videos-scroll-container">
-          <div class="videos-scroll-wrapper">
-            <div class="videos-scroll-content" id="videos-scroll-content">
-              <!-- Videos will be dynamically inserted here -->
-            </div>
-            <div class="videos-scroll-content" id="videos-scroll-content-duplicate">
-              <!-- Duplicate for seamless loop -->
-            </div>
-          </div>
-        </div>
+      <!-- Highlights Grid -->
+      <div class="highlights-grid-container" id="highlights-grid-content">
+        <!-- Images populated by script -->
       </div>
-
-      <!-- Spotlight Scrolling Section -->
-      <div style="margin-bottom: 3rem;">
-        <h2 style="text-align: center; font-size: 1.5rem; margin-bottom: 1.5rem; color: rgb(85, 85, 85);">Spotlight</h2>
-        <div class="spotlight-scroll-container">
-          <div class="spotlight-scroll-wrapper">
-            <div class="spotlight-scroll-content" id="spotlight-scroll-content">
-              <!-- Images will be dynamically inserted here -->
-            </div>
-            <div class="spotlight-scroll-content" id="spotlight-scroll-content-duplicate">
-              <!-- Duplicate for seamless loop -->
-            </div>
-          </div>
-        </div>
-        <ul style="list-style: none; padding: 0; text-align: center; margin-top: 1.5em;">
-          <li><a href="https://www.facebook.com/virginiatechaoe/photos/congrats-to-kevin-thomas-fernandez-who-completed-his-masters-degree-this-spring-/714215007801559/?_rdr" target="_blank">Virginia Tech Spotlight</a></li>
-        </ul>
-      </div>
+      <ul style="list-style: none; padding: 0; text-align: center; margin-top: 1.5em;">
+        <li><a href="https://www.facebook.com/virginiatechaoe/photos/congrats-to-kevin-thomas-fernandez-who-completed-his-masters-degree-this-spring-/714215007801559/?_rdr" target="_blank">Virginia Tech Spotlight</a></li>
+      </ul>
       <img
         src="./assets/arrow.png"
         alt="Arrow icon"
@@ -917,7 +934,7 @@
         src="./assets/arrow.png"
         alt="Arrow icon"
         class="icon arrow"
-        onclick="showPage('gallery')"
+        onclick="showPage('highlights')"
       />
     </section>
     <section id="contact">
@@ -979,7 +996,8 @@
             <li><a href="#" onclick="showPage('about'); return false;">About</a></li>
             <li><a href="#" onclick="showPage('work-experience'); return false;">Experience</a></li>
             <li><a href="#" onclick="showPage('projects'); return false;">Projects</a></li>
-            <li><a href="#" onclick="showPage('gallery'); return false;">Gallery</a></li>
+            <li><a href="#" onclick="showPage('web-applications'); return false;">UI for Engineering</a></li>
+            <li><a href="#" onclick="showPage('highlights'); return false;">Highlights</a></li>
             <li><a href="#" onclick="showPage('research'); return false;">Research</a></li>
             <li><a href="#" onclick="showPage('awards'); return false;">Awards</a></li>
             <li><a href="#" onclick="showPage('music'); return false;">Music</a></li>
@@ -1034,10 +1052,24 @@
         'quadra': {
           title: 'QUADRA - Airworthiness Risk Assessment Analyst',
           items: [
-            'Proposed an FAA-aligned ground risk method integrating weather, LANDSCAN population, and Custom-built HAZUS-based shelter database(48 states) with kinetic energy metrics. Improved flight path analysis accuracy and gained validation interest from FAA, MAAP, and NAVAIR.',
-            'Supported FAA Part 107/108 BVLOS mission risk scenarios in QUADRA. simulating population density, crash zones, and failure modes (dive, glide, flyaway), building a baseline risk library for future certification use.',
-            'Developed QGC WPL 110 mission planner parser for integration to align with QUADRA input. Enabling compatibility with ARDUPILOT mission planning software.',
-            'Co-developing parachute deployment feature with MAAP, coding drag-parameter models to align with ASTM parachute recovery standards.'
+            '',
+            'Golden Section LLC:',
+            '• Aug 2025 – Present | Airworthiness Analyst / Founding Engineer | VA, USA',
+            '• Built mission-planning and geospatial tools (QGC WPL parser, population/risk layers) improving flight-path risk analysis accuracy and supporting safe, compliant operations, earning validation interest from FAA, MAAP, and NAVAIR.',
+            '• Supported an FAA-aligned ground risk method (SRM based) and integrated geospatial datasets (LANDSCAN population) and built modified HAZUS shelter database for 48 states with kinetic energy metrics.',
+            '• Analyze FAA Part 107/108 BVLOS based mission scenarios by running failure-mode, crash-zone, and weather-based assessments that mirror structured flight-test procedures.',
+            '• Developing parachute analysis feature with MAAP, validating drag-parameter models to align with ASTM parachute recovery standards.',
+            '',
+            'VT Airworthiness Center:',
+            '• May 2023 – Aug 2025 | Aerospace & Ocean Engineering, Virginia Tech',
+            '• Enhanced ground risk with Python/Node.js, and reduced population density errors by 1.5–3× to improve risk estimates by up to 73% in hazard areas, tested with MAAP, UMDROC and FAA cases.',
+            '• Refactored a 4,000+ line Python codebase into modular functions, verifying fatality risk via probabilistic models and cleared 3 years of backlog work, enabling repeatable simulations and faster feature integration.',
+            '• Applied statistical risk analysis (lift/drag, crash dynamics, PCA failure modes) to achieve model accuracy within 1% of validated data by reducing 17% of overall error within the model.',
+            '• Enhanced geospatial data layers by adding population-driven GeoJSON features, improving visualization of risk areas for planners and regulators.',
+            '• Automated with Python workflows (GDAL, rasterio, Fiona) and regression tested (20 + cases) to validate population/risk data across VA/MD states, cutting validation cycles from ~1 hr to seconds.',
+            '• Authored technical documentation, data dictionaries, process flows, and geospatial verification specifications for internal and external users.',
+            '• Led customer discovery with 60+ stakeholders (FAA officials, Operators, C-suite, Engineers), producing market validation, product valuation and pricing strategies.',
+            '• Drove market research and feature-access strategies, guiding commercialization and customer acquisition.'
           ]
         },
         'airworthiness': {
@@ -1054,28 +1086,31 @@
           ]
         },
         'deicing': {
-          title: 'Advanced Aircraft De-icing techniques - Graduate Research Assistant',
+          title: 'Graduate Research Assistant, Advanced Aircraft Anti-icing techniques',
           items: [
-            'Implemented EHS-compliant setups for anti-icing and op-amp circuit tests, ensuring safe, repeatable experiments.',
-            'Performed FFT on PZT vibrations (6–21.5 kHz) with a laser vibrometer, identifying resonant modes for optimized atomization performance.',
-            'Performed FEA in Abaqus (~25k elements) with optimized meshing and experimental boundary conditions; ran static, eigenfrequency (7–25.6 kHz), and dynamic implicit method, capturing resonance ranges and mode shapes.',
-            'Analyzed droplet dynamics with high-speed and X-ray imaging, quantifying spread factor, atomization rate (~1.5–2.1 mm³/ms), and energy flux densities.',
-            'Established a standardized process for PZT–surface interaction, defining selection criteria, FEM boundary setup, and validation with laser vibrometry, enabling repeatable simulations and experiments.',
-            'Quantified droplet dynamics by tracking ejection kinetic/potential energy, spread diameters (up to 8.1 mm), breakup times (as low as 0.85 ms), and atomization rate (~35 ms⁻¹) across Reynolds numbers (Re 460–4620).',
-            'Designed and built a functional supercooling chamber (400×400×700 mm³) with vacuum pumps, N₂ frost control and glycol cooling, maintaining a max −11.2 °C operation for controlled icing tests.',
-            'Conducted ASME Y14.5 tolerance analysis for custom parts and generated precision 3D printing of chamber components using SolidWorks, ensuring structural integrity and fit.',
-            'Fabricated superhydrophobic coatings (Ra reduced to 21% vs. prior) and assessed using 3D surface profiling (VK-X3000).',
+            'VA, USA:',
+            '• Executed full test cycles: EHS-compliant setup, calibration, data acquisition (laser vibrometer, high-speed and X-ray imaging), signal processing (FFT, time-domain filtering), and validation against design assumptions.',
+            '• Performed FFT on PZT vibrations (6–21.5 kHz) with a laser vibrometer, identifying resonant modes for optimized atomization performance.',
+            '• Performed FEA in Abaqus with optimized meshing and experimental boundary conditions; ran static, eigenfrequency (7–25.6 kHz), and dynamic implicit method, capturing resonance ranges and mode shapes.',
+            '• Analyzed droplet dynamics with high-speed and X-ray imaging, quantifying spread factor, atomization rate (~1.5–2.1 mm³/ms), and energy flux densities.',
+            '• Quantified droplet dynamics by tracking ejection kinetic/potential energy, spread diameters (up to 8.1 mm), breakup times (as low as 0.85 ms), and atomization rate (~35 ms⁻¹) across Reynolds numbers (Re 460–4620).',
+            '• Defined functional, thermal, and safety requirements for a controlled anti-icing test setup and designed a supercooling system (400 × 400 × 700 mm³) integrating vacuum pumps, N2 frost control, and glycol cooling.',
+            '• Environmental testing of anti-icing mechanisms with vibration tests (6–21.5 kHz), droplet impact/atomization, thermal/icing chamber trials down to −11.2 °C.',
+            '• Translated evolving test requirements into SolidWorks models and 2D manufacturing drawings using ASME Y14.5 GD&T, enabling reliable assembly, repeatability, and low-cost prototyping.',
+            '• Fabricated superhydrophobic coatings (Ra reduced by 21%) under OSHA standards and assessed using 3D surface profiling (VK-X3000).',
             'IMAGES:./assets/3D depiction of roughness amplitude.png|./assets/roughnessImagearea5.png',
-            'Cross-Collaborated with Structural, Chemical, Material Characterization, 3D Printing and Machine Shop teams.',
-            'Leveraged a thorough understanding of work and purchase order systems to coordinate tasks.'
+            '• Implemented the TrackMate plugin in ImageJ using a DoG (Difference of Gaussian) detector and Kalman filter to automate droplet detection and high-speed tracking.',
+            '• Developed MATLAB scripts to process high-speed .AVI files, accounting for non-spherical droplet geometries to calculate precise diameter and impact velocity.',
+            '• Leveraged Keyence MultiFile Analyzer software to perform 3D surface roughness (Ra) analysis by stitching laser-scanned ROIs for superhydrophobic validation.',
+            '• Multitasked across Structural, Chemical, Material Characterization, 3D Printing and Machine Shop.'
           ]
         },
         'gta': {
           title: 'Graduate Teaching Assistant',
           items: [
-            'Held office hours (4 hrs/wk) and supported 200+ students in Computational Methods, supporting MATLAB-based numerical methods, flight simulation, and feedback control coursework.',
-            'Guided 16 students in Experimental Methods lab on instrumentation, uncertainty analysis, and MATLAB-based data reduction, ensuring accurate experimental design and reporting.',
-            'Mentored projects in modal/vibration analysis and aerodynamic tests (wind, smoke, and water tunnels), strengthening students\' understanding of structural integrity through experimental work by hands-on testing and spectral analysis.'
+            '• Held office hours (4 hrs/wk) and supported 200+ students in Computational Methods, MATLAB-based numerical methods, and feedback control coursework.',
+            '• Guided 16 students in applying structural mechanics principles to predict and validate static and dynamic response, reinforcing the link between analytical models, design assumptions, and quantified test results.',
+            '• Led fluid flow test sessions (open jet, flow visualization and water tunnel) in understanding system, structure and fluid flow interpretation (MATLAB) through shadow velocimetry (LaVision) and spectral analysis.'
           ]
         },
         'windtunnel': {
@@ -1089,6 +1124,14 @@
           items: [
             'Validated spar design via CAD modeling, mesh analysis (MSC Nastran & Patran), and Euler-Bernoulli Beam Theory.',
             'Developed early exposure to structural component design and validation in a professional engineering team setting.'
+          ]
+        },
+        'composites': {
+          title: 'Non-Linear Multi-functional Composites Analysis and Design Lab',
+          items: [
+            'Aerospace Design Engineer Intern, Aircraft Design team:',
+            '• Jan 2022 – June 2022 | KA, India',
+            '• Influenced design of an eVTOL aircraft with CAD models for urban air mobility, focusing on wings, fuselage, battery placement, seating ergonomics and optimizing performance through extensive research in a 5-member team.'
           ]
         },
         'pod': {
@@ -1392,28 +1435,6 @@
         }
       }
       
-      // Try to autoplay on page load
-      document.addEventListener('DOMContentLoaded', function() {
-        music.play().catch(() => {
-          // Autoplay was prevented, will try after user interaction
-        });
-      });
-      
-      // Try to play music after any user interaction
-      let hasInteracted = false;
-      const tryPlayMusic = function() {
-        if (!hasInteracted && music.paused) {
-          hasInteracted = true;
-          music.play().catch(() => {
-            // Autoplay was prevented, user will need to click button
-          });
-        }
-      };
-      
-      document.addEventListener('click', tryPlayMusic, { once: true });
-      document.addEventListener('touchstart', tryPlayMusic, { once: true });
-      document.addEventListener('keydown', tryPlayMusic, { once: true });
-      
       // Update button when music ends or is paused by browser
       music.addEventListener('pause', function() {
         if (!music.ended) {
@@ -1461,6 +1482,11 @@
         
         // Update URL without reloading
         history.pushState({ page: pageId }, '', '#' + pageId);
+        
+        // Update nav active state - boundary box on selected menu item
+        document.querySelectorAll('a[data-page]').forEach(link => {
+          link.classList.toggle('nav-active', link.getAttribute('data-page') === pageId);
+        });
       }
       
       // Show default page on load

@@ -66,18 +66,34 @@ document.addEventListener('DOMContentLoaded', function() {
 // Spotlight Gallery Images
 const galleryImages = [
   { src: './assets/WhatsApp Image 2025-05-25 at 15.38.00_cd04e5aa.jpg', caption: 'Graduation, Lane Hall, Virginia Tech (2025)' },
-  { src: './assets/Winning.png', caption: 'CREATe Poster Competion First Place Win, McBryde 660, Virginia Tech (2024)' },
   { src: './assets/Poster.png', caption: 'Supercooled Droplet Research, Virginia Tech (2024)' },
+  { src: './assets/Eileen Collins.jpg', caption: 'Eileen Collins, NASA Astronaut' },
+  { src: './assets/AUVSI NC.jpg', caption: 'AUVSI NC advanced mobility symposiym (2026)' },
   { src: './assets/IMG-20250610-WA0004.jpg', caption: 'Wisk 6th Generation Aircraft, Houston Xponential (2025)' },
   { src: './assets/HOUSTON XPO.jpg', caption: 'XPONENTIAL Conference Materials, Houston, TX (2025)' },
-  { src: './assets/AAM Stakeholder Reception.png', caption: 'AAM Stakeholder Reception' },
-  { src: './assets/AUVSI Ridge Valley Chapter.jpg', caption: 'AUVSI Roundtable Discussion' },
-  { src: './assets/Michal oborne, inventor of Mission Planner.jpg', caption: 'Conference Presentation' },
-  { src: './assets/Electra EL2.jpg', caption: 'ELECTRA EL2 Aircraft, Virginia Tech' },
+  { src: './assets/AAM Stakeholder Reception.png', caption: 'AAM Stakeholder Reception (2024)' },
+  { src: './assets/AUVSI Ridge Valley Chapter.jpg', caption: 'AUVSI Roundtable Discussion (2025)' },
+  { src: './assets/Michal Oborne, inventor of Mission Planner.jpg', caption: 'Michal oborne, inventor of Mission Planner (2025)' },
+  { src: './assets/Electra EL2.jpg', caption: 'ELECTRA EL2 Aircraft, Virginia Tech (2025)' },
   { src: './assets/Hokie Bird.jpg', caption: 'Virginia Tech Hokie Bird Mascot' },
   { src: './assets/EmceeTeam.jpg', caption: 'The Emcee Team, Dayananda Sagar Institutions (2019)' },
   { src: './assets/WhatsApp Image 2025-05-18 at 22.08.46_650b9d9d.jpg', caption: 'Graduation Ceremony, Cassell Coliseum , Virginia Tech (2025)' }, 
-  { src: './assets/IMG_20250118_192034.jpg', caption: 'Research Setup Image' },
+  { src: './assets/IMG_20250118_192034.jpg', caption: 'APS conference, Washington DC, (2023)' },
+  { src: './assets/IMG_1105.jpg', caption: 'DJI Mini 4K (2025)' },
+  { src: './assets/IMG_1060.jpg', caption: 'Setup' },
+  { src: './assets/IMG_1239.png', caption: 'Ian Muceus, CTO , Firestorm, AUVSI NC advanced mobility symposiym (2026)' },
+  { src: './assets/IMG_1288.png', caption: 'Alison, Consultant at ASTM International, AUVSI NC advanced mobility symposiym (2026)' },
+  { src: './assets/IMG_1290.png', caption: 'Host Team (Airavat, RTI, Nuair),AUVSI NC advanced mobility symposiym (2026)' },
+  { src: './assets/IMG_1298.png', caption: 'Rob Knochenhauer, Director of Regulatory Affairs, Censys Technologies, AUVSI NC advanced mobility symposiym (2026)' },
+  { src: './assets/IMG_1153.png', caption: 'NASA, Portable UTM, Freefly Alta, VABA Reception (2026) ' },
+  { src: './assets/IMG_1163.png', caption: 'VABA Reception (2026)' },
+  { src: './assets/Wing_and_tombo.png', caption: 'Tombo Jones, Director of Mid-Atlantic Aviation Partnership (MAAP),VABA Reception (2026)' },
+  { src: './assets/John_coggins.png', caption: 'John Coggin, Associate Director of Mid-Atlantic Aviation Partnership (MAAP),VABA Reception (2026)' },
+];
+
+// Highlights videos (displayed in Highlights grid)
+const highlightsVideos = [
+  { src: './assets/IMG_1422.mp4', caption: 'Zipline, Esparto, Sacramento , CA (2026)' },
 ];
 
 // Video data
@@ -100,42 +116,75 @@ const galleryImageItems = [
   { src: './assets/2.svg', caption: 'Laser Vibromete Study Setup' },
   { src: './assets/Optical Microscope Imaging.png', caption: 'Optical Microscope Imaging' },
   { src: './assets/Plate base with plate holder.PNG', caption: 'Six-plate mounting base for laser vibrometry testing' },
+  { src: './assets/IMG_0113.jpg', caption: 'Research / Lab' },
+  { src: './assets/IMG_0109.jpg', caption: 'Research / Lab' },
+  { src: './assets/IMG_0753.jpg', caption: 'Research / Lab' },
+  { src: './assets/IMG_0756.jpg', caption: 'Research / Lab' },
+  { src: './assets/IMG_0758.jpg', caption: 'Research / Lab' },
 ];
 
-function initializeSpotlightScroll() {
-  const contentContainer = document.getElementById('spotlight-scroll-content');
-  const duplicateContainer = document.getElementById('spotlight-scroll-content-duplicate');
-  
-  if (!contentContainer || !duplicateContainer) return;
-  
-  // Clear existing content
-  contentContainer.innerHTML = '';
-  duplicateContainer.innerHTML = '';
-  
-  // Create image elements for original
-  galleryImages.forEach(image => {
-    const img = document.createElement('img');
-    img.src = image.src;
-    img.alt = image.caption;
-    img.title = image.caption;
-    img.onclick = () => openImageModal(image.src);
-    contentContainer.appendChild(img);
-  });
-  
-  // Duplicate for seamless loop
-  galleryImages.forEach(image => {
-    const img = document.createElement('img');
-    img.src = image.src;
-    img.alt = image.caption;
-    img.title = image.caption;
-    img.onclick = () => openImageModal(image.src);
-    duplicateContainer.appendChild(img);
+function initializeHighlightsGrid() {
+  const gridContainer = document.getElementById('highlights-grid-content');
+  if (!gridContainer) return;
+
+  const winningItem = { src: './assets/Winning.png', caption: 'CREATe Poster Competion First Place Win, McBryde 660, Virginia Tech (2024)', type: 'image' };
+  const allItems = [
+    ...highlightsVideos.map(v => ({ ...v, type: 'video' })),
+    ...galleryImages.map(i => ({ ...i, type: 'image' })),
+    winningItem
+  ];
+
+  const getYear = (caption) => {
+    const m = caption.match(/\((\d{4})\)/);
+    return m ? parseInt(m[1], 10) : null;
+  };
+
+  const withDates = allItems.filter(i => getYear(i.caption) !== null);
+  const noDates = allItems.filter(i => getYear(i.caption) === null);
+  const newest = withDates.filter(i => getYear(i.caption) >= 2024).sort((a, b) => getYear(b.caption) - getYear(a.caption));
+  const oldest = withDates.filter(i => getYear(i.caption) < 2024).sort((a, b) => getYear(a.caption) - getYear(b.caption));
+
+  const ordered = [...newest, ...noDates, ...oldest];
+
+  gridContainer.innerHTML = '';
+  ordered.forEach(entry => {
+    const item = document.createElement('div');
+    item.className = 'highlights-grid-item';
+    if (entry.type === 'video') {
+      const videoEl = document.createElement('video');
+      videoEl.controls = true;
+      videoEl.preload = 'metadata';
+      videoEl.muted = true;
+      videoEl.playsInline = true;
+      videoEl.title = entry.caption;
+      const source = document.createElement('source');
+      source.src = entry.src;
+      source.type = entry.src.endsWith('.mp4') ? 'video/mp4' : 'video/quicktime';
+      videoEl.appendChild(source);
+      const caption = document.createElement('p');
+      caption.className = 'highlights-caption';
+      caption.textContent = entry.caption;
+      item.appendChild(videoEl);
+      item.appendChild(caption);
+    } else {
+      const img = document.createElement('img');
+      img.src = entry.src;
+      img.alt = entry.caption;
+      img.title = entry.caption;
+      img.onclick = () => openImageModal(entry.src);
+      const caption = document.createElement('p');
+      caption.className = 'highlights-caption';
+      caption.textContent = entry.caption;
+      item.appendChild(img);
+      item.appendChild(caption);
+    }
+    gridContainer.appendChild(item);
   });
 }
 
-function initializeVideosScroll() {
-  const contentContainer = document.getElementById('videos-scroll-content');
-  const duplicateContainer = document.getElementById('videos-scroll-content-duplicate');
+function initializeExperienceVideosScroll() {
+  const contentContainer = document.getElementById('experience-videos-scroll-content');
+  const duplicateContainer = document.getElementById('experience-videos-scroll-content-duplicate');
   
   if (!contentContainer || !duplicateContainer) return;
   
@@ -204,9 +253,9 @@ function initializeVideosScroll() {
   });
 }
 
-function initializeImagesScroll() {
-  const contentContainer = document.getElementById('images-scroll-content');
-  const duplicateContainer = document.getElementById('images-scroll-content-duplicate');
+function initializeExperienceImagesScroll() {
+  const contentContainer = document.getElementById('experience-images-scroll-content');
+  const duplicateContainer = document.getElementById('experience-images-scroll-content-duplicate');
   
   if (!contentContainer || !duplicateContainer) return;
   
@@ -236,9 +285,9 @@ function initializeImagesScroll() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  initializeSpotlightScroll();
-  initializeVideosScroll();
-  initializeImagesScroll();
+  initializeHighlightsGrid();
+  initializeExperienceImagesScroll();
+  initializeExperienceVideosScroll();
 });
 
 

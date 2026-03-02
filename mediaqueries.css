@@ -252,6 +252,17 @@
     justify-content: center;
     width: 100%;
   }
+  #about .text-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 0.5rem;
+    box-sizing: border-box;
+  }
+  .about-drone {
+    width: 36px;
+    height: 36px;
+    opacity: 0.4;
+  }
   .section__text__p2 {
     font-size: 1.25rem;
   }
