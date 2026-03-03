@@ -73,7 +73,7 @@ const galleryImages = [
   { src: './assets/HOUSTON XPO.jpg', caption: 'XPONENTIAL Conference Materials, Houston, TX (2025)' },
   { src: './assets/AAM Stakeholder Reception.png', caption: 'AAM Stakeholder Reception (2024)' },
   { src: './assets/AUVSI Ridge Valley Chapter.jpg', caption: 'AUVSI Roundtable Discussion (2025)' },
-  { src: './assets/Michal Oborne, inventor of Mission Planner.jpg', caption: 'Michal oborne, inventor of Mission Planner (2025)' },
+  { src: './assets/Michal oborne, inventor of Mission Planner.jpg', caption: 'Michael Oborne, inventor of Mission Planner (2025)' },
   { src: './assets/Electra EL2.jpg', caption: 'ELECTRA EL2 Aircraft, Virginia Tech (2025)' },
   { src: './assets/Hokie Bird.jpg', caption: 'Virginia Tech Hokie Bird Mascot' },
   { src: './assets/EmceeTeam.jpg', caption: 'The Emcee Team, Dayananda Sagar Institutions (2019)' },

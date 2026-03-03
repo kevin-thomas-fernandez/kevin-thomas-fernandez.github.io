@@ -335,6 +335,42 @@
           <div class="details-container color-container">
             <div class="article-container">
               <img
+                src="./assets/Michal oborne, inventor of Mission Planner.jpg"
+                alt="UAV Flight Operations"
+                class="project-img"
+                onclick="openImageModal('./assets/Michal oborne, inventor of Mission Planner.jpg')"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">UAV</h2>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">
+              Flight Operations & Risk Assessment
+            </p>
+            <div class="btn-container" style="margin-top: 10px;">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="openDetailsModal('uav')"
+              >
+                Click to see details
+              </button>
+            </div>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://quadra.goldensectionllc.com/'"
+              >
+                QUADRA
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://part-108-parser.web.app/sora_risk_assessment_ui.html'"
+              >
+                SORA Tool
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
                 src="./assets/Patran.png"
                 alt="Project 2"
                 class="project-img"
@@ -1117,6 +1153,31 @@
           title: 'Stability Wind Tunnel - Aerospace Research Assistant',
           items: [
             'Conducted experimental research in aerodynamic testing and analysis, contributing to ongoing research projects in the stability wind tunnel facility.'
+          ]
+        },
+        'uav': {
+          title: 'UAV - Flight Operations & Risk Assessment',
+          items: [
+            'Flight Experience:',
+            '• Part 107 Licensed drone pilot.',
+            '• line-of-sight manual flying; recreational experience with DJI and custom-built drones. Experience with RC aircraft and drone flight simulations; knowledge of aircraft dynamics and aerodynamics.',
+            '• Proficient with ArduPilot Mission Planner and familiar with QGroundControl (QGC) for mission planning and automated operations.',
+            '',
+            'Pre-Flight Planning:',
+            '• Weather: METAR/TAF interpretation via AviationWeather.gov; assessment of wind, gusts, ceilings, visibility, and dew point spreads.',
+            '• Airspace: LAANC submissions (AirspaceLink, Aloft.ai, Dronezone); NOTAM/TFR checks via FAA sources and SkyVector; sectional chart review.',
+            '• Risk: FAA PAVE, SMS, SRM frameworks; SORA-style analysis; QUADRA quantitative ground/air risk assessment; FRAT usage.',
+            '',
+            'Inspection & Maintenance:',
+            '• Faimilar with Pre- and post-flight checklists andstructural inspection (frame, motor mounts, arms, propellers); battery health; firmware and failsafe checks; compass, IMU, and payload validation.',
+            '• Documentation in Excel and manual logs for traceability.',
+            '• Telemetry data log analysis .',
+            '',
+            'Geospatial & Tools:',
+            '• Own a RadioMaster TX16S and a DJI Mini 4k Pro.',
+            '• LandScan, HAZUS FEMA, USGCS datasets for population exposure and ground-risk modeling; Python (GDAL, rasterio, Fiona) for verification; QGIS.',
+            '• Technical documentation: manuals, verification specs, installation guides, GitHub workflows, compliance reports for internal and external shareholders/ partners.',
+            '• Safety: OSHA/EHS-compliant operations across wind tunnels, structures labs, and material characterization facilities.'
           ]
         },
         'bail': {
