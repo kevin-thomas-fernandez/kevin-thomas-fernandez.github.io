@@ -89,11 +89,16 @@ const galleryImages = [
   { src: './assets/IMG_1163.png', caption: 'VABA Reception (2026)' },
   { src: './assets/Wing_and_tombo.png', caption: 'Tombo Jones, Director of Mid-Atlantic Aviation Partnership (MAAP),VABA Reception (2026)' },
   { src: './assets/John_coggins.png', caption: 'John Coggin, Associate Director of Mid-Atlantic Aviation Partnership (MAAP),VABA Reception (2026)' },
+  { src: './assets/Pictures%204_29_2026/Maintenance%20Dock%20at%20NestZ.jpeg', caption: 'Maintenance Dock at NestZ, Zipline (2026)' },
 ];
 
 // Highlights videos (displayed in Highlights grid)
 const highlightsVideos = [
   { src: './assets/IMG_1422.mp4', caption: 'Zipline, Esparto, Sacramento , CA (2026)' },
+  { src: './assets/Pictures%204_29_2026/P2%20Zipline%20taking%20off%20from%20legacy%20portal.mp4', caption: 'P2 Zipline takeoff from legacy portal, Zipline (2026)' },
+  { src: './assets/Pictures%204_29_2026/Zipline%20Lunch%20delivery.mp4', caption: 'Zipline lunch delivery (2026)' },
+  { src: './assets/Pictures%204_29_2026/View%20from%20Air%20Traffic%20Control%20tower%20at%20NestZ.mp4', caption: 'View from Air Traffic Control tower at NestZ (2026)' },
+  { src: './assets/Pictures%204_29_2026/DJI%20test%20video.mp4', caption: 'DJI test flight (2026)' },
 ];
 
 // Video data

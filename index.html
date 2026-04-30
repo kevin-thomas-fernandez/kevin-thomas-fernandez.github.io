@@ -67,7 +67,7 @@
           <li><a href="#" data-page="about" onclick="showPage('about'); return false;">About</a></li>
           <li><a href="#" data-page="work-experience" onclick="showPage('work-experience'); return false;">Experience</a></li>
           <li><a href="#" data-page="projects" onclick="showPage('projects'); return false;">Projects</a></li>
-          <li><a href="#" data-page="web-applications" onclick="showPage('web-applications'); return false;">UI for Engineering</a></li>
+          <li><a href="#" data-page="web-applications" onclick="showPage('web-applications'); return false;">Full stack Engineering</a></li>
           <li><a href="#" data-page="highlights" onclick="showPage('highlights'); return false;">Highlights</a></li>
           <li><a href="#" data-page="research" onclick="showPage('research'); return false;">Research</a></li>
           <li><a href="#" data-page="awards" onclick="showPage('awards'); return false;">Awards</a></li>
@@ -88,7 +88,7 @@
           <li><a href="#" data-page="about" onclick="showPage('about'); toggleMenu(); return false;">About</a></li>
           <li><a href="#" data-page="work-experience" onclick="showPage('work-experience'); toggleMenu(); return false;">Experience</a></li>
           <li><a href="#" data-page="projects" onclick="showPage('projects'); toggleMenu(); return false;">Projects</a></li>
-          <li><a href="#" data-page="web-applications" onclick="showPage('web-applications'); toggleMenu(); return false;">UI for Engineering</a></li>
+          <li><a href="#" data-page="web-applications" onclick="showPage('web-applications'); toggleMenu(); return false;">Full stack Engineering</a></li>
           <li><a href="#" data-page="highlights" onclick="showPage('highlights'); toggleMenu(); return false;">Highlights</a></li>
           <li><a href="#" data-page="research" onclick="showPage('research'); toggleMenu(); return false;">Research</a></li>
           <li><a href="#" data-page="awards" onclick="showPage('awards'); toggleMenu(); return false;">Awards</a></li>
@@ -132,28 +132,15 @@
     <section id="about">
       <p class="section__text__p1">Get To Know More</p>
       <h1 class="title">About Me</h1>
-      <!-- Abstract UAV drone animation -->
+      <!-- Decorative drone image -->
       <div class="about-drone-wrapper">
-        <svg class="about-drone" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <g transform="translate(50,50)">
-            <!-- Central body -->
-            <rect x="-6" y="-4" width="12" height="8" rx="2" fill="rgba(70,70,90,0.7)" stroke="rgba(90,90,110,0.6)" stroke-width="1"/>
-            <!-- Four arms in X (quadcopter) configuration -->
-            <line x1="0" y1="0" x2="-14" y2="-14" stroke="rgba(80,80,100,0.7)" stroke-width="2.5"/>
-            <line x1="0" y1="0" x2="14" y2="-14" stroke="rgba(80,80,100,0.7)" stroke-width="2.5"/>
-            <line x1="0" y1="0" x2="-14" y2="14" stroke="rgba(80,80,100,0.7)" stroke-width="2.5"/>
-            <line x1="0" y1="0" x2="14" y2="14" stroke="rgba(80,80,100,0.7)" stroke-width="2.5"/>
-            <!-- Motor housings with propellers -->
-            <circle cx="-14" cy="-14" r="5" fill="rgba(60,60,80,0.8)" stroke="rgba(90,90,110,0.5)" stroke-width="1"/>
-            <circle cx="-14" cy="-14" r="3.5" fill="none" stroke="rgba(120,120,140,0.6)" stroke-width="1" stroke-dasharray="2 2" class="drone-prop"/>
-            <circle cx="14" cy="-14" r="5" fill="rgba(60,60,80,0.8)" stroke="rgba(90,90,110,0.5)" stroke-width="1"/>
-            <circle cx="14" cy="-14" r="3.5" fill="none" stroke="rgba(120,120,140,0.6)" stroke-width="1" stroke-dasharray="2 2" class="drone-prop"/>
-            <circle cx="-14" cy="14" r="5" fill="rgba(60,60,80,0.8)" stroke="rgba(90,90,110,0.5)" stroke-width="1"/>
-            <circle cx="-14" cy="14" r="3.5" fill="none" stroke="rgba(120,120,140,0.6)" stroke-width="1" stroke-dasharray="2 2" class="drone-prop"/>
-            <circle cx="14" cy="14" r="5" fill="rgba(60,60,80,0.8)" stroke="rgba(90,90,110,0.5)" stroke-width="1"/>
-            <circle cx="14" cy="14" r="3.5" fill="none" stroke="rgba(120,120,140,0.6)" stroke-width="1" stroke-dasharray="2 2" class="drone-prop"/>
-          </g>
-        </svg>
+        <img
+          class="about-drone"
+          src="./assets/Pictures%204_29_2026/Drone.png"
+          alt=""
+          width="96"
+          height="96"
+        />
       </div>
       <div class="section-container">
         <div class="section__pic-container">
@@ -190,6 +177,28 @@
       <div class="experience-details-container">
         <div class="about-containers">
           <div class="about-containers">
+            <div class="details-container color-container">
+              <div class="article-container">
+                <img
+                  src="./assets/Pictures%204_29_2026/Zipline%20HQ.jpeg"
+                  alt="Zipline headquarters"
+                  class="project-img"
+                  onclick="openImageModal('./assets/Pictures%204_29_2026/Zipline%20HQ.jpeg')"
+                />
+              </div>
+              <h2 class="experience-sub-title project-title">Zipline</h2>
+              <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">
+                Flight Test Operator
+              </p>
+              <div class="btn-container" style="margin-top: 10px;">
+                <button
+                  class="btn btn-color-2 project-btn"
+                  onclick="openDetailsModal('zipline')"
+                >
+                  Click to see details
+                </button>
+              </div>
+            </div>
             <div class="details-container color-container">
               <div class="article-container">
                 <img
@@ -407,10 +416,10 @@
           <div class="details-container color-container">
             <div class="article-container">
               <img
-                src="./assets/composites-lab-abstract.svg"
+                src="./assets/Pictures%204_29_2026/NMCAD.jpg"
                 alt="Non-Linear Multi-functional Composites Lab"
                 class="project-img"
-                onclick="openImageModal('./assets/composites-lab-abstract.svg')"
+                onclick="openImageModal('./assets/Pictures%204_29_2026/NMCAD.jpg')"
               />
             </div>
             <h2 class="experience-sub-title project-title">Non-Linear Multi-functional Composites Lab</h2>
@@ -475,13 +484,13 @@
     </section>
     <section id="web-applications">
       <p class="section__text__p1">Browse My</p>
-      <h1 class="title">UI for Engineering</h1>
-      <div class="experience-details-container">
-        <div class="about-containers">
-          <div class="details-container color-container">
+      <h1 class="title">Full stack Engineering</h1>
+      <div class="experience-details-container web-apps-stack">
+        <div class="about-containers web-apps-containers">
+          <div class="details-container color-container web-apps-card">
             <div class="article-container">
               <video
-                class="project-img"
+                class="project-img web-apps-media"
                 src="./assets/UNLOOP.mp4"
                 autoplay
                 loop
@@ -500,17 +509,14 @@
               </button>
             </div>
           </div>
-          <div class="details-container color-container">
+          <div class="details-container color-container web-apps-card">
             <div class="article-container">
-              <video
-                class="project-img"
-                src="./assets/Parser.mp4"
-                autoplay
-                loop
-                muted
-                playsinline
-                preload="auto"
-              ></video>
+              <img
+                src="./assets/Pictures%204_29_2026/Part%20108%20parser.png"
+                alt="Part 108 Parser"
+                class="project-img web-apps-media"
+                onclick="openImageModal('./assets/Pictures%204_29_2026/Part%20108%20parser.png')"
+              />
             </div>
             <h2 class="experience-sub-title project-title">Part 108 Parser</h2>
             <div class="btn-container">
@@ -585,9 +591,12 @@
           </div>
           <div class="details-container color-container">
             <div class="article-container">
-              <div style="width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; background-color: #f0f0f0; border-radius: 8px; color: #999; font-size: 0.9rem;">
-                Image TBD
-              </div>
+              <img
+                src="./assets/Pictures%204_29_2026/Quick%20swap.png"
+                alt="Quick swap battery mounting concept"
+                class="project-img"
+                onclick="openImageModal('./assets/Pictures%204_29_2026/Quick%20swap.png')"
+              />
             </div>
             <h2 class="experience-sub-title project-title">Battery Mounting Design for drones(2025)</h2>
             <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">
@@ -837,14 +846,18 @@
     </section>
     <section id="research">
       <p class="section__text__p1">Explore My</p>
-      <h1 class="title">Research & Academic  Work</h1>
+      <h1 class="title">Research & Academic Work</h1>
       
       <!-- Published / Academic Work -->
       <h2 style="text-align: center; font-size: 1.3rem; margin: 2rem 0 1rem 0; color: rgb(85, 85, 85); font-weight: 600;">Published / Academic Work</h2>
       <div class="experience-details-container">
         <div class="about-containers">
           <div class="details-container color-container">
-            <h2 class="experience-sub-title project-title">Google Scholar Profile</h2>
+            <h2 class="experience-sub-title project-title">Google Scholar</h2>
+            <p style="margin-top: 0.5rem; font-size: 0.7rem; color: #666; text-align: left; line-height: 1.5;">
+              Indexed publications and citation history<br/>
+              Profile Virginia Tech and related engineering work
+            </p>
             <div class="btn-container">
               <button
                 class="btn btn-color-2 project-btn"
@@ -857,6 +870,10 @@
           
           <div class="details-container color-container">
             <h2 class="experience-sub-title project-title">Master's Thesis</h2>
+            <p style="margin-top: 0.5rem; font-size: 0.7rem; color: #666; text-align: left; line-height: 1.5;">
+              M.S., Aerospace and Ocean Engineering, Virginia Tech<br/>
+              <em>An Advanced Aircraft Deicing Analysis: Supercooled Liquid Dynamics under Ultrasonic Frequency and Surface Roughness Effects</em>
+            </p>
             <div class="btn-container">
               <button
                 class="btn btn-color-2 project-btn"
@@ -869,14 +886,24 @@
         </div>
       </div>
       
-      <!-- Affiliations -->
-      <h2 style="text-align: center; font-size: 1.3rem; margin: 2rem 0 1rem 0; color: rgb(85, 85, 85); font-weight: 600;">Affiliations</h2>
+      <!-- Affiliation / Membership -->
+      <h2 style="text-align: center; font-size: 1.3rem; margin: 2rem 0 1rem 0; color: rgb(85, 85, 85); font-weight: 600;">Affiliation/Membership</h2>
       <div class="experience-details-container">
         <div class="about-containers">
           <div class="details-container color-container">
-            <h2 class="experience-sub-title project-title">Member</h2>
+            <div class="article-container">
+              <img
+                src="./assets/Pictures%204_29_2026/Create.jpg"
+                alt="CREATe center"
+                class="project-img"
+                onclick="openImageModal('./assets/Pictures%204_29_2026/Create.jpg')"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">CREATe</h2>
             <p style="margin-top: 0.5rem; font-size: 0.7rem; color: #666; text-align: left; line-height: 1.5;">
-              CREATe (2023-2025)
+              Center for Research and Engineering in Aero/Hydrodynamic Technologies (CREATe)<br/>
+              Virginia Tech<br/>
+              2023 to 2025
             </p>
             <div class="btn-container">
               <button
@@ -887,6 +914,57 @@
               </button>
             </div>
           </div>
+
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/Pictures%204_29_2026/main-logo.png"
+                alt="Society of Flight Test Engineers"
+                class="project-img"
+                onclick="openImageModal('./assets/Pictures%204_29_2026/main-logo.png')"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Society of Flight Test Engineers</h2>
+            <p style="margin-top: 0.5rem; font-size: 0.7rem; color: #666; text-align: left; line-height: 1.5;">
+              Member<br/>
+              Since January 2026<br/>
+              <br/>
+              • Actively participated in monthly paper selection and meetings to enhance industry knowledge.<br/>
+              • Engaged with experienced professionals to learn cutting edge principles and methods in flight testing.<br/>
+              • Collaborated with peers to discuss the latest technologies and advancements in the field.
+            </p>
+          </div>
+
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/Pictures%204_29_2026/AUVSI.svg"
+                alt="AUVSI"
+                class="project-img"
+                onclick="openImageModal('./assets/Pictures%204_29_2026/AUVSI.svg')"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Association for Uncrewed Vehicle Systems International (AUVSI)</h2>
+            <p style="margin-top: 0.5rem; font-size: 0.7rem; color: #666; text-align: left; line-height: 1.5;">
+              Ridge and Valley chapter and California chapter<br/>
+              Member since March 2025
+            </p>
+          </div>
+
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/Pictures%204_29_2026/EAALogo_Footer_Blue.svg"
+                alt="Experimental Aircraft Association"
+                class="project-img"
+                onclick="openImageModal('./assets/Pictures%204_29_2026/EAALogo_Footer_Blue.svg')"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Experimental Aircraft Association Inc.</h2>
+            <p style="margin-top: 0.5rem; font-size: 0.7rem; color: #666; text-align: left; line-height: 1.5;">
+              Member since April 2026
+            </p>
+          </div>
         </div>
       </div>
       
@@ -895,19 +973,21 @@
       <div class="experience-details-container">
         <div class="about-containers">
           <div class="details-container color-container">
-            <h2 class="experience-sub-title project-title">AUVSI Xponential</h2>
+            <h2 class="experience-sub-title project-title">AUVSI XPONENTIAL</h2>
             <p style="margin-top: 0.5rem; font-size: 0.7rem; color: #666; text-align: left; line-height: 1.5;">
-              Houston, TX (2025)<br/>
-              Represented as an Airworthiness analyst working for the Virginia Tech Airworthiness center. In Association with MAAP and VTIP.
+              Houston, TX<br/>
+              2025<br/>
+              Virginia Tech Airworthiness Center, airworthiness analyst, with MAAP and VTIP
             </p>
           </div>
           
           <div class="details-container color-container">
             <h2 class="experience-sub-title project-title">APS Division of Fluid Dynamics</h2>
             <p style="margin-top: 0.5rem; font-size: 0.7rem; color: #666; text-align: left; line-height: 1.5;">
-              76th & 77th Annual Conference<br/>
-              Washington, DC (2023) & Salt Lake City, UT (2024)<br/>
-              "An Advanced Aircraft Deicing Analysis: Supercooled Liquid Dynamics under Ultrasonic Frequency and Surface Roughness Effects."
+              American Physical Society, Division of Fluid Dynamics<br/>
+              76th and 77th Annual Meeting<br/>
+              Washington, DC (2023), Salt Lake City, UT (2024)<br/>
+              <em>An Advanced Aircraft Deicing Analysis: Supercooled Liquid Dynamics under Ultrasonic Frequency and Surface Roughness Effects</em>
             </p>
           </div>
           
@@ -915,8 +995,26 @@
             <h2 class="experience-sub-title project-title">Future of Flight</h2>
             <p style="margin-top: 0.5rem; font-size: 0.7rem; color: #666; text-align: left; line-height: 1.5;">
               Game Changer Week<br/>
-              VT Montgomery Exec Airport (2024)<br/>
-              Presented UAV Ground Risk Analysis solution.
+              Virginia Tech Montgomery Executive Airport (2024)<br/>
+              <em>UAV ground risk analysis</em> solution presentation
+            </p>
+          </div>
+
+          <div class="details-container color-container">
+            <h2 class="experience-sub-title project-title">ASME SMASIS 2025</h2>
+            <p style="margin-top: 0.5rem; font-size: 0.7rem; color: #666; text-align: left; line-height: 1.5;">
+              ASME 2025 Smart Materials, Adaptive Structures and Intelligent Systems (SMASIS 2025)<br/>
+              Track: SYMP 3, Modeling, Simulation and Control of Adaptive Systems<br/>
+              <em>Atomization of Supercooled Water Droplets Using High Frequency Structural Excitations via Piezoceramic Transducers</em>
+            </p>
+          </div>
+
+          <div class="details-container color-container">
+            <h2 class="experience-sub-title project-title">77th International Astronautical Congress</h2>
+            <p style="margin-top: 0.5rem; font-size: 0.7rem; color: #666; text-align: left; line-height: 1.5;">
+              Antalya, Türkiye<br/>
+              5 to 9 October 2026<br/>
+              <em>Aircraft Anti Icing Analysis: Water Droplet Dynamics Under High Frequency Atomization and Superhydrophobic Effects</em>
             </p>
           </div>
         </div>
@@ -1032,7 +1130,7 @@
             <li><a href="#" onclick="showPage('about'); return false;">About</a></li>
             <li><a href="#" onclick="showPage('work-experience'); return false;">Experience</a></li>
             <li><a href="#" onclick="showPage('projects'); return false;">Projects</a></li>
-            <li><a href="#" onclick="showPage('web-applications'); return false;">UI for Engineering</a></li>
+            <li><a href="#" onclick="showPage('web-applications'); return false;">Full stack Engineering</a></li>
             <li><a href="#" onclick="showPage('highlights'); return false;">Highlights</a></li>
             <li><a href="#" onclick="showPage('research'); return false;">Research</a></li>
             <li><a href="#" onclick="showPage('awards'); return false;">Awards</a></li>
@@ -1085,6 +1183,16 @@
 
       // Details data structure
       const detailsData = {
+        'zipline': {
+          title: 'Zipline - Flight Test Operator and controller (RPIC)',
+          items: [
+            '• Tested and validated UAV hardware/software changes through flight test operations including assembly, preflight, launch, and recovery in support of FAA Type Certification.',
+            '• Maintained aircraft fleet and ground support equipment to ensure operational readiness.',
+            '• Tracked daily test execution and communicated field observations to engineering teams to support rapid hardware and software iteration.',
+            '• Employed as a Flight Test Operator to launch prototype and commercial aircraft to support FAA 14 CFR Part 107/91 certification, reliability validation, and identify critical engineering blockers in the development of Zipline\'s Platform-2 eVTOL delivery system.',
+            '• Piloting 30+ simultaneous missions, with 2K accumulated flight hours of group 3 sUAS under all weather conditions.'
+          ]
+        },
         'quadra': {
           title: 'QUADRA - Airworthiness Risk Assessment Analyst',
           items: [

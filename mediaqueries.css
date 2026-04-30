@@ -79,6 +79,10 @@
     flex-direction: column;
     gap: 2rem;
   }
+
+  #web-applications .web-apps-containers {
+    grid-template-columns: 1fr;
+  }
   
   #web-applications .details-container.color-container {
     max-width: 90%;
@@ -259,9 +263,9 @@
     box-sizing: border-box;
   }
   .about-drone {
-    width: 36px;
-    height: 36px;
-    opacity: 0.4;
+    width: 64px;
+    height: 64px;
+    opacity: 0.55;
   }
   .section__text__p2 {
     font-size: 1.25rem;
@@ -302,13 +306,25 @@
     margin: 0;
   }
   
-  #web-applications .project-img {
-    width: 100%;
-    max-width: 100%;
+  #web-applications .web-apps-containers {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  #web-applications .web-apps-card .article-container {
+    max-height: min(65vh, 480px);
+  }
+
+  #web-applications .web-apps-card .article-container video.project-img.web-apps-media,
+  #web-applications .web-apps-card .article-container img.project-img.web-apps-media {
+    width: auto;
     height: auto;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 1rem;
+    max-width: 100%;
+    max-height: 100%;
+    aspect-ratio: unset;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 0;
   }
   
   #web-applications .experience-sub-title {
