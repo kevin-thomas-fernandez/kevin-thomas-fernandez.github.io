@@ -27,7 +27,7 @@ This project is a static website that can be hosted and viewed entirely offline.
 1. Open a terminal or command prompt.
 2. Navigate to the `Website` directory:
   ```sh
-   cd "C:\This Matters 2025\Application\Website"
+   cd "Website"
   ```
 3. Start the server:
   ```sh
