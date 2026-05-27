@@ -66,8 +66,8 @@ This project is a static website that can be hosted and viewed entirely offline.
 ## Example: Launch and Connect
 
 ```sh
-cd "C:\This Matters 2025\Application\Website"
-python -m http.server 8000
+cd "Website"
+
 ```
 
 Then open your browser and go to:
