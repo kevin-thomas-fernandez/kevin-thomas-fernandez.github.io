@@ -1169,6 +1169,10 @@ article .icon {
   flex-direction: column;
 }
 
+#projects .details-container.color-container.no-media {
+  min-height: auto;
+}
+
 #projects .details-container.color-container .article-container {
   flex: 0 0 auto;
   height: 180px;
@@ -1408,4 +1412,261 @@ img {
 *::before,
 *::after {
   border-radius: 0 !important;
+}
+
+/* ================================================== */
+/* FLIGHT TEST CAMPAIGN - 3D landing experience       */
+/* ================================================== */
+#campaign {
+  position: relative;
+  height: 640vh;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+.campaign-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  /* transparent: the world sits on the site's own background so the
+     top bar and the animation read as one continuous page */
+  background: transparent;
+}
+
+#campaign-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  /* feathered edges: the world fades into the page, no hard seams */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 9%, #000 91%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 9%, #000 91%, transparent 100%);
+}
+
+.campaign-hud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: #16202c;
+}
+
+.hud-corner {
+  position: absolute;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  color: #44515f;
+}
+.hud-tl { top: 2.2vh; left: 4vw; }
+.hud-tr { top: 2.2vh; right: 4vw; }
+
+.hud-phase {
+  position: absolute;
+  left: 4vw;
+  top: 13vh;
+  max-width: 46vw;
+}
+.hud-phase.phase-in .hud-phase-name,
+.hud-phase.phase-in .hud-phase-copy,
+.hud-phase.phase-in .hud-phase-num {
+  animation: phaseRise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes phaseRise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hud-phase-num {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: #ff4f00;
+  margin-bottom: 0.6rem;
+}
+.hud-phase-name {
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(2.2rem, 6.4vw, 5rem);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #16202c;
+  margin: 0;
+}
+.hud-phase-copy {
+  margin-top: 1.1rem;
+  font-size: 0.8rem;
+  line-height: 1.65;
+  color: #44515f;
+  max-width: 38ch;
+  border-left: 2px solid #ff4f00;
+  padding-left: 0.85rem;
+}
+
+.hud-telemetry {
+  position: absolute;
+  right: 4vw;
+  top: 13vh;
+  min-width: 215px;
+  font-size: 0.7rem;
+  line-height: 1.9;
+  letter-spacing: 0.06em;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(22, 32, 44, 0.22);
+  padding: 0.9rem 1.05rem;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+.hud-telemetry .tl-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.6rem;
+}
+.hud-telemetry .tl-row span:first-child { color: #7c8894; }
+
+
+.hud-timeline {
+  position: absolute;
+  left: 4vw;
+  right: 4vw;
+  bottom: 4.5vh;
+}
+.hud-timeline-bar {
+  height: 2px;
+  background: rgba(22, 32, 44, 0.18);
+}
+#hud-timeline-fill {
+  height: 100%;
+  width: 0%;
+  background: #ff4f00;
+}
+.hud-timeline-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.55rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  color: #7c8894;
+}
+
+.hud-scrollcue {
+  position: absolute;
+  left: 50%;
+  bottom: 11vh;
+  transform: translateX(-50%);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  color: #16202c;
+  transition: opacity 0.6s ease;
+  animation: cueBob 2.2s ease-in-out infinite;
+}
+@keyframes cueBob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
+@media screen and (max-width: 760px) {
+  #campaign { height: 540vh; }
+  .hud-phase { max-width: 86vw; top: 11vh; }
+  .hud-telemetry { display: none; }
+  .hud-timeline-labels span:nth-child(even) { display: none; }
+}
+
+/* Sticky support for the campaign: the section must not clip,
+   the viewport handles stray horizontal overflow instead. */
+body {
+  overflow-x: hidden;
+}
+#about {
+  overflow-x: visible;
+}
+
+
+/* ---- Campaign finale: the engineer ---- */
+.campaign-story {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  padding: 0 6vw;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(244, 247, 250, 0.95) 0%, rgba(244, 247, 250, 0.82) 48%, rgba(244, 247, 250, 0.05) 88%);
+}
+.campaign-story.story-live { pointer-events: auto; }
+.story-inner { max-width: 660px; position: relative; z-index: 2; }
+.story-greet {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  color: #44515f;
+}
+.story-greet a { color: #ff4f00; font-weight: 600; text-decoration: none; border-bottom: 1px solid #ff4f00; }
+.story-greet a:hover { color: #16202c; border-color: #16202c; text-decoration: none; }
+.story-greet span { font-size: 0.64rem; color: #7c8894; }
+.story-name {
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(2.6rem, 7vw, 5.6rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: #16202c;
+  margin: 0.7rem 0 0.9rem;
+}
+.story-degrees {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  color: #ff4f00;
+  margin-bottom: 1.4rem;
+}
+.story-text p {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: #3c4854;
+  margin-bottom: 0.8rem;
+  max-width: 58ch;
+}
+.story-cta { margin-top: 1.6rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+.story-btn {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.5rem;
+  border: 1px solid #16202c;
+  background: transparent;
+  color: #16202c;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.story-btn:hover { background: #16202c; color: #ffffff; }
+.story-btn-solid { background: #16202c; color: #ffffff; }
+.story-btn-solid:hover { background: #ff4f00; border-color: #ff4f00; }
+.campaign-story .about-drone-wrapper {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+@media screen and (max-width: 760px) {
+  .campaign-story { padding: 0 7vw; background: rgba(244, 247, 250, 0.93); }
+  .story-text p { font-size: 0.8rem; }
+}
+
+/* finale photo */
+.story-photo {
+  margin-left: auto;
+  margin-right: 3vw;
+  width: min(26vw, 320px);
+  position: relative;
+  z-index: 2;
+  border: 1px solid rgba(22, 32, 44, 0.18);
+  box-shadow: 0 10px 32px rgba(22, 32, 44, 0.14);
+}
+@media screen and (max-width: 900px) {
+  .story-photo { display: none; }
 }

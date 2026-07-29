@@ -130,44 +130,48 @@
       </div>
     </section>
     <section id="about">
-      <p class="section__text__p1">Get To Know More</p>
-      <h1 class="title">About Me</h1>
-      <!-- Decorative drone image -->
-      <div class="about-drone-wrapper">
-        <img
-          class="about-drone"
-          src="./assets/Pictures%204_29_2026/Drone.png"
-          alt=""
-          width="96"
-          height="96"
-        />
-      </div>
-      <div class="section-container">
-        <div class="section__pic-container">
-          <img
-            src="./assets/about-me-picture2.png"
-            alt="Profile picture"
-            class="about-me-pic"
-          />
-        </div>
-        <div class="about-details-container">
-          <div class="text-container">
-            <p>
-              Ever since I was a kid, I have wanted to build systems, explore the world, and solve problems others thought were beyond reach. I am a rebel at heart, an underdog who loves to compete and create technology that helps people.
-            </p>
-            <p style="margin-top: 1rem;"><strong>✈︎</strong> I am a Flight Test Operator and Controller (RPIC) at Zipline, flying autonomous eVTOL aircraft in support of FAA Type Certification &mdash; piloting 30+ simultaneous missions with ~10,000 accumulated flights on Group 3 sUAS under all weather conditions.</p>
-            <p style="margin-top: 0.75rem;"><strong>⚙︎</strong> My work spans flight test operations, airworthiness risk assessment, and experimental research. I specialize in mechanical design and analysis, using CAD, FEM, and experimental validation to bridge concept and function &mdash; from UAV mission planning and ground-risk modeling to ultrasonic anti-icing research.</p>
-            <p style="margin-top: 0.75rem;"><strong>✧</strong> Previously, as Airworthiness Analyst and Founding Engineer at Golden Section LLC, I developed FAA-aligned ground risk methods and mission planning integrations, earning validation interest from FAA, MAAP, and NAVAIR.</p>
-            <p style="margin-top: 0.75rem;"><strong>⎔</strong> I aim to design systems that are functional, compliant, and dependable. Every project I take on is guided by the goal of building technology that works beautifully and earns its place in the real world.</p>
+      <!-- ============ FLIGHT TEST CAMPAIGN - 3D landing experience ============ -->
+      <div id="campaign">
+        <div class="campaign-sticky">
+          <canvas id="campaign-canvas"></canvas>
+          <div class="campaign-hud">
+            <div class="hud-corner hud-tl">KEVIN THOMAS FERNANDEZ &mdash; FLIGHT TEST ENGINEER</div>
+            <div class="hud-corner hud-tr" id="hud-clock">T+00:00:00</div>
+            <div class="hud-phase phase-in">
+              <div class="hud-phase-num" id="hud-phase-num">PHASE 01 / 06</div>
+              <h2 class="hud-phase-name" id="hud-phase-name">Mission Planning</h2>
+              <p class="hud-phase-copy" id="hud-phase-copy">Objectives defined. Test cards written. Corridors cleared.</p>
+            </div>
+            <div class="hud-telemetry" id="hud-telemetry"></div>
+            <div class="hud-timeline">
+              <div class="hud-timeline-bar"><div id="hud-timeline-fill"></div></div>
+              <div class="hud-timeline-labels"><span>PLAN</span><span>PREFLIGHT</span><span>TAKEOFF</span><span>ENVELOPE</span><span>DATA</span><span>REVIEW</span></div>
+            </div>
+            <div class="hud-scrollcue" id="hud-scrollcue">SCROLL TO BEGIN CAMPAIGN &#9662;</div>
+          </div>
+          <div class="campaign-story" id="campaign-story">
+            <div class="about-drone-wrapper">
+              <img class="about-drone" src="./assets/Pictures%204_29_2026/Drone.png" alt="" width="96" height="96" />
+            </div>
+            <div class="story-inner">
+              <p class="story-greet"><a href="https://www.vocabulary.com/dictionary/namaskar#:~:text=an%20Indian%20gesture%20of%20greeting,face%20or%20chest%20and%20bowing" target="_blank">Namaskara</a> <span>[greetings in my native language]</span> &mdash; I&#8217;m</p>
+              <h2 class="story-name">Kevin Thomas<br />Fernandez</h2>
+              <p class="story-degrees">FLIGHT TEST ENGINEER &middot; M.S. AEROSPACE ENGINEERING &middot; B.E. MECHANICAL ENGINEERING</p>
+              <div class="story-text">
+                <p>Ever since I was a kid, I have wanted to build systems, explore the world, and solve problems others thought were beyond reach. A rebel at heart &mdash; an underdog who loves to compete.</p>
+                <p>Today I fly autonomous eVTOL aircraft at Zipline in support of FAA Type Certification &mdash; 30+ simultaneous missions, ~10,000 flights on Group 3 sUAS, and every one of them a test point.</p>
+                <p>Behind the flying: airworthiness risk models that earned validation interest from FAA, MAAP, and NAVAIR; ultrasonic anti-icing research at Virginia Tech; mechanical design proven with CAD, FEM, and experimental validation.</p>
+                <p>I build technology that works beautifully and earns its place in the real world.</p>
+              </div>
+              <div class="story-cta">
+                <button class="story-btn story-btn-solid" onclick="showPage('work-experience')">Explore the work &rarr;</button>
+                <button class="story-btn" onclick="showPage('contact')">Contact</button>
+              </div>
+            </div>
+            <img class="story-photo" src="./assets/about-me-picture2.png" alt="Kevin Thomas Fernandez" />
           </div>
         </div>
       </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="showPage('work-experience')"
-      />
     </section>
     
     <section id="work-experience">
@@ -566,15 +570,7 @@
               </button>
             </div>
           </div>
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/experience/battery-swap/Quick%20swap%20exploded.png"
-                alt="Quick swap battery mount - exploded CAD view"
-                class="project-img"
-                onclick="openImageModal('./assets/experience/battery-swap/Quick%20swap%20exploded.png')"
-              />
-            </div>
+          <div class="details-container color-container no-media">
             <h2 class="experience-sub-title project-title">Battery Mounting Design for drones(2025)</h2>
             <p style="margin-top: 10px; font-size: 0.9rem; color: #666; text-align: center; line-height: 1.4;">
               
@@ -1453,11 +1449,7 @@
             '',
             'OVERALL TECHNICAL APPROACH:',
             'Product Context and Related User Documentation:',
-            'The product is a battery mounting system for a 225 mm FPV quadcopter (5" class) with total aircraft mass between 250 g and 1 kg. It replaces traditional strap-based LiPo mounting with a tool-less, slide-in, snap-lock, quick-swap battery system using an integrated connector and carbon-fiber composite casing. All documentation references standard FPV airframe layouts, Part 107 operational constraints, and the intent of MIL-STD-810 / MIL-STD-882E safety practices.',
-            { gallery: [
-              { src: './assets/experience/battery-swap/Quick swap exploded.png', caption: 'Slide-in view - cassette rides horizontal dovetail rails; connector auto-mates at the rear wall' },
-              { src: './assets/experience/battery-swap/Quick swap seated.png', caption: 'Battery seated - snap-lock engaged, connector mated' }
-            ] }
+            'The product is a battery mounting system for a 225 mm FPV quadcopter (5" class) with total aircraft mass between 250 g and 1 kg. It replaces traditional strap-based LiPo mounting with a tool-less, slide-in, snap-lock, quick-swap battery system using an integrated connector and carbon-fiber composite casing. All documentation references standard FPV airframe layouts, Part 107 operational constraints, and the intent of MIL-STD-810 / MIL-STD-882E safety practices.'
           ]
         }
       };
@@ -1797,5 +1789,7 @@
         }
       });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="flight-campaign.js"></script>
   </body>
 </html>
