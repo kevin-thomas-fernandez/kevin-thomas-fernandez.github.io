@@ -15,9 +15,9 @@
       })();
     </script>
     <title>Kevin Thomas Fernandez | Flight Test Engineer</title>
-    <link rel="stylesheet" href="style.css?v=20260920j" />
-    <link rel="stylesheet" href="mediaqueries.css?v=20260920j" />
-    <link rel="stylesheet" href="theme.css?v=20260920j" />
+    <link rel="stylesheet" href="style.css?v=20260920n" />
+    <link rel="stylesheet" href="mediaqueries.css?v=20260920n" />
+    <link rel="stylesheet" href="theme.css?v=20260920n" />
     <style>
       #discord-invite-modal form {
         display: flex;
@@ -476,6 +476,11 @@
         </div>
       </div>
 
+      <p style="text-align:center; margin: 2rem 0 0; font-size: 0.85rem; color: #666; line-height: 1.6;">
+        Also: Graduate Teaching Assistant, Chemistry, Virginia Tech (Jan to May 2023), lab safety, data analysis guidance and written feedback.
+        <a href="#" onclick="openDetailsModal('chemta'); return false;" style="text-decoration: underline;">Details</a>
+      </p>
+
       <img
         src="./assets/arrow.png"
         alt="Arrow icon"
@@ -522,10 +527,18 @@
           </div>
           <div class="details-container color-container web-apps-card stealth-card">
             <p class="oc-tag">Tool</p>
-            <h2 class="experience-sub-title project-title">UAS maintenance tracker</h2>
+            <h2 class="experience-sub-title project-title">UAS Fleet Manager</h2>
             <p class="guide-text">A working tracker for tasks, inspections and a release check, built from public FAA guidance on inspection intervals and functional checks. Sample data, runs in your browser.</p>
             <div class="btn-container">
-              <button class="btn btn-color-2 project-btn" type="button" onclick="window.open('./tools/uav-maintenance-tracker.html','_blank')">Open tracker</button>
+              <button class="btn btn-color-2 project-btn" type="button" onclick="window.open('./tools/uav-maintenance-tracker.html?v=20260920n','_blank')">Open tracker</button>
+            </div>
+          </div>
+          <div class="details-container color-container web-apps-card stealth-card">
+            <p class="oc-tag">Tool</p>
+            <h2 class="experience-sub-title project-title">FleetLake</h2>
+            <p class="guide-text">A small data lake and dashboard for a drone fleet. Simulated flights move from a raw bucket to Parquet and DuckDB, then show up as device health, connectivity, flight paths and searchable logs. Sample data, runs in your browser.</p>
+            <div class="btn-container">
+              <button class="btn btn-color-2 project-btn" type="button" onclick="window.open('./tools/fleetlake/index.html?v=20260920n','_blank')">Open FleetLake</button>
             </div>
           </div>
         </div>
@@ -1249,10 +1262,10 @@
       <!-- EDIT: add the model author and source link on the next line when you have them -->
       <p class="site-credit">3D model: UAV VTOL Fixedwing With Tilt System.</p>
     </footer>
-    <script src="highlights-data.js?v=20260920j"></script>
-    <script src="zipline-data.js?v=20260920j"></script>
-    <script src="editor.js?v=20260920j"></script>
-    <script src="script.js?v=20260920j"></script>
+    <script src="highlights-data.js?v=20260920n"></script>
+    <script src="zipline-data.js?v=20260920n"></script>
+    <script src="editor.js?v=20260920n"></script>
+    <script src="script.js?v=20260920n"></script>
     <!-- Modal for image viewer -->
     <div id="image-modal" style="display:none; position:fixed; z-index:10001; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.9); justify-content:center; align-items:center;">
       <img id="modal-img" src="" alt="Full Image" style="max-width:90vw; max-height:90vh; border-radius:12px; box-shadow:0 2px 16px rgba(0,0,0,0.5);" />
@@ -1306,8 +1319,8 @@
             '• Serve as remote PIC on prototype and commercial autonomous aircraft at an active flight test range, piloting 30+ simultaneous missions with more than 24,000 accumulated flights on Group 3 sUAS in all weather. The fleet already flies in several US locations, and my testing validates new systems, kernels, software, hardware and control logic as it expands.',
             '• Support software and configuration validation across aircraft and dock systems, identifying software mismatches, failed updates, deployment issues and configuration blockers, and troubleshoot aircraft and ground system faults in real time using operational tooling, logs, command line workflows, fleet control interfaces, power cycles, service resets and redocking procedures.',
             '• Monitor autonomous fleet health, including aircraft readiness, software deployment status, dock availability, vehicle repositioning, charging and wakeup behavior, and airworthiness constraints.',
-            '• Supported perception engineering by running test flights and reviewing the resulting data with the engineers.',
-            '• Supported a short data acquisition (DAQ) effort, helping set up and check captured test data.',
+            '• Supported perception work, flying tests aimed at improving how the aircraft perceives its surroundings and observing different aspects of real backyard environments.',
+            '• Supported a short data acquisition (DAQ) effort focused on understanding stress and strain behavior.',
             '• Maintain the fleet and ground support equipment for daily launch readiness, and escalate issues through formal incident workflows with actionable engineering tickets.',
             '• Support commercial checkout and readiness by validating aircraft configuration, propulsion system visibility, required operational markers and other acceptance criteria.',
             '• Run preflight and operational checks while tracking local airspace, manned aircraft activity, weather, site limitations, and radio and visual observer procedures.',
@@ -1407,6 +1420,14 @@
             '• Held office hours (4 hrs/wk) and supported 200+ students in Computational Methods, MATLAB based numerical methods, and feedback control coursework.',
             '• Guided 16 students in applying structural mechanics principles to predict and validate static and dynamic response, reinforcing the link between analytical models, design assumptions, and quantified test results.',
             '• Led fluid flow test sessions (open jet, flow visualization and water tunnel) in understanding system, structure and fluid flow interpretation (MATLAB) through shadow velocimetry (LaVision) and spectral analysis.'
+          ]
+        },
+        'chemta': {
+          title: 'Graduate Teaching Assistant, Chemistry',
+          meta: 'Jan to May 2023 · Department of Chemistry, Virginia Tech',
+          items: [
+            '• Assisted students through laboratory experiments and enforced lab safety protocols.',
+            '• Guided students through data analysis and graded assignments with written feedback.'
           ]
         },
         'windtunnel': {
@@ -1957,7 +1978,7 @@
     </script>
     <script src="vendor/three.min.js"></script>
     <script src="vendor/STLLoader.js"></script>
-    <script src="flight-campaign.js?v=20260920j"></script>
-    <script src="components.js?v=20260920j"></script>
+    <script src="flight-campaign.js?v=20260920n"></script>
+    <script src="components.js?v=20260920n"></script>
   </body>
 </html>
