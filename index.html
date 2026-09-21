@@ -15,9 +15,9 @@
       })();
     </script>
     <title>Kevin Thomas Fernandez | Flight Test Engineer</title>
-    <link rel="stylesheet" href="style.css?v=20260920o" />
-    <link rel="stylesheet" href="mediaqueries.css?v=20260920o" />
-    <link rel="stylesheet" href="theme.css?v=20260920o" />
+    <link rel="stylesheet" href="style.css?v=20260920q" />
+    <link rel="stylesheet" href="mediaqueries.css?v=20260920q" />
+    <link rel="stylesheet" href="theme.css?v=20260920q" />
     <style>
       #discord-invite-modal form {
         display: flex;
@@ -146,27 +146,23 @@
     </section>
     <section id="about">
       <div class="about-intro">
-        <p>Ever since I was a kid, I have wanted to build systems: to think in systems, break them into subsystems, and integrate them until they fly. I wanted to explore the world and solve problems others thought were beyond reach. I grew up looking up to Abdul Kalam and Vikram Sarabhai. A rebel at heart, an underdog who loves to compete.</p>
-        <p>Today I fly autonomous aircraft at Zipline and test them for a fleet that already flies across the US, works with the FAA as its approvals keep expanding, and will follow Zipline wherever it grows around the world. My flight test validates new software, hardware and control logic across the four areas that decide whether an aircraft is ready: avionics, propulsion, structures and handling qualities. More than 24,000 flights on Group 3 sUAS, and every one of them a test point.</p>
-        <p>Behind the flying: airworthiness risk models that earned validation interest from the FAA, MAAP and NAVAIR. Ultrasonic anti icing research at Virginia Tech, with time in the wind tunnel. Work at the Indian Institute of Science, home to the legacy of people I admire. Mechanical design proven with CAD, FEM and experimental validation, through both my undergrad and grad work.</p>
-        <p>Along the way I travel, meet people across the industry, and network as much as I can. I like belonging to a community that builds this together.</p>
-        <div class="journey-card" id="journeyCard" role="group" aria-label="My journey, shown as a flight status">
-          <div class="jc-top"><span class="jc-title">Flight status</span><span class="jc-live"><i></i>In flight</span></div>
+        <div class="journey-card" id="journeyCard" role="group" aria-label="My story, shown as a flight status">
+          <div class="jc-top"><span class="jc-title">Flight status</span><span class="jc-live"><i></i>In process</span></div>
           <div class="jc-route">
-            <div class="jc-end"><div class="jc-code" data-code="BLR" aria-label="BLR"></div><b>Bangalore</b><span>DSCE, then the Indian Institute of Science</span></div>
-            <div class="jc-mid"><div class="jc-bar"><i></i><em aria-hidden="true">&#9992;</em></div><span>Now: Zipline flight test</span></div>
-            <div class="jc-end jc-right"><div class="jc-code" data-code="BCB" aria-label="BCB"></div><b>Blacksburg</b><span>Virginia Tech, wind tunnel</span></div>
+            <div class="jc-end"><div class="jc-code" data-code="BLR" aria-label="BLR"></div><b>Bangalore</b><span>Where it started</span></div>
+            <div class="jc-mid"><div class="jc-bar"><i></i><em aria-hidden="true">&#9992;</em></div><span>In process: flying and testing at Zipline</span></div>
+            <div class="jc-end jc-right"><div class="jc-code" data-code="SFO" aria-label="SFO"></div><b>San Francisco</b><span>Where I am headed</span></div>
           </div>
-          <div class="jc-foot">
-            <div><span>Flights</span><b>24,000+</b></div>
-            <div><span>Aircraft</span><b>Group 3 sUAS</b></div>
-            <div><span>Test areas</span><b>Avionics, propulsion, structures, handling</b></div>
-            <div><span>Next</span><b>The next test point</b></div>
+          <div class="jc-desc">
+            <p>Ever since I was a kid, I have wanted to build systems: to think in systems, break them into subsystems, and integrate them until they fly. I wanted to explore the world and solve problems others thought were beyond reach. I grew up looking up to Abdul Kalam and Vikram Sarabhai, and I have always been drawn to rebels who built their own way: Richard Feynman in science, and Bob Dylan, the Beatles and Steve Jobs in everything else. A rebel at heart, an underdog who loves to compete.</p>
+            <p>Today I fly autonomous aircraft at Zipline and test them for a fleet that already flies across the US, works with the FAA as its approvals keep expanding, and will follow Zipline wherever it grows around the world. My flight test validates new software, hardware and control logic across the four areas that decide whether an aircraft is ready: avionics, propulsion, structures and handling qualities. More than 24,000 flights on Group 3 sUAS, and every one of them a test point.</p>
+            <p>Behind the flying: airworthiness risk models that earned validation interest from the FAA, MAAP and NAVAIR. Ultrasonic anti icing research at Virginia Tech, with time in the wind tunnel. Work at the Indian Institute of Science, home to the legacy of people I admire. Mechanical design proven with CAD, FEM and experimental validation, through both my undergrad and grad work.</p>
+            <p>Along the way I travel, meet people across the industry, and network as much as I can. I like belonging to a community that builds this together.</p>
           </div>
         </div>
         <script>
         (function(){
-          var G={B:['1111.','1...1','1...1','1111.','1...1','1...1','1111.'],L:['1....','1....','1....','1....','1....','1....','11111'],R:['1111.','1...1','1...1','1111.','1.1..','1..1.','1...1'],C:['.111.','1...1','1....','1....','1....','1...1','.111.']};
+          var G={B:['1111.','1...1','1...1','1111.','1...1','1...1','1111.'],L:['1....','1....','1....','1....','1....','1....','11111'],R:['1111.','1...1','1...1','1111.','1.1..','1..1.','1...1'],S:['.1111','1....','1....','.111.','....1','....1','1111.'],F:['11111','1....','1....','1111.','1....','1....','1....'],O:['.111.','1...1','1...1','1...1','1...1','1...1','.111.']};
           document.querySelectorAll('#journeyCard .jc-code').forEach(function(el){
             el.dataset.code.split('').forEach(function(ch){
               var g=document.createElement('div');g.className='jc-glyph';
@@ -557,7 +553,7 @@
             <h2 class="experience-sub-title project-title">UAS Fleet Manager</h2>
             <p class="guide-text">A working tracker for tasks, inspections and a release check, built from public FAA guidance on inspection intervals and functional checks. Sample data, runs in your browser.</p>
             <div class="btn-container">
-              <button class="btn btn-color-2 project-btn" type="button" onclick="window.open('./tools/uav-maintenance-tracker.html?v=20260920o','_blank')">Open tracker</button>
+              <button class="btn btn-color-2 project-btn" type="button" onclick="window.open('./tools/uav-maintenance-tracker.html?v=20260920q','_blank')">Open tracker</button>
             </div>
           </div>
         </div>
@@ -1281,10 +1277,10 @@
       <!-- EDIT: add the model author and source link on the next line when you have them -->
       <p class="site-credit">3D model: UAV VTOL Fixedwing With Tilt System.</p>
     </footer>
-    <script src="highlights-data.js?v=20260920o"></script>
-    <script src="zipline-data.js?v=20260920o"></script>
-    <script src="editor.js?v=20260920o"></script>
-    <script src="script.js?v=20260920o"></script>
+    <script src="highlights-data.js?v=20260920q"></script>
+    <script src="zipline-data.js?v=20260920q"></script>
+    <script src="editor.js?v=20260920q"></script>
+    <script src="script.js?v=20260920q"></script>
     <!-- Modal for image viewer -->
     <div id="image-modal" style="display:none; position:fixed; z-index:10001; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.9); justify-content:center; align-items:center;">
       <img id="modal-img" src="" alt="Full Image" style="max-width:90vw; max-height:90vh; border-radius:12px; box-shadow:0 2px 16px rgba(0,0,0,0.5);" />
@@ -1997,7 +1993,7 @@
     </script>
     <script src="vendor/three.min.js"></script>
     <script src="vendor/STLLoader.js"></script>
-    <script src="flight-campaign.js?v=20260920o"></script>
-    <script src="components.js?v=20260920o"></script>
+    <script src="flight-campaign.js?v=20260920q"></script>
+    <script src="components.js?v=20260920q"></script>
   </body>
 </html>
