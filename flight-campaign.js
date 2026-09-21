@@ -38,8 +38,9 @@
   camera = new THREE.PerspectiveCamera(46, 2, 0.1, 600);
 
   /* ---------- lights ---------- */
-  scene.add(new THREE.HemisphereLight(0xf4f8fc, 0x9aa7b4, 0.95));
-  var sun = new THREE.DirectionalLight(0xffffff, 0.75);
+  var hemi = new THREE.HemisphereLight(0xf4f8fc, 0x9aa7b4, 0.7);
+  scene.add(hemi);
+  var sun = new THREE.DirectionalLight(0xffffff, 0.55);
   sun.position.set(60, 120, 40);
   scene.add(sun);
 
@@ -118,22 +119,46 @@
   makeGate(62, 22, -4, Math.PI / 2 + 0.1);
 
   // clouds
-  function cloudTexture() {
-    var cv = document.createElement('canvas');
-    cv.width = cv.height = 128;
-    var ctx = cv.getContext('2d');
-    var g = ctx.createRadialGradient(64, 64, 8, 64, 64, 62);
-    g.addColorStop(0, 'rgba(255,255,255,0.95)');
-    g.addColorStop(0.6, 'rgba(255,255,255,0.5)');
-    g.addColorStop(1, 'rgba(255,255,255,0)');
-    ctx.fillStyle = g;
-    ctx.fillRect(0, 0, 128, 128);
+  // soft, fractal clouds drawn from layered noise, so they read as real cloud and not circles
+  function cloudTexture(seed) {
+    var W = 256, H = 128;
+    var cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+    var ctx = cv.getContext('2d'), img = ctx.createImageData(W, H);
+    var st = seed * 7919 + 13;
+    function rnd() { st = (st * 16807) % 2147483647; return st / 2147483647; }
+    var G = 32, grid = [];
+    for (var i = 0; i < G * G; i++) grid.push(rnd());
+    function sm(t) { return t * t * (3 - 2 * t); }
+    function vnoise(x, y) {
+      var xi = Math.floor(x), yi = Math.floor(y), xf = sm(x - xi), yf = sm(y - yi);
+      function g(a, b) { return grid[((b % G + G) % G) * G + ((a % G + G) % G)]; }
+      var t = g(xi, yi) + (g(xi + 1, yi) - g(xi, yi)) * xf;
+      var u = g(xi, yi + 1) + (g(xi + 1, yi + 1) - g(xi, yi + 1)) * xf;
+      return t + (u - t) * yf;
+    }
+    for (var y = 0; y < H; y++) {
+      for (var x = 0; x < W; x++) {
+        var nx = x / W, ny = y / H;
+        var f = 0, amp = 0.55, fr = 3.2;
+        for (var o = 0; o < 5; o++) { f += amp * vnoise(nx * fr + seed * 3.1, ny * fr * 1.6 + seed); amp *= 0.5; fr *= 2.1; }
+        var dx = (nx - 0.5) / 0.5, dy = (ny - 0.56) / 0.42;
+        var fall = Math.max(0, 1 - (dx * dx + dy * dy * 1.3));
+        var v = f * fall * 1.9;
+        var a = Math.min(1, Math.max(0, (v - 0.38) / 0.5));
+        var shade = 255 - Math.round(ny * 60 + (1 - a) * 20);
+        var k = (y * W + x) * 4;
+        img.data[k] = shade; img.data[k + 1] = shade; img.data[k + 2] = Math.min(255, shade + 6); img.data[k + 3] = Math.round(a * 235);
+      }
+    }
+    ctx.putImageData(img, 0, 0);
     return new THREE.CanvasTexture(cv);
   }
-  var cloudMat = new THREE.SpriteMaterial({ map: cloudTexture(), transparent: true, opacity: 0.85, depthWrite: false });
+  var cloudTex = [cloudTexture(1), cloudTexture(2), cloudTexture(3), cloudTexture(4)];
+  var cloudMat = new THREE.SpriteMaterial({ map: cloudTex[0], transparent: true, opacity: 0.85, depthWrite: false });
   var clouds = [];
   for (var ci = 0; ci < 16; ci++) {
     var s = new THREE.Sprite(cloudMat.clone());
+    s.material.map = cloudTex[ci % 4];
     var sc = 26 + Math.random() * 42;
     s.scale.set(sc, sc * 0.42, 1);
     s.position.set(-140 + Math.random() * 300, 26 + Math.random() * 22, -70 + Math.random() * 140);
@@ -224,6 +249,54 @@
     scene.add(ac);
   }
   buildAircraft();
+
+  /* ---------- the real airframe: tilt system VTOL fixed wing (STL) ---------- */
+  var MODEL_URL = './assets/uav-vtol-fixedwing-with-tilt-system-1.snapshot.9/UAV%20VTOL%20Fixedwing.STL';
+  var modelMat = new THREE.MeshPhongMaterial({ color: 0x6f7c8b, specular: 0x1c232b, shininess: 26 });
+  function useStlModel() {
+    if (!THREE.STLLoader) return;
+    new THREE.STLLoader().load(MODEL_URL, function (geo) {
+      geo.computeBoundingBox();
+      var bb = geo.boundingBox, c = new THREE.Vector3();
+      bb.getCenter(c);
+      geo.translate(-c.x, -c.y, -c.z);
+      geo.computeVertexNormals();
+      var mesh = new THREE.Mesh(geo, modelMat);
+      var size = new THREE.Vector3();
+      bb.getSize(size);
+      var s = 13.5 / Math.max(size.x, size.z);          // wingspan in scene units
+      mesh.scale.setScalar(s);
+      mesh.rotation.y = MODEL_YAW;                        // nose points down +x
+      mesh.position.y = -1.15 + (size.y * s) / 2;         // wheels on the ground line
+      while (ac.children.length) ac.remove(ac.children[0]);
+      props.length = 0;
+      ac.scale.setScalar(1);
+      ac.add(mesh);
+    }, undefined, function () { /* keep the built in stand in if the file is missing */ });
+  }
+  var MODEL_YAW = Math.PI / 2;
+  useStlModel();
+
+  /* ---------- light and dark ---------- */
+  function applyTheme() {
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    var fogColor = dark ? 0x0b0f14 : 0xf6f8fa;
+    scene.fog.color.setHex(fogColor);
+    hemi.color.setHex(dark ? 0xc9d6e6 : 0xf4f8fc);
+    hemi.groundColor.setHex(dark ? 0x2a3442 : 0x9aa7b4);
+    hemi.intensity = dark ? 0.75 : 0.7;
+    sun.intensity = dark ? 0.85 : 0.75;
+    M.runway.color.setHex(dark ? 0x3b4550 : 0x707a86);
+    M.pad.color.setHex(dark ? 0x46515e : 0x8892a0);
+    M.marking.color.setHex(dark ? 0xc7d0da : 0xf2f5f8);
+    M.hangar.color.setHex(dark ? 0x2b3541 : 0xd4dce4);
+    M.hangarRoof.color.setHex(dark ? 0x222b35 : 0xb9c3cd);
+    cloudMat.color.setHex(dark ? 0x6b7a8c : 0xffffff);
+    clouds.forEach(function (cl) { cl.material.color.setHex(dark ? 0x6b7a8c : 0xffffff); });
+    modelMat.color.setHex(dark ? 0x93a1b1 : 0x6f7c8b);
+  }
+  applyTheme();
+  document.addEventListener('themechange', applyTheme);
 
   /* ---------- flight trail ---------- */
   var TRAIL_N = 140;
@@ -348,12 +421,12 @@
 
   /* ---------- phases / HUD ---------- */
   var PHASES = [
-    { at: 0.00, name: 'Mission Planning', copy: 'Objectives defined. Test cards written. Corridors cleared. Every campaign starts as questions on paper - mine started as a kid in Bengaluru who wanted to build machines.' },
-    { at: 0.16, name: 'Pre-Flight', copy: 'Aircraft on the apron, systems green, range hot. Mechanical engineering taught me how machines are built. Aerospace taught me why they fly.' },
-    { at: 0.34, name: 'Takeoff', copy: 'Rotors up. Wheels light. The envelope opens the moment the skids leave the ground - this is the part I fell in love with.' },
-    { at: 0.52, name: 'Envelope Expansion', copy: 'Through the corridor gates, one test point at a time. Speed, bank, load - I work at the edges, from supercooled droplets to crash-risk models.' },
+    { at: 0.00, name: 'Mission Planning', copy: 'Objectives defined. Test cards written. Corridors cleared. Every campaign starts as questions on paper. Mine started with a kid in Bengaluru who wanted to build machines.' },
+    { at: 0.16, name: 'Preflight', copy: 'Aircraft on the apron, systems green, range hot. Mechanical engineering taught me how machines are built. Aerospace taught me why they fly.' },
+    { at: 0.34, name: 'Takeoff', copy: 'Rotors up. Wheels light. The envelope opens the moment the skids leave the ground. This is the part I fell in love with.' },
+    { at: 0.52, name: 'Envelope Expansion', copy: 'Through the corridor gates, one test point at a time. Speed, bank, load. I work at the edges, from supercooled droplets to crash risk models.' },
     { at: 0.70, name: 'Data Collection', copy: 'Every second streams home. Engineering is turning telemetry into decisions - data first, opinions second.' },
-    { at: 0.86, name: 'Post-Flight Review', copy: 'Skids down. Data reduced, findings logged, next card queued.' }
+    { at: 0.86, name: 'Postflight Review', copy: 'Skids down. Data reduced, findings logged, next card queued.' }
   ];
   var elPhaseNum = document.getElementById('hud-phase-num');
   var elPhaseName = document.getElementById('hud-phase-name');
@@ -363,8 +436,20 @@
   var elClock = document.getElementById('hud-clock');
   var elCue = document.getElementById('hud-scrollcue');
   var elStory = document.getElementById('campaign-story');
+  var elAbout = document.getElementById('hud-about');
   var phaseEl = wrap.querySelector('.hud-phase');
   var curPhase = -1;
+  var chips = wrap.querySelectorAll('.hud-chip');
+  var skipBtn = wrap.querySelector('.hud-skip');
+  function jumpTo(p) {
+    var top = wrap.getBoundingClientRect().top + window.pageYOffset;
+    var total = wrap.offsetHeight - sticky.offsetHeight;
+    window.scrollTo({ top: top + p * total + 2, behavior: 'smooth' });
+  }
+  Array.prototype.forEach.call(chips, function (ch) {
+    ch.addEventListener('click', function () { jumpTo(parseFloat(ch.getAttribute('data-p'))); });
+  });
+  if (skipBtn) skipBtn.addEventListener('click', function () { jumpTo(0.97); });
 
   function phaseIndex(p) {
     var idx = 0;
@@ -390,6 +475,7 @@
       if (sv > 0.55) elStory.classList.add('story-live');
       else elStory.classList.remove('story-live');
     }
+    if (elAbout) elAbout.classList.toggle('is-off', p > 0.3);
     phaseEl.style.opacity = (1 - sv).toFixed(3);
     elTele.style.opacity = (1 - sv).toFixed(3);
 
@@ -406,7 +492,7 @@
       ['ESC', acs.prop > 0.05 ? (92 + noise * 3).toFixed(0) + ' %' : 'IDLE'],
       ['BAT', (100 - p * 34).toFixed(0) + ' %'],
       ['LINK', p > 0.05 ? 'LOCK 400HZ' : 'STANDBY'],
-      ['GPS', '38°39′N 121°46′W']
+      ['GPS', '3D FIX']
     ];
     var html = '';
     for (var i = 0; i < rows.length; i++) {
@@ -414,6 +500,8 @@
     }
     elTele.innerHTML = html;
     elFill.style.width = (p * 100).toFixed(2) + '%';
+    for (var ci2 = 0; ci2 < chips.length; ci2++) chips[ci2].classList.toggle('is-on', ci2 === pi);
+    if (skipBtn) skipBtn.classList.toggle('is-hidden', p > 0.9);
     var secs = p * 48 * 60;
     elClock.textContent = 'T+' + pad(secs / 3600, 2) + ':' + pad((secs / 60) % 60, 2) + ':' + pad(secs % 60, 2);
     elCue.style.opacity = p < 0.02 ? 1 : 0;

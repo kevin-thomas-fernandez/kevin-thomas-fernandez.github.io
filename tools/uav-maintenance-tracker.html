@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('theme');
+    if (!t) t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) { document.documentElement.setAttribute('data-theme', 'light'); }
+})();
+</script>
+<title>UAS Maintenance Tracker | Kevin Thomas Fernandez</title>
+<meta name="description" content="A maintenance and release check tracker for small UAS. Sample data only. Built from public guidance." />
+<style>
+:root{
+  --bg:#ffffff;--ink:#16202c;--muted:#44515f;--faint:#7c8894;--accent:#ff4f00;--card:#ffffff;--panel:#f5f6f8;
+  --line:#c9ced6;--ok:#1f8a4c;--warn:#b7791f;--bad:#c0392b;--ok-bg:rgba(31,138,76,.12);--warn-bg:rgba(183,121,31,.14);--bad-bg:rgba(192,57,43,.12);
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+html[data-theme="dark"]{
+  color-scheme:dark;--bg:#0b0f14;--ink:#e8edf2;--muted:#a9b4c0;--faint:#7d8896;--accent:#ff6a2b;--card:#121820;--panel:#1a222c;
+  --line:#2c3642;--ok:#4cc38a;--warn:#e0a94a;--bad:#f0685b;--ok-bg:rgba(76,195,138,.14);--warn-bg:rgba(224,169,74,.16);--bad-bg:rgba(240,104,91,.16);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 "Poppins",system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px 60px}
+header{display:flex;align-items:center;gap:14px;padding:18px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+header .back{font:12px var(--mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--muted)}
+header h1{font-size:1.15rem;margin:0;font-weight:600}
+header .sp{flex:1}
+.note{font:11px var(--mono);color:var(--faint);letter-spacing:.04em;margin:.6rem 0 0}
+button,select,input,textarea{font:inherit;color:inherit}
+.btn{background:transparent;border:1px solid var(--ink);padding:.4rem .8rem;font:11px var(--mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.btn:hover{background:var(--ink);color:var(--bg)}
+.btn.solid{background:var(--ink);color:var(--bg)}
+.btn.solid:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.sm{padding:.25rem .55rem;font-size:10px}
+.btn.danger{border-color:var(--bad);color:var(--bad)}
+.btn.danger:hover{background:var(--bad);color:#fff}
+nav.tabs{display:flex;gap:0;border-bottom:1px solid var(--line);margin-top:8px;overflow-x:auto}
+nav.tabs button{background:none;border:0;border-bottom:2px solid transparent;padding:.8rem 1.1rem;font:12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);cursor:pointer;white-space:nowrap}
+nav.tabs button.on{color:var(--ink);border-bottom-color:var(--accent)}
+.pane{display:none;padding-top:20px}.pane.on{display:block}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.stat{border:1px solid var(--line);background:var(--card);padding:14px 16px}
+.stat b{display:block;font-size:1.7rem;font-weight:600;line-height:1.1}
+.stat span{font:10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:820px){.grid2{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);background:var(--card);margin-bottom:14px}
+.card h3{margin:0;padding:11px 16px;border-bottom:1px solid var(--line);font:11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.card .in{padding:14px 16px}
+.row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:13px}
+.row:last-child{border-bottom:0}
+.row small{color:var(--faint);font:11px var(--mono)}
+.badge{display:inline-block;padding:1px 8px;font:10px var(--mono);letter-spacing:.1em;text-transform:uppercase;border:1px solid}
+.b-ok{color:var(--ok);background:var(--ok-bg);border-color:var(--ok)}
+.b-soon{color:var(--warn);background:var(--warn-bg);border-color:var(--warn)}
+.b-over{color:var(--bad);background:var(--bad-bg);border-color:var(--bad)}
+.b-info{color:var(--muted);border-color:var(--line)}
+.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.tools input,.tools select,.fi{background:var(--card);border:1px solid var(--line);padding:.4rem .6rem}
+.tblwrap{overflow-x:auto;border:1px solid var(--line);background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:860px}
+th{font:10px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--faint);text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-weight:500;white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;font-size:13px}
+tr:last-child td{border-bottom:0}
+td.mono{font-family:var(--mono);font-size:12px}
+.tag{font:10px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--faint);display:block}
+.date{background:transparent;border:1px solid var(--line);padding:.2rem .3rem;font:12px var(--mono)}
+.bar{height:5px;background:var(--panel);border:1px solid var(--line);margin-top:4px;min-width:90px}
+.bar i{display:block;height:100%;background:var(--ok)}
+.bar i.w{background:var(--warn)}.bar i.b{background:var(--bad)}
+.gate{border:1px solid var(--line);background:var(--card);margin-bottom:14px}
+.gate .top{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.gate .top h3{margin:0;font-size:1rem;font-weight:600}
+.gate .top .sp{flex:1}
+.gate ul{list-style:none;margin:0;padding:12px 16px}
+.gate li{padding:5px 0;display:flex;gap:10px;font-size:13px}
+.gate li .k{font:10px var(--mono);letter-spacing:.1em;text-transform:uppercase;min-width:52px;padding-top:3px}
+.k.p{color:var(--ok)}.k.f{color:var(--bad)}.k.w{color:var(--warn)}
+.dev{padding:0 16px 14px}
+.dev .devrow{display:flex;gap:8px;align-items:center;padding:6px 0;border-top:1px dashed var(--line);font-size:13px;flex-wrap:wrap}
+.dev .devrow span{flex:1;min-width:180px}
+.overlay{position:fixed;inset:0;background:rgba(8,12,18,.72);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
+.overlay.on{display:flex}
+.modal{background:var(--bg);border:1px solid var(--line);width:min(520px,100%);max-height:92vh;overflow:auto;padding:20px}
+.modal h2{margin:0 0 4px;font-size:1.05rem}
+.modal p.sub{margin:0 0 14px;color:var(--muted);font-size:12px}
+.fg{margin-bottom:12px}
+.fg label{display:block;font:10px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:4px}
+.fi{width:100%}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.foot{display:flex;justify-content:flex-end;gap:8px;margin-top:6px}
+.warnbox{border:1px solid var(--bad);background:var(--bad-bg);color:var(--bad);padding:8px 10px;font-size:12px;margin-bottom:12px}
+#toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:.5rem 1rem;font:12px var(--mono);display:none;z-index:60}
+.basis{font-size:12px;color:var(--muted);line-height:1.6}
+.basis b{color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="back" href="../index.html#web-applications">&larr; Back to site</a>
+    <h1>UAS Maintenance Tracker</h1>
+    <span class="sp"></span>
+    <button class="btn sm" id="themeBtn" type="button">Theme</button>
+    <button class="btn sm" id="exportBtn" type="button">Export CSV</button>
+    <button class="btn sm solid" id="addBtn" type="button">Add task</button>
+  </header>
+  <p class="note">Sample fleet and sample data. Everything is stored only in your browser. Built from public guidance, not tied to any operator.</p>
+
+  <nav class="tabs" role="tablist">
+    <button class="on" data-tab="dash" type="button">Dashboard</button>
+    <button data-tab="tasks" type="button">Tasks</button>
+    <button data-tab="release" type="button">Release check</button>
+    <button data-tab="history" type="button">History</button>
+    <button data-tab="basis" type="button">Basis</button>
+  </nav>
+
+  <section class="pane on" id="p-dash">
+    <div class="stats" id="stats"></div>
+    <div class="grid2">
+      <div class="card"><h3>Overdue</h3><div class="in" id="overdue"></div></div>
+      <div class="card"><h3>Due in the next 7 days</h3><div class="in" id="upcoming"></div></div>
+    </div>
+    <div class="card"><h3>Aircraft status</h3><div class="in" id="fleet"></div></div>
+  </section>
+
+  <section class="pane" id="p-tasks">
+    <div class="tools">
+      <input id="q" type="search" placeholder="Search tasks" />
+      <select id="fAc"></select>
+      <select id="fType"><option value="">All types</option><option>Inspection</option><option>Functional check</option><option>Servicing</option><option>Replacement</option></select>
+      <select id="fStat"><option value="">All statuses</option><option value="over">Overdue</option><option value="soon">Due soon</option><option value="ok">OK</option></select>
+      <span id="count" style="margin-left:auto;font:11px var(--mono);color:var(--faint)"></span>
+    </div>
+    <div class="tblwrap"><table>
+      <thead><tr><th>Aircraft</th><th>Task</th><th>Interval</th><th>Last done</th><th>Next due</th><th>Life used</th><th>Status</th><th></th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table></div>
+  </section>
+
+  <section class="pane" id="p-release">
+    <p class="basis">A release check answers one question per aircraft: is it ready to fly today. It fails if a critical task or a functional check is overdue, if the last result on any task was a fail, or if the configuration does not match the baseline and a deviation has no note showing it does not affect the flight.</p>
+    <div id="gates"></div>
+  </section>
+
+  <section class="pane" id="p-history">
+    <div class="tools">
+      <input id="hq" type="search" placeholder="Search history" />
+      <button class="btn sm danger" id="clearHist" type="button">Clear history</button>
+    </div>
+    <div class="tblwrap"><table style="min-width:760px">
+      <thead><tr><th>Time</th><th>Aircraft</th><th>Task</th><th>By</th><th>Result</th><th>Notes</th></tr></thead>
+      <tbody id="hbody"></tbody>
+    </table></div>
+  </section>
+
+  <section class="pane" id="p-basis">
+    <div class="card"><h3>How this tracker works</h3><div class="in basis">
+      <p><b>Intervals tighten with life used.</b> Each task can carry a life used and a life limit. Past 75 percent of life the interval is shortened to 75 percent of its base, and past 90 percent to 50 percent. This follows the idea in FAA AC 25-7D (paragraph 15.2.2.2) that inspection frequency increases as life is accumulated.</p>
+      <p><b>Functional checks count toward readiness.</b> AC 25-7D (paragraph 4.4.9.2.5) treats the frequency of functional and ground maintenance checks as part of judging system reliability, so an overdue functional check blocks release here.</p>
+      <p><b>Configuration must match the baseline.</b> AC 25-7D (paragraph 3.1.2.4, from 14 CFR 21.35) says a test airplane must conform to its type design as it relates to the test being flown, and any deviation must be shown to have no consequence for that test. Each aircraft here has a conformity flag and a deviation list with a required note.</p>
+      <p style="color:var(--faint)">AC 25-7D covers transport category airplanes. This tracker borrows its ideas for small UAS as a teaching example. It is not an approved maintenance program and does not replace the manufacturer's manual or your operator's procedures.</p>
+    </div></div>
+  </section>
+</div>
+
+<div class="overlay" id="cmpModal"><div class="modal">
+  <h2>Log completion</h2><p class="sub" id="cmpTitle"></p>
+  <div class="fg"><label>Date</label><input class="fi" id="cmpDate" type="date"></div>
+  <div id="cmpCrit"><div class="warnbox">Critical task. Initials are required.</div>
+    <div class="fg"><label>Initials</label><input class="fi" id="cmpBy" maxlength="6" placeholder="KF"></div></div>
+  <div class="fg"><label>Result</label><select class="fi" id="cmpRes"><option>Pass</option><option>Pass with notes</option><option>Fail</option></select></div>
+  <div class="fg"><label>Notes</label><textarea class="fi" id="cmpNotes" rows="3" placeholder="What you found"></textarea></div>
+  <div class="foot"><button class="btn" data-close type="button">Cancel</button><button class="btn solid" id="cmpOk" type="button">Log</button></div>
+</div></div>
+
+<div class="overlay" id="addModal"><div class="modal">
+  <h2>Add task</h2><p class="sub">It is scheduled from the last done date.</p>
+  <div class="f2"><div class="fg"><label>Aircraft</label><select class="fi" id="nAc"></select></div>
+  <div class="fg"><label>Type</label><select class="fi" id="nType"><option>Inspection</option><option>Functional check</option><option>Servicing</option><option>Replacement</option></select></div></div>
+  <div class="fg"><label>Task</label><input class="fi" id="nName" placeholder="Propeller crack and chip inspection"></div>
+  <div class="f2"><div class="fg"><label>Base interval (days)</label><input class="fi" id="nDays" type="number" min="1" value="30"></div>
+  <div class="fg"><label>Category</label><select class="fi" id="nCat"><option>Airframe</option><option>Propulsion</option><option>Power</option><option>Avionics</option><option>Software</option><option>Payload</option></select></div></div>
+  <div class="f2"><div class="fg"><label>Life used</label><input class="fi" id="nUsed" type="number" min="0" value="0"></div>
+  <div class="fg"><label>Life limit (0 for none)</label><input class="fi" id="nMax" type="number" min="0" value="0"></div></div>
+  <div class="fg"><label>Critical, needs sign-off</label><select class="fi" id="nCrit"><option value="0">No</option><option value="1">Yes</option></select></div>
+  <div class="foot"><button class="btn" data-close type="button">Cancel</button><button class="btn solid" id="nOk" type="button">Add</button></div>
+</div></div>
+<div id="toast"></div>
+
+<script>
+(function(){
+'use strict';
+var KEY='uasmt_v1';
+var TODAY=new Date();TODAY.setHours(0,0,0,0);
+function iso(d){var x=new Date(d);return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0');}
+function addD(s,n){var d=new Date(s+'T00:00:00');d.setDate(d.getDate()+n);return iso(d);}
+function daysTo(s){return Math.round((new Date(s+'T00:00:00')-TODAY)/86400000);}
+function ago(n){return iso(new Date(TODAY.getTime()-n*86400000));}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function $(id){return document.getElementById(id);}
+
+function seed(){
+  return {
+    next:20,
+    aircraft:[
+      {id:'AC-01',hours:212,life:500,conforms:true,deviations:[]},
+      {id:'AC-02',hours:388,life:500,conforms:true,deviations:[{text:'Aftermarket antenna mount fitted',noEffect:''}]},
+      {id:'AC-03',hours:96,life:500,conforms:true,deviations:[]}
+    ],
+    tasks:[
+      {id:1,ac:'AC-01',name:'Propeller crack and chip inspection',type:'Inspection',cat:'Propulsion',days:7,last:ago(3),used:0,max:0,crit:true,result:'Pass'},
+      {id:2,ac:'AC-01',name:'Battery pack inspection and cell balance',type:'Inspection',cat:'Power',days:30,last:ago(12),used:35,max:50,crit:false,result:'Pass'},
+      {id:3,ac:'AC-01',name:'Failsafe and return to home functional check',type:'Functional check',cat:'Avionics',days:14,last:ago(6),used:0,max:0,crit:true,result:'Pass'},
+      {id:4,ac:'AC-02',name:'Propeller crack and chip inspection',type:'Inspection',cat:'Propulsion',days:7,last:ago(9),used:0,max:0,crit:true,result:'Pass'},
+      {id:5,ac:'AC-02',name:'Motor bearing lubrication',type:'Servicing',cat:'Propulsion',days:30,last:ago(20),used:400,max:500,crit:false,result:'Pass'},
+      {id:6,ac:'AC-02',name:'Frame arm and landing gear bolt torque check',type:'Inspection',cat:'Airframe',days:30,last:ago(28),used:0,max:0,crit:false,result:'Pass'},
+      {id:7,ac:'AC-02',name:'Failsafe and return to home functional check',type:'Functional check',cat:'Avionics',days:14,last:ago(15),used:0,max:0,crit:true,result:'Pass'},
+      {id:8,ac:'AC-03',name:'Flight controller firmware verified against baseline',type:'Inspection',cat:'Software',days:60,last:ago(30),used:0,max:0,crit:false,result:'Pass'},
+      {id:9,ac:'AC-03',name:'ESC calibration check',type:'Functional check',cat:'Propulsion',days:60,last:ago(41),used:0,max:0,crit:false,result:'Pass'},
+      {id:10,ac:'AC-03',name:'GPS antenna and connector inspection',type:'Inspection',cat:'Avionics',days:30,last:ago(10),used:0,max:0,crit:false,result:'Pass'},
+      {id:11,ac:'AC-03',name:'Battery pack inspection and cell balance',type:'Inspection',cat:'Power',days:30,last:ago(26),used:12,max:50,crit:false,result:'Pass'}
+    ],
+    history:[]
+  };
+}
+var S;
+function load(){try{var r=localStorage.getItem(KEY);S=r?JSON.parse(r):seed();}catch(e){S=seed();}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+
+/* interval tightens as life is used (AC 25-7D 15.2.2.2 idea) */
+function frac(t){return t.max>0?t.used/t.max:0;}
+function factor(t){var f=frac(t);return f>=0.9?0.5:f>=0.75?0.75:1;}
+function eff(t){return Math.max(1,Math.round(t.days*factor(t)));}
+function due(t){return t.result==='Fail'?iso(TODAY):addD(t.last,eff(t));}
+function stat(t){var d=daysTo(due(t));return d<0||t.result==='Fail'?'over':d<=3?'soon':'ok';}
+function ac(id){return S.aircraft.filter(function(a){return a.id===id;})[0];}
+
+function toast(m){var t=$('toast');t.textContent=m;t.style.display='block';clearTimeout(toast._t);toast._t=setTimeout(function(){t.style.display='none';},2200);}
+
+/* ---------- dashboard ---------- */
+function badge(s){return s==='over'?'<span class="badge b-over">Overdue</span>':s==='soon'?'<span class="badge b-soon">Due soon</span>':'<span class="badge b-ok">OK</span>';}
+function renderDash(){
+  var over=S.tasks.filter(function(t){return stat(t)==='over';});
+  var soon=S.tasks.filter(function(t){return stat(t)==='soon';});
+  var ready=S.aircraft.filter(function(a){return gate(a).ok;}).length;
+  $('stats').innerHTML=
+    '<div class="stat"><b>'+S.aircraft.length+'</b><span>Aircraft</span></div>'+
+    '<div class="stat"><b>'+ready+' / '+S.aircraft.length+'</b><span>Ready to fly</span></div>'+
+    '<div class="stat"><b style="color:var(--bad)">'+over.length+'</b><span>Overdue</span></div>'+
+    '<div class="stat"><b style="color:var(--warn)">'+soon.length+'</b><span>Due soon</span></div>'+
+    '<div class="stat"><b>'+S.tasks.length+'</b><span>Tasks tracked</span></div>';
+  function list(a,empty){return a.length?a.slice(0,8).map(function(t){var d=daysTo(due(t));return '<div class="row"><div>'+esc(t.name)+'<br><small>'+esc(t.ac)+' &middot; '+esc(t.type)+'</small></div><div style="text-align:right">'+(d<0?'<span class="badge b-over">'+Math.abs(d)+'d late</span>':'<small>in '+d+'d</small>')+'</div></div>';}).join(''):'<small style="color:var(--faint)">'+empty+'</small>';}
+  $('overdue').innerHTML=list(over.sort(function(a,b){return daysTo(due(a))-daysTo(due(b));}),'Nothing overdue.');
+  var up=S.tasks.filter(function(t){var d=daysTo(due(t));return d>=0&&d<=7&&t.result!=='Fail';}).sort(function(a,b){return daysTo(due(a))-daysTo(due(b));});
+  $('upcoming').innerHTML=list(up,'Nothing due this week.');
+  $('fleet').innerHTML=S.aircraft.map(function(a){var g=gate(a);var pct=Math.min(100,Math.round(a.hours/a.life*100));
+    return '<div class="row"><div><b>'+esc(a.id)+'</b><br><small>'+a.hours+' of '+a.life+' h airframe life</small><div class="bar"><i class="'+(pct>=90?'b':pct>=75?'w':'')+'" style="width:'+pct+'%"></i></div></div><div style="text-align:right">'+(g.ok?'<span class="badge b-ok">Ready</span>':'<span class="badge b-over">Not ready</span>')+'</div></div>';}).join('');
+}
+
+/* ---------- tasks ---------- */
+function fillAcSelects(){
+  var opts=S.aircraft.map(function(a){return '<option>'+esc(a.id)+'</option>';}).join('');
+  var cur=$('fAc').value;
+  $('fAc').innerHTML='<option value="">All aircraft</option>'+opts;$('fAc').value=cur;
+  $('nAc').innerHTML=opts;
+}
+function renderTasks(){
+  var q=$('q').value.toLowerCase(),fa=$('fAc').value,ft=$('fType').value,fs=$('fStat').value;
+  var rows=S.tasks.filter(function(t){
+    if(fa&&t.ac!==fa)return false;if(ft&&t.type!==ft)return false;if(fs&&stat(t)!==fs)return false;
+    if(q&&(t.name+' '+t.ac+' '+t.cat).toLowerCase().indexOf(q)<0)return false;return true;
+  }).sort(function(a,b){return daysTo(due(a))-daysTo(due(b));});
+  $('count').textContent=rows.length+' task'+(rows.length===1?'':'s');
+  $('tbody').innerHTML=rows.map(function(t){
+    var f=factor(t),d=daysTo(due(t)),p=Math.round(frac(t)*100);
+    return '<tr><td class="mono">'+esc(t.ac)+'</td>'+
+      '<td>'+esc(t.name)+(t.crit?' <span class="badge b-over" title="Sign-off required">Critical</span>':'')+'<span class="tag">'+esc(t.cat)+' &middot; '+esc(t.type)+'</span></td>'+
+      '<td class="mono">'+eff(t)+' d'+(f<1?'<span class="tag" style="color:var(--warn)">tightened from '+t.days+'</span>':'')+'</td>'+
+      '<td><input class="date" type="date" value="'+esc(t.last)+'" data-last="'+t.id+'"></td>'+
+      '<td class="mono">'+esc(due(t))+'<span class="tag">'+(d<0?Math.abs(d)+' d ago':d===0?'today':'in '+d+' d')+'</span></td>'+
+      '<td>'+(t.max>0?'<span class="mono">'+t.used+' / '+t.max+'</span><div class="bar"><i class="'+(p>=90?'b':p>=75?'w':'')+'" style="width:'+Math.min(100,p)+'%"></i></div>':'<span class="tag">No limit</span>')+'</td>'+
+      '<td>'+badge(stat(t))+(t.result==='Fail'?'<span class="tag" style="color:var(--bad)">last result: fail</span>':'')+'</td>'+
+      '<td style="white-space:nowrap"><button class="btn sm" data-cmp="'+t.id+'" type="button">Complete</button> <button class="btn sm danger" data-del="'+t.id+'" type="button">&times;</button></td></tr>';
+  }).join('')||'<tr><td colspan="8" style="text-align:center;padding:30px;color:var(--faint)">No tasks match.</td></tr>';
+}
+
+/* ---------- release check ---------- */
+function gate(a){
+  var items=[],ok=true;
+  var mine=S.tasks.filter(function(t){return t.ac===a.id;});
+  var lateCrit=mine.filter(function(t){return t.crit&&stat(t)==='over';});
+  var lateFn=mine.filter(function(t){return t.type==='Functional check'&&stat(t)==='over';});
+  var failed=mine.filter(function(t){return t.result==='Fail';});
+  var lateOther=mine.filter(function(t){return !t.crit&&t.type!=='Functional check'&&stat(t)==='over';});
+  function add(k,text){items.push({k:k,text:text});if(k==='f')ok=false;}
+  if(lateCrit.length)lateCrit.forEach(function(t){add('f','Critical task overdue: '+t.name);}); else add('p','No critical task overdue');
+  if(lateFn.length)lateFn.forEach(function(t){add('f','Functional check overdue: '+t.name);}); else add('p','Functional checks current');
+  if(failed.length)failed.forEach(function(t){add('f','Last result was a fail: '+t.name);}); else add('p','No failed result open');
+  if(lateOther.length)lateOther.forEach(function(t){add('w','Overdue, not blocking: '+t.name);});
+  if(!a.conforms)add('f','Configuration does not match the baseline'); else add('p','Configuration matches the baseline');
+  a.deviations.forEach(function(d){if(!d.noEffect||!d.noEffect.trim())add('f','Deviation has no note showing it does not affect the flight: '+d.text); else add('p','Deviation covered: '+d.text);});
+  var pct=a.hours/a.life; if(pct>=1)add('f','Airframe life reached'); else if(pct>=0.9)add('w','Airframe past 90 percent of life');
+  return {ok:ok,items:items};
+}
+function renderGates(){
+  $('gates').innerHTML=S.aircraft.map(function(a,ai){
+    var g=gate(a);
+    return '<div class="gate"><div class="top"><h3>'+esc(a.id)+'</h3>'+(g.ok?'<span class="badge b-ok">Ready to fly</span>':'<span class="badge b-over">Not ready</span>')+
+      '<span class="sp"></span><label style="font:11px var(--mono)"><input type="checkbox" data-conf="'+ai+'" '+(a.conforms?'checked':'')+'> Matches baseline</label></div>'+
+      '<ul>'+g.items.map(function(i){return '<li><span class="k '+i.k+'">'+(i.k==='p'?'Pass':i.k==='f'?'Fail':'Note')+'</span><span>'+esc(i.text)+'</span></li>';}).join('')+'</ul>'+
+      '<div class="dev">'+a.deviations.map(function(d,di){return '<div class="devrow"><span>'+esc(d.text)+'</span><input class="fi" style="flex:2;min-width:200px" placeholder="Why it has no effect on this flight" value="'+esc(d.noEffect)+'" data-dn="'+ai+':'+di+'"><button class="btn sm danger" data-dd="'+ai+':'+di+'" type="button">&times;</button></div>';}).join('')+
+      '<div class="devrow"><input class="fi" style="flex:1" placeholder="Add a deviation from baseline" data-newdev="'+ai+'"><button class="btn sm" data-adddev="'+ai+'" type="button">Add</button></div></div></div>';
+  }).join('');
+}
+
+/* ---------- history ---------- */
+function renderHist(){
+  var q=$('hq').value.toLowerCase();
+  var rows=S.history.filter(function(h){return !q||(h.task+' '+h.ac+' '+h.notes+' '+h.by).toLowerCase().indexOf(q)>=0;});
+  $('hbody').innerHTML=rows.map(function(h){var c=h.result==='Fail'?'b-over':h.result==='Pass'?'b-ok':'b-soon';
+    return '<tr><td class="mono">'+esc(h.time)+'</td><td class="mono">'+esc(h.ac)+'</td><td>'+esc(h.task)+'</td><td class="mono">'+esc(h.by||'')+'</td><td><span class="badge '+c+'">'+esc(h.result)+'</span></td><td>'+esc(h.notes)+'</td></tr>';}).join('')||'<tr><td colspan="6" style="text-align:center;padding:30px;color:var(--faint)">No history yet. Complete a task to log it.</td></tr>';
+}
+
+function renderAll(){fillAcSelects();renderDash();renderTasks();renderGates();renderHist();}
+
+/* ---------- actions ---------- */
+var cmpId=null;
+function openCmp(id){var t=S.tasks.filter(function(x){return x.id===id;})[0];if(!t)return;cmpId=id;
+  $('cmpTitle').textContent=t.ac+' | '+t.name;$('cmpDate').value=iso(TODAY);$('cmpBy').value='';$('cmpNotes').value='';$('cmpRes').value='Pass';
+  $('cmpCrit').style.display=t.crit?'block':'none';$('cmpModal').classList.add('on');}
+function submitCmp(){
+  var t=S.tasks.filter(function(x){return x.id===cmpId;})[0];if(!t)return;
+  var by=$('cmpBy').value.trim();
+  if(t.crit&&!by){toast('Initials are required for a critical task');return;}
+  var res=$('cmpRes').value;
+  t.last=$('cmpDate').value||iso(TODAY);t.result=res;
+  if(res!=='Fail'&&t.max>0&&/battery|bearing|replace/i.test(t.name+t.type)&&t.type==='Replacement')t.used=0;
+  S.history.unshift({time:new Date().toISOString().replace('T',' ').slice(0,16),ac:t.ac,task:t.name,by:by,result:res,notes:$('cmpNotes').value.trim()});
+  save();$('cmpModal').classList.remove('on');renderAll();toast(res==='Fail'?'Logged as fail. Aircraft not ready until re-checked.':'Logged');
+}
+function submitAdd(){
+  var n=$('nName').value.trim();if(!n){toast('Give the task a name');return;}
+  S.tasks.push({id:S.next++,ac:$('nAc').value,name:n,type:$('nType').value,cat:$('nCat').value,days:Math.max(1,parseInt($('nDays').value,10)||30),last:iso(TODAY),used:parseFloat($('nUsed').value)||0,max:parseFloat($('nMax').value)||0,crit:$('nCrit').value==='1',result:'Pass'});
+  save();$('addModal').classList.remove('on');$('nName').value='';renderAll();toast('Task added');
+}
+function csv(rows){return rows.map(function(r){return r.map(function(c){c=String(c==null?'':c);return /[",\n]/.test(c)?'"'+c.replace(/"/g,'""')+'"':c;}).join(',');}).join('\n');}
+function exportCsv(){
+  var rows=[['Aircraft','Task','Type','Category','Base days','Effective days','Last done','Next due','Status','Life used','Life limit','Critical','Last result']];
+  S.tasks.forEach(function(t){rows.push([t.ac,t.name,t.type,t.cat,t.days,eff(t),t.last,due(t),stat(t),t.used,t.max,t.crit?'yes':'no',t.result]);});
+  var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv(rows)],{type:'text/csv'}));a.download='uas_maintenance_tasks.csv';a.click();
+}
+
+/* ---------- wiring ---------- */
+document.querySelectorAll('nav.tabs button').forEach(function(b){b.addEventListener('click',function(){
+  document.querySelectorAll('nav.tabs button').forEach(function(x){x.classList.toggle('on',x===b);});
+  document.querySelectorAll('.pane').forEach(function(p){p.classList.toggle('on',p.id==='p-'+b.getAttribute('data-tab'));});});});
+['q','fAc','fType','fStat'].forEach(function(id){$(id).addEventListener('input',renderTasks);});
+$('hq').addEventListener('input',renderHist);
+$('addBtn').addEventListener('click',function(){$('addModal').classList.add('on');});
+$('nOk').addEventListener('click',submitAdd);$('cmpOk').addEventListener('click',submitCmp);
+$('exportBtn').addEventListener('click',exportCsv);
+$('clearHist').addEventListener('click',function(){if(confirm('Clear all history?')){S.history=[];save();renderHist();}});
+document.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',function(){b.closest('.overlay').classList.remove('on');});});
+document.querySelectorAll('.overlay').forEach(function(o){o.addEventListener('click',function(e){if(e.target===o)o.classList.remove('on');});});
+$('themeBtn').addEventListener('click',function(){var n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);try{localStorage.setItem('theme',n);}catch(e){}});
+document.addEventListener('click',function(e){
+  var t=e.target;
+  if(t.getAttribute&&t.getAttribute('data-cmp'))openCmp(+t.getAttribute('data-cmp'));
+  if(t.getAttribute&&t.getAttribute('data-del')){var id=+t.getAttribute('data-del');if(confirm('Delete this task?')){S.tasks=S.tasks.filter(function(x){return x.id!==id;});save();renderAll();}}
+  if(t.getAttribute&&t.getAttribute('data-adddev')){var i=+t.getAttribute('data-adddev');var inp=document.querySelector('[data-newdev="'+i+'"]');if(inp.value.trim()){S.aircraft[i].deviations.push({text:inp.value.trim(),noEffect:''});save();renderAll();}}
+  if(t.getAttribute&&t.getAttribute('data-dd')){var p=t.getAttribute('data-dd').split(':');S.aircraft[+p[0]].deviations.splice(+p[1],1);save();renderAll();}
+});
+document.addEventListener('change',function(e){
+  var t=e.target;
+  if(t.getAttribute('data-last')){var x=S.tasks.filter(function(k){return k.id===+t.getAttribute('data-last');})[0];if(x&&t.value){x.last=t.value;save();renderAll();}}
+  if(t.getAttribute('data-conf')){S.aircraft[+t.getAttribute('data-conf')].conforms=t.checked;save();renderAll();}
+});
+document.addEventListener('focusout',function(e){
+  var t=e.target;var dn=t.getAttribute&&t.getAttribute('data-dn');
+  if(dn){var p=dn.split(':');S.aircraft[+p[0]].deviations[+p[1]].noEffect=t.value;save();renderDash();renderGates();}
+});
+load();renderAll();
+})();
+</script>
+</body>
+</html>

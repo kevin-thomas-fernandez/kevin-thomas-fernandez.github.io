@@ -1,74 +1,19 @@
-# Website Offline Hosting Guide
+# Kevin Thomas Fernandez, portfolio site
 
-This project is a static website that can be hosted and viewed entirely offline. Follow the steps below to set up and view the site on your local machine.
+Static site (GitHub Pages). Live at starsratio.com.
 
----
+## Test locally
+1. Install Python 3 if needed.
+2. Double click `start-site.bat`. It opens http://localhost:8000.
+3. Press Ctrl+C in the window to stop.
 
-## Project Structure
+Three.js is bundled in `vendor/`, so the site runs offline.
 
-- `index.html` — Main HTML file
-- `style.css`, `mediaqueries.css` — CSS styles
-- `script.js` — JavaScript
-- `assets/` — Images, fonts, and other assets
+## Edit photos (local only)
+With the site running locally, Highlights and the Zipline case study show an "Edit photos" bar. Add, remove, reorder and edit captions. Changes save to `highlights-data.js` and `zipline-data.js`, and uploads go into `assets/`. The bar is hidden on the live site.
 
----
+## Publish
+Push the changed files (`highlights-data.js`, `zipline-data.js`, new files in `assets/`) to GitHub.
 
-## How to Host and View Offline
-
-### 1. Prerequisites
-
-- **Python 3** (recommended, comes pre-installed on most systems)
-  - Or, **Node.js** (for alternative server options)
-
-### 2. Start a Local Web Server
-
-#### Using Python 3
-
-1. Open a terminal or command prompt.
-2. Navigate to the `Website` directory:
-  ```sh
-   cd "Website"
-  ```
-3. Start the server:
-  ```sh
-   python -m http.server 8000
-  ```
-4. Open your browser and go to:
-  [http://localhost:8000](http://localhost:8000)
-
-#### Using Node.js (Optional)
-
-1. Open a terminal in the `Website` directory.
-2. Run:
-  ```sh
-   npx serve .
-  ```
-   or
-3. Open your browser and go to the address shown (usually [http://localhost:8000](http://localhost:8000) or similar).
-
----
-
-## Notes
-
-- All assets (images, fonts, scripts) are included locally for full offline functionality.
-- External links (e.g., LinkedIn, GitHub) require an internet connection to open, but the site itself works offline.
-- If you add new fonts or assets, place them in the `assets/` folder and update your HTML/CSS paths accordingly.
-
----
-
-## Troubleshooting
-
-- If fonts or images do not load, check that their paths in your HTML/CSS match the actual file locations.
-- If you see a browser error about CORS or file access, make sure you are using a local server (not just opening `index.html` directly).
-
----
-
-## Example: Launch and Connect
-
-```sh
-cd "Website"
-
-```
-
-Then open your browser and go to:
-[http://localhost:8000](http://localhost:8000) 
+## Credits to fill
+Search `index.html` for `EDIT:` to add the 3D model author, source and license.
